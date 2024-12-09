@@ -78,7 +78,7 @@ AnimatorStateMachine:
     m_Position: {x: 480, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5041558942916722180}
-    m_Position: {x: 480, y: 50, z: 0}
+    m_Position: {x: 240, y: 160, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -121,7 +121,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Skeleton Anim
+  m_Name: AC_Skeleton
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:

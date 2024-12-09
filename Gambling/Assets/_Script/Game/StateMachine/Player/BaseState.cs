@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using AnimationState = Framework.FSM.AnimationState;
 
-namespace Game.PlayerStateMachine
+namespace PlayerStateMachine
 {
     public class BaseState : AnimationState
     {

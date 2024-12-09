@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Game.PlayerStateMachine
+namespace PlayerStateMachine
 {
     public class RunState : BaseState
     {

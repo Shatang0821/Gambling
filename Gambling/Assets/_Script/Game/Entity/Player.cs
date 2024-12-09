@@ -1,7 +1,5 @@
-﻿using System;
-using Framework.Entity;
-using Framework.FSM;
-using Game.PlayerStateMachine;
+﻿using Framework.Entity;
+using PlayerStateMachine;
 using UnityEngine;
 
 public enum PlayerStateEnum

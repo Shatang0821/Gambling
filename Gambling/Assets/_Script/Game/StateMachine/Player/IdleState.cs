@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using AnimationState = Framework.FSM.AnimationState;
 
 
-namespace Game.PlayerStateMachine
+namespace PlayerStateMachine
 {
     public class IdleState : BaseState
     {
@@ -22,7 +22,6 @@ namespace Game.PlayerStateMachine
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            Debug.Log("In Idle");
 
             if (Keyboard.current.aKey.wasPressedThisFrame)
             {
