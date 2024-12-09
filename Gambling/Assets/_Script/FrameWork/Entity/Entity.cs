@@ -13,24 +13,6 @@ namespace Framework.Entity
         private Dictionary<Type, object> _components = new Dictionary<Type, object>();
         private IDataProvider _dataProvider;
 
-        private void Start()
-        {
-            var movementComponent = new MovementComponent();
-            AddEntityComponent<MovementComponent>(movementComponent);
-        }
-
-        private void Update()
-        {
-            if (Keyboard.current.aKey.isPressed)
-            {
-                GetEntityComponent<MovementComponent>().Move(1,10,5);
-            }
-            else
-            {
-                GetEntityComponent<MovementComponent>().StopX();
-            }
-        }
-
         //データ提供クラスの設定
         public void SetDataProvider(IDataProvider provider)
         {
@@ -48,7 +30,7 @@ namespace Framework.Entity
             }
 
             _components[type] = component;
-            component.Initialize(this); // 组件初始化
+            component.Initialize(this); // コンポネント初期化
         }
 
         // コンポネントを取得

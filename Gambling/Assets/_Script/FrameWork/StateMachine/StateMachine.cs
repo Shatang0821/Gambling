@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using FrameWork.Component;
 using UnityEngine;
 
 namespace Framework.FSM
 {
-    public abstract class StateMachine
+    public class StateMachine
     {
         protected IState currentState;
 
         private Dictionary<string, IState> _stateTable = new();
-
+        
         public void Initialize(Enum startState)
         {
             ChangeState(startState);
@@ -40,5 +41,6 @@ namespace Framework.FSM
         {
             _stateTable[stateEnum.ToString()] = state;
         }
+        
     }
 }
