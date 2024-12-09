@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using FrameWork.Component;
-using UnityEngine;
 
 namespace Framework.FSM
 {

@@ -3,7 +3,7 @@ using Framework.Entity;
 using FrameWork.Utils;
 using UnityEngine;
 
-namespace FrameWork.Components
+namespace FrameWork.Component
 {
     public class MovementComponent : IComponent
     {

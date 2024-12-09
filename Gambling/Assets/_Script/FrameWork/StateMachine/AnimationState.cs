@@ -10,7 +10,7 @@ namespace Framework.FSM
         protected int stateHash;                //アニメーションのハッシュ値
         
         protected Animator animator;            //アニメーターコンポーネント
-
+        
         // アニメーション遷移時間
         protected static float transitionDuration;
 

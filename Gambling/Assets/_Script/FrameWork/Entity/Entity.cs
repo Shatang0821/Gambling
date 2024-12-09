@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using FrameWork.Component;
-using FrameWork.Components;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Framework.Entity
 {
