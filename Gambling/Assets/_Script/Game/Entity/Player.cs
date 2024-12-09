@@ -1,11 +1,12 @@
-﻿using Framework.Entity;
+﻿using FrameWork.Component;
+using Framework.Entity;
 using PlayerStateMachine;
 using UnityEngine;
 
 public enum PlayerStateEnum
 {
     Idle,
-    Run,
+    Move,
     Attack,
     Dash,
     Damaged,
@@ -19,18 +20,20 @@ public class Player : Entity
     //一時的に使う
     private void Awake()
     {
+        AddEntityComponent<MovementComponent>(new MovementComponent());
+     
         _playerStateMachine = CreateStateMachine();
         AddEntityComponent<EntityStateMachine>(_playerStateMachine);
+        _playerStateMachine.Initialize(PlayerStateEnum.Idle);
+
     }
 
     protected EntityStateMachine CreateStateMachine()
     {
         var stateMachine = new EntityStateMachine();
         var animator = GetComponentInChildren<Animator>();
-        stateMachine.RegisterState(PlayerStateEnum.Idle, new IdleState(PlayerStateEnum.Idle.ToString(),stateMachine,animator));
-        stateMachine.RegisterState(PlayerStateEnum.Run, new RunState(PlayerStateEnum.Run.ToString(),stateMachine,animator));
-        
-        stateMachine.Initialize(PlayerStateEnum.Idle);
+        stateMachine.RegisterState(PlayerStateEnum.Idle, new IdleState(this,PlayerStateEnum.Idle.ToString(),stateMachine,animator));
+        stateMachine.RegisterState(PlayerStateEnum.Move, new MoveState(this,PlayerStateEnum.Move.ToString(),stateMachine,animator));
         
         return stateMachine;
     }
@@ -40,4 +43,6 @@ public class Player : Entity
     {
         _playerStateMachine.LogicUpdate();
     }
+    
+    
 }

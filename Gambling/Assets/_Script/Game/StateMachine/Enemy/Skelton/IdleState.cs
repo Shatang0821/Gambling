@@ -8,6 +8,11 @@ namespace EnemyStateMachine
         public IdleState(string animName, StateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
         {
         }
+
+        public override void Enter()
+        {
+            base.Enter();
+        }
     }
 }
 
