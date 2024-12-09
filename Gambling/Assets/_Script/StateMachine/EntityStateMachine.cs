@@ -3,7 +3,7 @@ using Framework.Entity;
 using Framework.FSM;
 using UnityEngine;
 
-public class EntityStateMachine : StateMachine,IComponent
+public class EntityStateMachine : Framework.FSM.StateMachine,IComponent
 {
     private Entity _entity;
 
