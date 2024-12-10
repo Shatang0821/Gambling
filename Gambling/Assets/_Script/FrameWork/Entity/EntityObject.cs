@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Framework.Entity
 {
-    public class Entity : MonoBehaviour
+    public class EntityObject : MonoBehaviour
     {
         private Dictionary<Type, object> _components = new Dictionary<Type, object>();
         private IDataProvider _dataProvider;

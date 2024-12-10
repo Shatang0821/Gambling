@@ -2,17 +2,16 @@
 using Framework.Entity;
 using Framework.FSM;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace PlayerStateMachine
+namespace Game.StateMachine.Player
 {
     public class MoveState : BaseState
     {
         private MovementComponent _movementComponent;
         
-        public MoveState(Entity entity, string animName, StateMachine stateMachine, Animator animator) : base(entity, animName, stateMachine, animator)
+        public MoveState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
-            _movementComponent = entity.GetEntityComponent<MovementComponent>();
+            _movementComponent = entityObject.GetEntityComponent<MovementComponent>();
         }
         public override void Enter()
         {

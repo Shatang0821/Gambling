@@ -1,43 +1,44 @@
-using System;
-using EnemyStateMachine;
 using Framework.Entity;
-using Framework.FSM;
 using UnityEngine;
+using Game.StateMachine;
+using Game.StateMachine.Enemy.skeleton;
 
-
-public enum EnemyStateEnum
+namespace Game.Entity
 {
-    Idle,
-    Move,
-    Attack,
-    Damaged,
-    Die
-}
-
-public class Enemy : Entity
-{
-
-
-    private EntityStateMachine _enemyStateMachine;
-
-    private void Awake()
+    public class Enemy : EntityObject
     {
-        _enemyStateMachine = CreateStateMachine();
-        AddEntityComponent<EntityStateMachine>(_enemyStateMachine);
-        _enemyStateMachine.Initialize(EnemyStateEnum.Idle);
-    }
+        public enum StateEnum
+        {
+            Idle,
+            Move,
+            Attack,
+            Damaged,
+            Die
+        }
 
-    protected EntityStateMachine CreateStateMachine()
-    {
-        var stateMachine = new EntityStateMachine();
-        var animator = GetComponentInChildren<Animator>();
-        stateMachine.RegisterState(EnemyStateEnum.Idle, new IdleState(EnemyStateEnum.Idle.ToString(),stateMachine,animator));
+        private EntityMyStateMachine _enemyMyStateMachine;
+
+        private void Awake()
+        {
+            _enemyMyStateMachine = CreateStateMachine();
+            AddEntityComponent<EntityMyStateMachine>(_enemyMyStateMachine);
+            _enemyMyStateMachine.Initialize(StateEnum.Idle);
+        }
+
+        protected EntityMyStateMachine CreateStateMachine()
+        {
+            var stateMachine = new EntityMyStateMachine();
+            var animator = GetComponentInChildren<Animator>();
+            stateMachine.RegisterState(StateEnum.Idle, new IdleState(StateEnum.Idle.ToString(),stateMachine,animator));
         
-        return stateMachine;
-    }
+            return stateMachine;
+        }
 
-    private void Update()
-    {
-        _enemyStateMachine.LogicUpdate();
-    }
+        private void Update()
+        {
+            _enemyMyStateMachine.LogicUpdate();
+        }
+    } 
 }
+
+

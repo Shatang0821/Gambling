@@ -7,17 +7,17 @@ namespace FrameWork.Component
 {
     public class MovementComponent : IComponent
     {
-        private Entity _entity;
+        private EntityObject _entityObject;
         private Rigidbody2D _rigidbody;
         private float _speed;
 
-        public void Initialize(Entity entity)
+        public void Initialize(EntityObject entityObject)
         {
-            _entity = entity;
-            _rigidbody = _entity.GetComponent<Rigidbody2D>();
+            _entityObject = entityObject;
+            _rigidbody = _entityObject.GetComponent<Rigidbody2D>();
             if (_rigidbody == null)
             {
-                Debug.LogError($"Missing Rigidbody2D on {_entity.name}");
+                Debug.LogError($"Missing Rigidbody2D on {_entityObject.name}");
             }
 
             _speed = 5.0f; //_entity.GetAttribute("speed");

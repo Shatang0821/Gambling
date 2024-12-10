@@ -1,17 +1,16 @@
-﻿using FrameWork.Component;
-using Framework.Entity;
+﻿using Framework.Entity;
 using Framework.FSM;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using AnimationState = Framework.FSM.AnimationState;
 
-
-namespace PlayerStateMachine
+namespace Game.StateMachine.Player
 {
+    using StateEnum = Game.Entity.Player.StateEnum;
+    
     public class IdleState : BaseState
     {
         
-        public IdleState(Entity entity, string animName, StateMachine stateMachine, Animator animator) : base(entity, animName, stateMachine, animator)
+        public IdleState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
         }
 
@@ -27,12 +26,12 @@ namespace PlayerStateMachine
 
             if (Keyboard.current.aKey.wasPressedThisFrame)
             {
-                ChangeState(PlayerStateEnum.Move);
+                ChangeState(StateEnum.Move);
             }
 
             if (Keyboard.current.dKey.wasPressedThisFrame)
             {
-                ChangeState(PlayerStateEnum.Move);
+                ChangeState(StateEnum.Move);
             }
         }
 
