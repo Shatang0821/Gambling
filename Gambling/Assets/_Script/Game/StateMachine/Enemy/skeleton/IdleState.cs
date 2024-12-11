@@ -1,3 +1,4 @@
+using Framework.Entity;
 using Framework.FSM;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,7 +8,7 @@ namespace Game.StateMachine.Enemy.skeleton
     using StateEnum = Game.Entity.Enemy.StateEnum;
     public class IdleState : BaseState
     {
-        public IdleState(string animName, MyStateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
+        public IdleState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
         }
 

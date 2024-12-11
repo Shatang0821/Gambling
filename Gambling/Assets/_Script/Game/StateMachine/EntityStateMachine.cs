@@ -4,12 +4,13 @@ using Framework.FSM;
 
 namespace Game.StateMachine
 {
-    public class EntityStateMachine : MyStateMachine,IComponent
+    public class EntityStateMachine : MyStateMachine
     {
         private EntityObject _entityObject;
 
-        public void Initialize(EntityObject entityObject)
+        public override void Initialize(EntityObject entityObject)
         {
+            base.Initialize(entityObject);
             this._entityObject = entityObject;
             UnityEngine.Debug.Log("Initialize EntityStateMachine:  " + entityObject.name);
         }

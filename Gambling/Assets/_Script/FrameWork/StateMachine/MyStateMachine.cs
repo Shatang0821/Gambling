@@ -1,14 +1,20 @@
+using Framework.Entity;
+using FrameWork.Component;
 using System;
 using System.Collections.Generic;
 
 namespace Framework.FSM
 {
-    public class MyStateMachine
+    public class MyStateMachine : ComponentBase
     {
         protected IState currentState;
 
         private Dictionary<string, IState> _stateTable = new();
-        
+
+        public override void Initialize(EntityObject entityObject)
+        {
+        }
+
         public void Initialize(Enum startState)
         {
             ChangeState(startState);
@@ -39,6 +45,7 @@ namespace Framework.FSM
         {
             _stateTable[stateEnum.ToString()] = state;
         }
-        
+
+
     }
 }

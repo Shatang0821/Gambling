@@ -1,8 +1,10 @@
+using Framework.Entity;
+
 namespace Game.StateMachine.Enemy.skeleton
 {
     public class AttackState : BaseState
     {
-        public AttackState(string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(animName, stateMachine, animator)
+        public AttackState(EntityObject entityObject, string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
 
         }

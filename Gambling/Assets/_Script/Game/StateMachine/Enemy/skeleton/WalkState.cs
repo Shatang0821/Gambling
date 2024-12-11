@@ -1,16 +1,26 @@
+using Framework.Entity;
+using FrameWork.Component;
+using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
+
 namespace Game.StateMachine.Enemy.skeleton
 {
     public class WalkState : BaseState
     {
-        public WalkState(string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(animName, stateMachine, animator)
+        Vector2 speed;
+        public WalkState(EntityObject entityObject, string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(entityObject,animName, stateMachine, animator)
         {
-
+            speed = new Vector2(-3, 0);
+            
         }
+
+
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
+            _movementComponent.Move(speed,-1,false);
         }
 
         public override void PhysicsUpdate()
