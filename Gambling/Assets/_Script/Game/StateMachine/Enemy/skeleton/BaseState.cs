@@ -12,8 +12,6 @@ namespace Game.StateMachine.Enemy.skeleton
         public override void Enter()
         {
             base.Enter();
-            
-            Debug.Log("Enter :" + GetType());
         }
     }
 }

@@ -4,7 +4,7 @@ using Framework.FSM;
 
 namespace Game.StateMachine
 {
-    public class EntityMyStateMachine : MyStateMachine,IComponent
+    public class EntityStateMachine : MyStateMachine,IComponent
     {
         private EntityObject _entityObject;
 

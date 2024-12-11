@@ -15,7 +15,6 @@ namespace Game.StateMachine.Player
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Enter :" + GetType());
         }
     }
 }

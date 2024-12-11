@@ -25,6 +25,7 @@ namespace Framework.FSM
         {
             base.Enter();
             animator.CrossFade(stateHash,transitionDuration);
+            Debug.Log("Enter :" + GetType());
         }
         
         //ステート変更

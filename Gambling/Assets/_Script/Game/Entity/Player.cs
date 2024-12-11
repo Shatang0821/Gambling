@@ -18,22 +18,22 @@ namespace Game.Entity
             Die
         }
         
-        private EntityMyStateMachine _playerMyStateMachine;
+        private EntityStateMachine _playerStateMachine;
 
         //一時的に使う
         private void Awake()
         {
             AddEntityComponent<MovementComponent>(new MovementComponent());
      
-            _playerMyStateMachine = CreateStateMachine();
-            AddEntityComponent<EntityMyStateMachine>(_playerMyStateMachine);
-            _playerMyStateMachine.Initialize(StateEnum.Idle);
+            _playerStateMachine = CreateStateMachine();
+            AddEntityComponent<EntityStateMachine>(_playerStateMachine);
+            _playerStateMachine.Initialize(StateEnum.Idle);
 
         }
 
-        protected EntityMyStateMachine CreateStateMachine()
+        protected EntityStateMachine CreateStateMachine()
         {
-            var stateMachine = new EntityMyStateMachine();
+            var stateMachine = new EntityStateMachine();
             var animator = GetComponentInChildren<Animator>();
             stateMachine.RegisterState(StateEnum.Idle, new IdleState(this,StateEnum.Idle.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Move, new MoveState(this,StateEnum.Move.ToString(),stateMachine,animator));
@@ -44,7 +44,7 @@ namespace Game.Entity
         //一時的に使う
         private void Update()
         {
-            _playerMyStateMachine.LogicUpdate();
+            _playerStateMachine.LogicUpdate();
         }
     
     
