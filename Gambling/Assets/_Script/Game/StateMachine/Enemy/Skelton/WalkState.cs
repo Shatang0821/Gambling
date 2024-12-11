@@ -1,3 +1,7 @@
+using Framework.FSM;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
 namespace EnemyStateMachine
 {
     public class WalkState : BaseState

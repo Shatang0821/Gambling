@@ -9,6 +9,11 @@ namespace EnemyStateMachine
         public BaseState(string animName, StateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
         {
         }
-        
+
+        public override void Enter()
+        {
+            base.Enter();
+            Debug.Log("Enter :" + GetType());
+        }
     }
 }

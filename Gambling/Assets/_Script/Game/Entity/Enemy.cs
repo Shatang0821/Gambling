@@ -1,6 +1,8 @@
 using System;
+using EnemyStateMachine;
 using Framework.Entity;
 using Framework.FSM;
+using UnityEngine;
 
 
 public enum EnemyStateEnum
@@ -22,17 +24,22 @@ public class Enemy : Entity
     {
         _enemyStateMachine = CreateStateMachine();
         AddEntityComponent<EntityStateMachine>(_enemyStateMachine);
+        _enemyStateMachine.Initialize(EnemyStateEnum.Idle);
     }
 
     protected EntityStateMachine CreateStateMachine()
     {
         var stateMachine = new EntityStateMachine();
-        //stateMachine.RegisterState(StateEnum.Idle, );
+        var animator = GetComponentInChildren<Animator>();
+        stateMachine.RegisterState(EnemyStateEnum.Idle, new IdleState(EnemyStateEnum.Idle.ToString(), stateMachine, animator));
+        stateMachine.RegisterState(EnemyStateEnum.Move, new WalkState(EnemyStateEnum.Move.ToString(), stateMachine, animator));
+
         return stateMachine;
     }
 
     private void Update()
     {
         _enemyStateMachine.LogicUpdate();
+        
     }
 }
