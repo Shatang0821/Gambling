@@ -23,6 +23,21 @@ namespace Game.StateMachine.Enemy.skeleton
             {
                 ChangeState(StateEnum.Move);
             }
+
+            if (Keyboard.current.sKey.wasPressedThisFrame)
+            {
+                ChangeState(StateEnum.Attack);
+            }
+
+            if (Keyboard.current.dKey.wasPressedThisFrame)
+            {
+                ChangeState(StateEnum.Damaged);
+            }
+
+            if (Keyboard.current.fKey.wasPressedThisFrame)
+            {
+                ChangeState(StateEnum.Die);
+            }
         }
     }
 }

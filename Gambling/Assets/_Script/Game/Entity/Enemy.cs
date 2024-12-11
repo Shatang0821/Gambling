@@ -32,6 +32,9 @@ namespace Game.Entity
             var animator = GetComponentInChildren<Animator>();
             stateMachine.RegisterState(StateEnum.Idle, new IdleState(StateEnum.Idle.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Move, new WalkState(StateEnum.Move.ToString(), stateMachine, animator));
+            stateMachine.RegisterState(StateEnum.Attack, new AttackState(StateEnum.Attack.ToString(), stateMachine, animator));
+            stateMachine.RegisterState(StateEnum.Damaged, new DamageState(StateEnum.Damaged.ToString(), stateMachine, animator));
+            stateMachine.RegisterState(StateEnum.Die, new DeathState(StateEnum.Die.ToString(), stateMachine, animator));
 
             return stateMachine;
         }
