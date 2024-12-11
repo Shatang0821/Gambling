@@ -1,8 +1,11 @@
-﻿using FrameWork.Component;
+﻿using System;
+using FrameWork.Component;
 using Framework.Entity;
 using UnityEngine;
 using Game.StateMachine;
 using Game.StateMachine.Player;
+using Modules.Input;
+using Unity.VisualScripting;
 
 namespace Game.Entity
 {
@@ -28,9 +31,10 @@ namespace Game.Entity
             _playerStateMachine = CreateStateMachine();
             AddEntityComponent<EntityStateMachine>(_playerStateMachine);
             _playerStateMachine.Initialize(StateEnum.Idle);
+            
 
         }
-
+        
         protected EntityStateMachine CreateStateMachine()
         {
             var stateMachine = new EntityStateMachine();
