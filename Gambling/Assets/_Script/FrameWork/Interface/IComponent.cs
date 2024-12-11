@@ -4,6 +4,6 @@ namespace FrameWork.Component
 {
     public interface IComponent
     {
-        public void Initialize(Entity entity);
+        public void Initialize(EntityObject entityObject);
     }
 }

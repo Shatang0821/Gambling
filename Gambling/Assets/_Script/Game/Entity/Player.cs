@@ -1,43 +1,52 @@
-﻿using Framework.Entity;
-using PlayerStateMachine;
+﻿using FrameWork.Component;
+using Framework.Entity;
 using UnityEngine;
+using Game.StateMachine;
+using Game.StateMachine.Player;
 
-public enum PlayerStateEnum
+namespace Game.Entity
 {
-    Idle,
-    Run,
-    Attack,
-    Dash,
-    Damaged,
-    Die
-}
-
-public class Player : Entity
-{
-    private EntityStateMachine _playerStateMachine;
-
-    //一時的に使う
-    private void Awake()
+    public class Player : EntityObject
     {
-        _playerStateMachine = CreateStateMachine();
-        AddEntityComponent<EntityStateMachine>(_playerStateMachine);
-    }
-
-    protected EntityStateMachine CreateStateMachine()
-    {
-        var stateMachine = new EntityStateMachine();
-        var animator = GetComponentInChildren<Animator>();
-        stateMachine.RegisterState(PlayerStateEnum.Idle, new IdleState(PlayerStateEnum.Idle.ToString(),stateMachine,animator));
-        stateMachine.RegisterState(PlayerStateEnum.Run, new RunState(PlayerStateEnum.Run.ToString(),stateMachine,animator));
+        public enum StateEnum
+        {
+            Idle,
+            Move,
+            Attack,
+            Dash,
+            Damaged,
+            Die
+        }
         
-        stateMachine.Initialize(PlayerStateEnum.Idle);
-        
-        return stateMachine;
-    }
+        private EntityMyStateMachine _playerMyStateMachine;
 
-    //一時的に使う
-    private void Update()
-    {
-        _playerStateMachine.LogicUpdate();
+        //一時的に使う
+        private void Awake()
+        {
+            AddEntityComponent<MovementComponent>(new MovementComponent());
+     
+            _playerMyStateMachine = CreateStateMachine();
+            AddEntityComponent<EntityMyStateMachine>(_playerMyStateMachine);
+            _playerMyStateMachine.Initialize(StateEnum.Idle);
+
+        }
+
+        protected EntityMyStateMachine CreateStateMachine()
+        {
+            var stateMachine = new EntityMyStateMachine();
+            var animator = GetComponentInChildren<Animator>();
+            stateMachine.RegisterState(StateEnum.Idle, new IdleState(this,StateEnum.Idle.ToString(),stateMachine,animator));
+            stateMachine.RegisterState(StateEnum.Move, new MoveState(this,StateEnum.Move.ToString(),stateMachine,animator));
+        
+            return stateMachine;
+        }
+
+        //一時的に使う
+        private void Update()
+        {
+            _playerMyStateMachine.LogicUpdate();
+        }
+    
+    
     }
 }

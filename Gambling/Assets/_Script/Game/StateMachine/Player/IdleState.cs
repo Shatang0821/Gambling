@@ -1,16 +1,17 @@
-﻿using FrameWork.Component;
+﻿using Framework.Entity;
+using Framework.FSM;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using AnimationState = Framework.FSM.AnimationState;
 
-
-namespace PlayerStateMachine
+namespace Game.StateMachine.Player
 {
+    using StateEnum = Game.Entity.Player.StateEnum;
+    
     public class IdleState : BaseState
     {
-        public IdleState(string animName, Framework.FSM.StateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
+        
+        public IdleState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
-            
         }
 
         public override void Enter()
@@ -25,7 +26,12 @@ namespace PlayerStateMachine
 
             if (Keyboard.current.aKey.wasPressedThisFrame)
             {
-                ChangeState(PlayerStateEnum.Run);
+                ChangeState(StateEnum.Move);
+            }
+
+            if (Keyboard.current.dKey.wasPressedThisFrame)
+            {
+                ChangeState(StateEnum.Move);
             }
         }
 
@@ -33,5 +39,7 @@ namespace PlayerStateMachine
         {
             base.Exit();
         }
+
+
     }
 }

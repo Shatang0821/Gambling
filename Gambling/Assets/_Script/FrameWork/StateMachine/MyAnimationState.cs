@@ -2,7 +2,7 @@
 
 namespace Framework.FSM
 {
-    public class AnimationState : BaseState
+    public class MyAnimationState : BaseState
     {
         // データクラスの変数
         //...
@@ -14,7 +14,7 @@ namespace Framework.FSM
         // アニメーション遷移時間
         protected static float transitionDuration;
 
-        public AnimationState(string animName, StateMachine stateMachine,Animator animator) : base(stateMachine)
+        public MyAnimationState(string animName, MyStateMachine stateMachine,Animator animator) : base(stateMachine)
         {
             this.animator = animator;
             stateHash = Animator.StringToHash(animName);

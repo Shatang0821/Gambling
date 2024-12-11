@@ -5,9 +5,9 @@ namespace Framework.FSM
     public class BaseState : IState
     {
         protected float stateTimer = 0;  // ステート持続時間
-        private StateMachine _stateMachine;    //状態マシンインスタンス
+        private MyStateMachine _stateMachine;    //状態マシンインスタンス
 
-        public BaseState(StateMachine stateMachine)
+        public BaseState(MyStateMachine stateMachine)
         {
             this._stateMachine = stateMachine;
         }

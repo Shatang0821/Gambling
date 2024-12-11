@@ -1,12 +1,15 @@
-﻿using UnityEngine;
-using AnimationState = Framework.FSM.AnimationState;
+﻿using Framework.Entity;
+using Framework.FSM;
+using UnityEngine;
 
-namespace PlayerStateMachine
+namespace Game.StateMachine.Player
 {
-    public class BaseState : AnimationState
+    public class BaseState : MyAnimationState
     {
-        public BaseState(string animName, Framework.FSM.StateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
+        protected EntityObject entityObject;
+        public BaseState(EntityObject entityObject,string animName, MyStateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
         {
+            this.entityObject = entityObject;
         }
 
         public override void Enter()

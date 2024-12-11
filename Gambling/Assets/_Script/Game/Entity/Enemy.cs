@@ -1,25 +1,25 @@
 using System;
 using EnemyStateMachine;
 using Framework.Entity;
-using Framework.FSM;
 using UnityEngine;
+using Game.StateMachine;
+using Game.StateMachine.Enemy.skeleton;
 
-
-public enum EnemyStateEnum
-{
-    Idle,
-    Move,
-    Attack,
-    Damaged,
-    Die
-}
-
-public class Enemy : Entity
+namespace Game.Entity
 {
 
 
     private EntityStateMachine _enemyStateMachine;
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void Awake()
     {
         _enemyStateMachine = CreateStateMachine();

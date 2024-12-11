@@ -7,41 +7,36 @@ namespace FrameWork.Component
 {
     public class MovementComponent : IComponent
     {
-        private Entity _entity;
-        private Rigidbody2D _rigidbody2D;
-        public void Initialize(Entity entity)
+        private EntityObject _entityObject;
+        private Rigidbody2D _rigidbody;
+        private float _speed;
+
+        public void Initialize(EntityObject entityObject)
         {
-            this._entity = entity;
-            _rigidbody2D = _entity.GetComponent<Rigidbody2D>();
-            ErrorCheck.Check<Rigidbody2D>(_rigidbody2D);
-        }
-
-        public void Move(float vectorX, float acceleration, float maxSpeed, bool rotation = false)
-        {
-            // 加速度を計算
-            Vector2 force = new Vector2(vectorX * acceleration, 0);
-
-            // AddForceを使って力を加える
-            _rigidbody2D.AddForce(force);
-
-            // 最大速度を制限
-            if (Mathf.Abs(_rigidbody2D.velocity.x) > maxSpeed)
+            _entityObject = entityObject;
+            _rigidbody = _entityObject.GetComponent<Rigidbody2D>();
+            if (_rigidbody == null)
             {
-                float clampedSpeed = Mathf.Clamp(_rigidbody2D.velocity.x, -maxSpeed, maxSpeed);
-                _rigidbody2D.velocity = new Vector2(clampedSpeed, _rigidbody2D.velocity.y);
+                Debug.LogError($"Missing Rigidbody2D on {_entityObject.name}");
             }
 
-            // 回転の制御（オプション）
-            if (rotation)
+            _speed = 5.0f; //_entity.GetAttribute("speed");
+        }
+
+        public void Move(Vector2 direction)
+        {
+            if (_rigidbody != null)
             {
-                float rotationAngle = vectorX > 0 ? 0 : 180; // 移動方向に応じて回転を設定
-                _entity.transform.rotation = Quaternion.Euler(0, rotationAngle, 0);
+                _rigidbody.velocity = direction * _speed;
             }
         }
 
-        public void StopX()
+        public void Stop()
         {
-            _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+            if (_rigidbody != null)
+            {
+                _rigidbody.velocity = Vector2.zero;
+            }
         }
     }
 }

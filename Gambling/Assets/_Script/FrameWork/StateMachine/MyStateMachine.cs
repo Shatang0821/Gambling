@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Framework.FSM
 {
-    public class StateMachine
+    public class MyStateMachine
     {
         protected IState currentState;
 
