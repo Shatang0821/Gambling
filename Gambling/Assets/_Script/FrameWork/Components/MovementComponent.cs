@@ -23,39 +23,55 @@ namespace FrameWork.Component
             _speed = 5.0f; //_entity.GetAttribute("speed");
         }
 
-        public void Move(Vector2 direction, float acceleration = -1f,bool rotation = true)
+        public void Move(Vector2 direction, bool rotation)
         {
             if (_rigidbody != null)
             {
-                if (direction.x < 0 && rotation)
-                {
-                    entityObject.transform.localScale = new Vector3(-1, 1, 1);
-                }
-                else
-                {
-                    entityObject.transform.localScale = new Vector3(1, 1, 1);
-                }
+                Rotation(rotation);
+                _rigidbody.velocity = direction * _speed;
+            }
+                
+        }
+
+        public void Move(Vector2 direction, float acceleration,bool rotation)
+        {
+            if (_rigidbody != null)
+            {
+                Rotation(rotation);
                 // 現在の速度
                 Vector2 currentVelocity = _rigidbody.velocity;
 
-                // 加速度が無効（-1）なら直接速度を設定
-                if (acceleration < 0)
-                {
-                    _rigidbody.velocity = direction * _speed;
-                }
-                else
-                {
-                    // 加速度を加えた新しい速度を計算
-                    Vector2 targetVelocity = direction * _speed;
-                    Vector2 newVelocity = Vector2.Lerp(currentVelocity, targetVelocity, acceleration * Time.deltaTime);
+                // 加速度を加えた新しい速度を計算
+                Vector2 targetVelocity = direction * _speed;
+                Vector2 newVelocity = Vector2.Lerp(currentVelocity, targetVelocity, acceleration * Time.deltaTime);
 
-                    // Rigidbodyの速度を更新
-                    _rigidbody.velocity = newVelocity;
-                }
+                // Rigidbodyの速度を更新
+                _rigidbody.velocity = newVelocity;
+                
             }
         }
 
+        public void Move(Vector2 direction, bool rotation , float maxSpeed, float time)
+        {
+            if (_rigidbody != null)
+            {
+                Rotation(rotation);
+                // 現在の速度
+                Vector2 currentVelocity = _rigidbody.velocity;
 
+                Vector2 targetVelocity = direction.normalized * maxSpeed;
+
+                // 必要な加速度を計算
+                float requiredAcceleration = maxSpeed / time;
+
+                // 現在の速度からターゲット速度への補間を計算
+                Vector2 newVelocity = Vector2.Lerp(currentVelocity, targetVelocity, requiredAcceleration * Time.deltaTime);
+
+                _rigidbody.velocity = newVelocity;
+
+
+            }
+        }
 
         public void Stop()
         {
@@ -64,5 +80,18 @@ namespace FrameWork.Component
                 _rigidbody.velocity = Vector2.zero;
             }
         }
+
+        void Rotation(bool rotate)
+        {
+            if (rotate)
+            {
+                entityObject.transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                entityObject.transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+
     }
 }

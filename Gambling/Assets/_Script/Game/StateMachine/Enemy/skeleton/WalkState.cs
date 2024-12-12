@@ -20,7 +20,7 @@ namespace Game.StateMachine.Enemy.skeleton
         {
             base.LogicUpdate();
 
-            _movementComponent.Move(speed,-1,false);
+            _movementComponent.Move(speed,true,5.0f,3.0f);
         }
 
         public override void PhysicsUpdate()
