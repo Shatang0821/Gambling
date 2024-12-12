@@ -5,17 +5,17 @@ using System.Collections.Generic;
 
 namespace Framework.FSM
 {
-    public class MyStateMachine : ComponentBase
+    public class MyStateMachine
     {
         protected IState currentState;
 
         private Dictionary<string, IState> _stateTable = new();
 
-        public override void Initialize(EntityObject entityObject)
-        {
-        }
-
-        public void Initialize(Enum startState)
+        /// <summary>
+        /// ステートの初期設定
+        /// </summary>
+        /// <param name="startState">設定したい状態</param>
+        public void InitState(Enum startState)
         {
             ChangeState(startState);
         }

@@ -1,15 +1,18 @@
 ﻿using Framework.Entity;
 using Framework.FSM;
+using Modules.Input;
 using UnityEngine;
 
 namespace Game.StateMachine.Player
 {
     public class BaseState : MyAnimationState
     {
-        protected EntityObject entityObject;
-        public BaseState(EntityObject entityObject,string animName, MyStateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
+        protected EntityObject owner;
+        protected PlayerInputComponent playerInputComponent;
+        public BaseState(EntityObject owner,string animName, MyStateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
         {
-            this.entityObject = entityObject;
+            this.owner = owner;
+            playerInputComponent = owner.GetEntityComponent<PlayerInputComponent>();
         }
 
         public override void Enter()

@@ -10,26 +10,15 @@ namespace Game.StateMachine.Player
     public class IdleState : BaseState
     {
         
-        public IdleState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
+        public IdleState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
         {
-        }
-
-        public override void Enter()
-        {
-            base.Enter();
-            
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if (Keyboard.current.aKey.wasPressedThisFrame)
-            {
-                ChangeState(StateEnum.Move);
-            }
-
-            if (Keyboard.current.dKey.wasPressedThisFrame)
+            if (playerInputComponent.DirectionlInput.x != 0)
             {
                 ChangeState(StateEnum.Move);
             }

@@ -28,13 +28,12 @@ namespace Game.Entity
 
             
             _enemyStateMachine = CreateStateMachine();
-            AddEntityComponent<EntityStateMachine>(_enemyStateMachine);
-            _enemyStateMachine.Initialize(StateEnum.Idle);
+            _enemyStateMachine.InitState(StateEnum.Idle);
         }
 
         protected EntityStateMachine CreateStateMachine()
         {
-            var stateMachine = new EntityStateMachine();
+            var stateMachine = new EntityStateMachine(this);
             var animator = GetComponentInChildren<Animator>();
             stateMachine.RegisterState(StateEnum.Idle, new IdleState(this,StateEnum.Idle.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Move, new WalkState(this, StateEnum.Move.ToString(), stateMachine, animator));

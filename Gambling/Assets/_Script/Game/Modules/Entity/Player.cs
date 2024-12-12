@@ -22,22 +22,43 @@ namespace Game.Entity
         }
         
         private EntityStateMachine _playerStateMachine;
-
+        private PlayerInputComponent _playerInputComponent;
+        
         //一時的に使う
         private void Awake()
         {
-            AddEntityComponent<MovementComponent>(new MovementComponent());
-     
-            _playerStateMachine = CreateStateMachine();
-            AddEntityComponent<EntityStateMachine>(_playerStateMachine);
-            _playerStateMachine.Initialize(StateEnum.Idle);
+                                    AddEntityComponent(new MovementComponent());
+            _playerInputComponent = AddEntityComponent(new PlayerInputComponent());
             
-
+            // ステートマシンは最後に生成
+            _playerStateMachine = CreateStateMachine();
+            _playerStateMachine.InitState(StateEnum.Idle);
         }
         
+        //一時的に使う
+        private void Update()
+        {
+            _playerStateMachine.LogicUpdate();
+        }
+
+
+        private void OnEnable()
+        {
+            _playerInputComponent.OnEnable();
+        }
+
+        private void OnDisable()
+        {
+            _playerInputComponent.OnDisable();
+        }
+
+        /// <summary>
+        /// 制作メソッド 後ほど制作工場に依頼すること
+        /// </summary>
+        /// <returns></returns>
         protected EntityStateMachine CreateStateMachine()
         {
-            var stateMachine = new EntityStateMachine();
+            var stateMachine = new EntityStateMachine(this);
             var animator = GetComponentInChildren<Animator>();
             stateMachine.RegisterState(StateEnum.Idle, new IdleState(this,StateEnum.Idle.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Move, new MoveState(this,StateEnum.Move.ToString(),stateMachine,animator));
@@ -48,12 +69,7 @@ namespace Game.Entity
             return stateMachine;
         }
 
-        //一時的に使う
-        private void Update()
-        {
-            _playerStateMachine.LogicUpdate();
-        }
-    
+
     
     }
 }
