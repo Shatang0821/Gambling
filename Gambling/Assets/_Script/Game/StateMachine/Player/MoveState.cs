@@ -9,7 +9,6 @@ namespace Game.StateMachine.Player
     public class MoveState : BaseState
     {
         private MovementComponent _movementComponent;
-        
         public MoveState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
         {
             _movementComponent = owner.GetEntityComponent<MovementComponent>();
@@ -33,12 +32,13 @@ namespace Game.StateMachine.Player
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            
+            _movementComponent.Move(playerInputComponent.DirectionlInput,true);
         }
 
         public override void Exit()
         {
             base.Exit();
+            _movementComponent.Stop();
         }
 
 

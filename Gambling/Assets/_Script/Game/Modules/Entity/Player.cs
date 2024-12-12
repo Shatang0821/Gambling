@@ -41,6 +41,11 @@ namespace Game.Entity
             _playerStateMachine.LogicUpdate();
         }
 
+        private void FixedUpdate()
+        {
+            _playerStateMachine.PhysicsUpdate();
+        }
+
 
         private void OnEnable()
         {

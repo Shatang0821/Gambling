@@ -27,8 +27,9 @@ namespace FrameWork.Component
         {
             if (_rigidbody != null)
             {
-                Rotation(rotation);
-                _rigidbody.velocity = direction * _speed;
+                if (rotation)
+                    Rotation(direction.x);
+                _rigidbody.velocity = new Vector2(direction.x * _speed , 0);
             }
                 
         }
@@ -37,7 +38,8 @@ namespace FrameWork.Component
         {
             if (_rigidbody != null)
             {
-                Rotation(rotation);
+                if (rotation)
+                    Rotation(direction.x);
                 // 現在の速度
                 Vector2 currentVelocity = _rigidbody.velocity;
 
@@ -55,7 +57,8 @@ namespace FrameWork.Component
         {
             if (_rigidbody != null)
             {
-                Rotation(rotation);
+                if (rotation)
+                    Rotation(direction.x);
                 // 現在の速度
                 Vector2 currentVelocity = _rigidbody.velocity;
 
@@ -81,16 +84,9 @@ namespace FrameWork.Component
             }
         }
 
-        void Rotation(bool rotate)
+        void Rotation(float xDrection)
         {
-            if (rotate)
-            {
-                entityObject.transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else
-            {
-                entityObject.transform.localScale = new Vector3(1, 1, 1);
-            }
+            entityObject.transform.localScale = new Vector3(xDrection, 1, 1);
         }
 
     }
