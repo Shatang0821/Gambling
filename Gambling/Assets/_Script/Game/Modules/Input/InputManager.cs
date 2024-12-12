@@ -7,7 +7,7 @@ using Game.Event;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Modules.Input
+namespace Game.Input
 {
     public class InputManager : FrameWork.Utils.Singleton<InputManager>,
         InputActions.IGamePlayActions
@@ -53,6 +53,32 @@ namespace Modules.Input
             if (context.canceled)
             {
                 EventCenter.TriggerEvent<float>(InputEvents.OnVertical,0.0f);
+            }
+        }
+
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                EventCenter.TriggerEvent<bool>(InputEvents.OnAttack,true);
+            }
+
+            if (context.canceled)
+            {
+                EventCenter.TriggerEvent<bool>(InputEvents.OnAttack,false);
+            }
+        }
+
+        public void OnDefence(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                EventCenter.TriggerEvent<bool>(InputEvents.OnDefence,true);
+            }
+
+            if (context.canceled)
+            {
+                EventCenter.TriggerEvent<bool>(InputEvents.OnDefence,false);
             }
         }
     }

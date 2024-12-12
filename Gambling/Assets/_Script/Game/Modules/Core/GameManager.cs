@@ -1,21 +1,24 @@
 using FrameWork.Utils;
-using Modules.Input;
+using Game.Input;
 
-public class GameManager : UnityPersistentSingleton<GameManager>
+namespace Game.Core
 {
-    protected override void Awake()
+    public class GameManager : UnityPersistentSingleton<GameManager>
     {
-        base.Awake();
-        InputManager.Instance.Initialize();
-    }
+        protected override void Awake()
+        {
+            base.Awake();
+            InputManager.Instance.Initialize();
+        }
 
-    private void OnEnable()
-    {
-        InputManager.Instance.OnEnable();
-    }
+        private void OnEnable()
+        {
+            InputManager.Instance.OnEnable();
+        }
 
-    private void OnDisable()
-    {
-        InputManager.Instance.OnDisable();
+        private void OnDisable()
+        {
+            InputManager.Instance.OnDisable();
+        }
     }
 }

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using UnityEngine;
+
 using FrameWork.Component;
 using Framework.Entity;
-using UnityEngine;
+using FrameWork.EventCenter;
+using Game.Input;
 using Game.StateMachine;
 using Game.StateMachine.Player;
-using Modules.Input;
-using Unity.VisualScripting;
 
 namespace Game.Entity
 {
@@ -16,6 +16,7 @@ namespace Game.Entity
             Idle,
             Move,
             Attack,
+            Defence,
             Dash,
             Damaged,
             Die
@@ -50,6 +51,7 @@ namespace Game.Entity
         private void OnEnable()
         {
             _playerInputComponent.OnEnable();
+            EventCenter.DebugEventTable();
         }
 
         private void OnDisable()
@@ -70,7 +72,7 @@ namespace Game.Entity
             stateMachine.RegisterState(StateEnum.Attack, new AttackState(this,StateEnum.Attack.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Damaged, new DamageState(this,StateEnum.Damaged.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Die, new DieState(this,StateEnum.Die.ToString(),stateMachine,animator));
-        
+            stateMachine.RegisterState(StateEnum.Defence, new DefenceState(this,StateEnum.Defence.ToString(),stateMachine,animator));
             return stateMachine;
         }
 

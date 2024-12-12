@@ -44,6 +44,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d0a8caa-8a73-4791-8fe7-3722f29ba747"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Defence"",
+                    ""type"": ""Button"",
+                    ""id"": ""c26a290c-1d32-4645-b128-0ae5db84673b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +196,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Vertical"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b139bd9-b550-42b1-8507-87e140a5655f"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9426d802-6278-4e62-bda3-588922af60c1"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Defence"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +228,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Horizontal = m_GamePlay.FindAction("Horizontal", throwIfNotFound: true);
         m_GamePlay_Vertical = m_GamePlay.FindAction("Vertical", throwIfNotFound: true);
+        m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
+        m_GamePlay_Defence = m_GamePlay.FindAction("Defence", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,12 +293,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
     private readonly InputAction m_GamePlay_Horizontal;
     private readonly InputAction m_GamePlay_Vertical;
+    private readonly InputAction m_GamePlay_Attack;
+    private readonly InputAction m_GamePlay_Defence;
     public struct GamePlayActions
     {
         private @InputActions m_Wrapper;
         public GamePlayActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Horizontal => m_Wrapper.m_GamePlay_Horizontal;
         public InputAction @Vertical => m_Wrapper.m_GamePlay_Vertical;
+        public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
+        public InputAction @Defence => m_Wrapper.m_GamePlay_Defence;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -272,6 +318,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Vertical.started += instance.OnVertical;
             @Vertical.performed += instance.OnVertical;
             @Vertical.canceled += instance.OnVertical;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @Defence.started += instance.OnDefence;
+            @Defence.performed += instance.OnDefence;
+            @Defence.canceled += instance.OnDefence;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -282,6 +334,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Vertical.started -= instance.OnVertical;
             @Vertical.performed -= instance.OnVertical;
             @Vertical.canceled -= instance.OnVertical;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @Defence.started -= instance.OnDefence;
+            @Defence.performed -= instance.OnDefence;
+            @Defence.canceled -= instance.OnDefence;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -303,5 +361,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnHorizontal(InputAction.CallbackContext context);
         void OnVertical(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnDefence(InputAction.CallbackContext context);
     }
 }

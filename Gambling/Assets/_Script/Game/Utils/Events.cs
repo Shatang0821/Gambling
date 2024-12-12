@@ -3,7 +3,9 @@
     public enum InputEvents
     {
         OnHorizontal,
-        OnVertical
+        OnVertical,
+        OnAttack,
+        OnDefence,
     }
 
 }

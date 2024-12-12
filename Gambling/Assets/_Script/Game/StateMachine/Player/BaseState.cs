@@ -1,6 +1,6 @@
 ﻿using Framework.Entity;
 using Framework.FSM;
-using Modules.Input;
+using Game.Input;
 using UnityEngine;
 
 namespace Game.StateMachine.Player

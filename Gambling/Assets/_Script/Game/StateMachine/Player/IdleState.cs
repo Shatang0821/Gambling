@@ -22,6 +22,16 @@ namespace Game.StateMachine.Player
             {
                 ChangeState(StateEnum.Move);
             }
+
+            if (playerInputComponent.AttackInput)
+            {
+                ChangeState(StateEnum.Attack);
+            }
+
+            if (playerInputComponent.DefenceInput)
+            {
+                ChangeState(StateEnum.Defence);
+            }
         }
 
         public override void Exit()
