@@ -17,7 +17,7 @@ namespace Framework.Entity
         }
 
         // コンポネントを追加
-        public void AddEntityComponent<T>(T component) where T : ComponentBase
+        public void AddEntityComponent<T>(T component) where T : IComponent
         {
             var type = typeof(T);
             if (_components.ContainsKey(type))
@@ -31,7 +31,7 @@ namespace Framework.Entity
         }
 
         // コンポネントを取得
-        public T GetEntityComponent<T>() where T : ComponentBase
+        public T GetEntityComponent<T>() where T : IComponent
         {
             if (_components.TryGetValue(typeof(T), out var component))
             {
@@ -42,7 +42,7 @@ namespace Framework.Entity
         }
 
         // コンポネントを削除
-        public void RemoveEntityComponent<T>() where T : ComponentBase
+        public void RemoveEntityComponent<T>() where T : IComponent
         {
             var type = typeof(T);
             if (_components.Remove(type))

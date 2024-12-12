@@ -11,9 +11,9 @@ namespace FrameWork.Component
         private Rigidbody2D _rigidbody;
         private float _speed;
 
-        public override void Initialize(EntityObject entityObject)
+        public override void Initialize(EntityObject owner)
         {
-            this.entityObject = entityObject;
+            base.Initialize(owner);
             _rigidbody = entityObject.GetComponent<Rigidbody2D>();
             if (_rigidbody == null)
             {
