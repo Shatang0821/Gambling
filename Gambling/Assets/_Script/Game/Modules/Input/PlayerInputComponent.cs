@@ -1,10 +1,11 @@
-﻿using FrameWork.EventCenter;
+﻿using FrameWork.Component;
+using FrameWork.EventCenter;
 using Game.Event;
 using UnityEngine;
 
 namespace Modules.Input
 {
-    public class PlayerInputHandler
+    public class PlayerInputComponent : ComponentBase
     {
         public Vector2 DirectionlInput { get; private set; }
         

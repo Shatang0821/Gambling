@@ -6,14 +6,17 @@ namespace Game.StateMachine
 {
     public class EntityStateMachine : MyStateMachine
     {
-        private EntityObject _entityObject;
-
-        public override void Initialize(EntityObject entityObject)
+        protected EntityObject owner;
+        /// <summary>
+        /// オーナーを設定する
+        /// </summary>
+        /// <param name="owner">オーナー</param>
+        public EntityStateMachine(EntityObject owner)
         {
-            base.Initialize(entityObject);
-            this._entityObject = entityObject;
-            UnityEngine.Debug.Log("Initialize EntityStateMachine:  " + entityObject.name);
+            this.owner = owner;
+            UnityEngine.Debug.Log("Initialize EntityStateMachine:  " + owner.name);
         }
+        
     }
 }
 

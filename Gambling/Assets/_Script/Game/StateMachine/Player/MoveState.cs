@@ -5,13 +5,14 @@ using UnityEngine;
 
 namespace Game.StateMachine.Player
 {
+    using StateEnum = Game.Entity.Player.StateEnum;
     public class MoveState : BaseState
     {
         private MovementComponent _movementComponent;
         
-        public MoveState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
+        public MoveState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
         {
-            _movementComponent = entityObject.GetEntityComponent<MovementComponent>();
+            _movementComponent = owner.GetEntityComponent<MovementComponent>();
         }
         public override void Enter()
         {
@@ -22,6 +23,10 @@ namespace Game.StateMachine.Player
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            if (playerInputComponent.DirectionlInput.x == 0)
+            {
+                ChangeState(StateEnum.Idle);
+            }
             
         }
 

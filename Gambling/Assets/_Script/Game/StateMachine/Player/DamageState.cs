@@ -8,7 +8,7 @@ namespace Game.StateMachine.Player
     public class DamageState : BaseState
     {
 
-        public DamageState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
+        public DamageState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
         {
 
         }
