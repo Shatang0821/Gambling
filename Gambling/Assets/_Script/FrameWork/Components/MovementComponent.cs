@@ -3,6 +3,7 @@ using Framework.Entity;
 using FrameWork.Utils;
 using UnityEngine;
 using Unity.VisualScripting;
+using System.Collections;
 
 namespace FrameWork.Component
 {
@@ -10,7 +11,6 @@ namespace FrameWork.Component
     {
         private Rigidbody2D _rigidbody;
         private float _speed;
-
         public override void Initialize(EntityObject owner)
         {
             base.Initialize(owner);
@@ -48,12 +48,12 @@ namespace FrameWork.Component
                 Vector2 newVelocity = Vector2.Lerp(currentVelocity, targetVelocity, acceleration * Time.deltaTime);
 
                 // Rigidbodyの速度を更新
-                _rigidbody.velocity = newVelocity;
+                _rigidbody.velocity = new Vector2(newVelocity.x,0);
                 
             }
         }
 
-        public void Move(Vector2 direction, bool rotation , float maxSpeed, float time)
+        public void Move(Vector2 direction, float maxSpeed, float time, bool rotation)
         {
             if (_rigidbody != null)
             {
@@ -70,7 +70,7 @@ namespace FrameWork.Component
                 // 現在の速度からターゲット速度への補間を計算
                 Vector2 newVelocity = Vector2.Lerp(currentVelocity, targetVelocity, requiredAcceleration * Time.deltaTime);
 
-                _rigidbody.velocity = newVelocity;
+                _rigidbody.velocity = new Vector2(newVelocity.x, 0);
 
 
             }
@@ -84,10 +84,33 @@ namespace FrameWork.Component
             }
         }
 
+        public void Stop(float decelerationRate)
+        {
+            if (_rigidbody != null)
+            {
+                // 現在の速度を取得
+                Vector2 currentVelocity = _rigidbody.velocity;
+
+                // 減速処理
+                Vector2 newVelocity = Vector2.Lerp(currentVelocity, Vector2.zero, decelerationRate * Time.deltaTime);
+                Debug.Log(newVelocity);
+                // 一定の閾値以下になった場合、完全に停止
+                if (newVelocity.magnitude < 0.01f)
+                {
+                    newVelocity = Vector2.zero;
+                }
+
+                // Rigidbodyの速度を更新
+                _rigidbody.velocity = newVelocity;
+            }
+        }
+
         void Rotation(float xDrection)
         {
             entityObject.transform.localScale = new Vector3(xDrection, 1, 1);
         }
 
+        
+        
     }
 }
