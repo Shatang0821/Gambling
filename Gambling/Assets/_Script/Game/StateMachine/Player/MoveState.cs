@@ -32,7 +32,7 @@ namespace Game.StateMachine.Player
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            _movementComponent.Move(playerInputComponent.DirectionlInput,true);
+            _movementComponent.Move(playerInputComponent.DirectionlInput,true,10.0f,2.0f);
         }
 
         public override void Exit()
