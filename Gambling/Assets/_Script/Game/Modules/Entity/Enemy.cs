@@ -3,6 +3,7 @@ using Game.StateMachine;
 using UnityEngine;
 using Game.StateMachine.Enemy.skeleton;
 using FrameWork.Component;
+using Game.Component;
 
 namespace Game.Entity
 {
@@ -23,7 +24,9 @@ namespace Game.Entity
         private void Awake()
         {
             var movementComponent = new MovementComponent();
+            var attackComponent = new AttackComponent();
             AddEntityComponent<MovementComponent>(movementComponent);
+            AddEntityComponent<AttackComponent>(attackComponent);
             movementComponent.Initialize(this);
 
             

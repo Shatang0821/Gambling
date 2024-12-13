@@ -1,6 +1,7 @@
 ﻿using Framework.Entity;
 using Framework.FSM;
 using FrameWork.Component;
+using Game.Component;
 using UnityEngine;
 
 namespace Game.StateMachine.Enemy.skeleton
@@ -9,10 +10,13 @@ namespace Game.StateMachine.Enemy.skeleton
     {
         protected EntityObject entityObject;
         protected MovementComponent _movementComponent;
+        protected AttackComponent _attackComponent;
+        
         public BaseState(EntityObject entityObject,string animName, MyStateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
         {
             this.entityObject = entityObject;
             this._movementComponent = entityObject.GetEntityComponent<MovementComponent>();
+            this._attackComponent = entityObject.GetEntityComponent<AttackComponent>();
         }
 
         public override void Enter()
