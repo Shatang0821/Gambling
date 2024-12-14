@@ -8,9 +8,3 @@ public class EntityData : ScriptableObject
 {
     
 }
-
-[Serializable]
-public class SkillData
-{
-    
-}

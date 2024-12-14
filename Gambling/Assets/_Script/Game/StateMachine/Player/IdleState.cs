@@ -25,7 +25,7 @@ namespace Game.StateMachine.Player
 
             if (playerInputComponent.AttackInput)
             {
-                ChangeState(StateEnum.Attack);
+                ChangeState(StateEnum.Skill);
             }
 
             if (playerInputComponent.DefenceInput)

@@ -3,6 +3,7 @@
 using FrameWork.Component;
 using Framework.Entity;
 using FrameWork.EventCenter;
+using Game.Component;
 using Game.Input;
 using Game.StateMachine;
 using Game.StateMachine.Player;
@@ -17,7 +18,7 @@ namespace Game.Entity
             Move,
             Attack,
             Defence,
-            Dash,
+            Skill,
             Damaged,
             Die
         }
@@ -29,6 +30,7 @@ namespace Game.Entity
         private void Awake()
         {
                                     AddEntityComponent(new MovementComponent());
+                                    AddEntityComponent(new SkillComponent());
             _playerInputComponent = AddEntityComponent(new PlayerInputComponent());
             
             // ステートマシンは最後に生成
@@ -70,6 +72,7 @@ namespace Game.Entity
             stateMachine.RegisterState(StateEnum.Idle, new IdleState(this,StateEnum.Idle.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Move, new MoveState(this,StateEnum.Move.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Attack, new AttackState(this,StateEnum.Attack.ToString(),stateMachine,animator));
+            stateMachine.RegisterState(StateEnum.Skill, new SkillState(this,StateEnum.Skill.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Damaged, new DamageState(this,StateEnum.Damaged.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Die, new DieState(this,StateEnum.Die.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Defence, new DefenceState(this,StateEnum.Defence.ToString(),stateMachine,animator));
