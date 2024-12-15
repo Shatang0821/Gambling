@@ -9,7 +9,7 @@ namespace Game.StateMachine.Player
     using StateEnum = Game.Entity.Player.StateEnum;
     public class SkillState : BaseState
     {
-        private SkillData _skillData;               //現在スキルデータ
+        //private SkillData _skillData;               //現在スキルデータ
         private SkillComponent _skillComponent;     
         public SkillState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
         {
@@ -19,9 +19,9 @@ namespace Game.StateMachine.Player
         public override void Enter()
         {
             // スキルを取得する
-            _skillData = _skillComponent.GetSkillData("Attack01");
+            //_skillData = _skillComponent.GetSkillData("Attack01");
             // アニメーションを指定する
-            stateHash = Animator.StringToHash(_skillData.AnimationName);
+           // stateHash = Animator.StringToHash(_skillData.AnimationName);
             base.Enter();
         }
 

@@ -12,8 +12,8 @@ namespace Game.SkillSystem
         public string SkillName;             // スキル名
         public float Cooldown;               // クールダウン時間
         public float ManaCost;               // 消費マナ
-        public string AnimationName;             // アニメーション名
-
+        public string AnimationName;         // アニメーション名
+        public bool CanBeInterrupted;        // 中断できるか
         [Header("ターゲット設定")]
         public TargetType TargetType;        // 対象タイプ
         public ColliderType ColliderType;    // コライダータイプ
@@ -22,6 +22,9 @@ namespace Game.SkillSystem
         public Vector3 Size;                 // サイズ（Box）
         public float Range;                  // 最大距離
 
+        [Header("スキル継続時間")] 
+        public float Duration;
+        
         [Header("スキルアクション")]
         public List<SkillActionData> Actions; // スキルアクションリスト
 
@@ -53,11 +56,12 @@ namespace Game.SkillSystem
     [System.Serializable]
     public class SkillActionData
     {
-        public SkillActionType ActionType; // アクションタイプ
-        public float TimeStamp;           // 実行タイミング
-        public string EffectPrefabName;   // プレハブ名（必要に応じて）
-        public float Value;               // 効果値（ダメージ、距離など）
-        public Vector3 Direction;         // オプションの方向ベクトル
+        public SkillActionType ActionType;  // アクションタイプ
+        public float TimeStamp;             // 実行タイミング
+        public float Duration;              // 継続時間
+        public string EffectPrefabName;     // プレハブ名（必要に応じて）
+        public float Value;                 // 効果値（ダメージ、距離など）
+        public Vector3 Direction;           // オプションの方向ベクトル
 
         public enum SkillActionType
         {

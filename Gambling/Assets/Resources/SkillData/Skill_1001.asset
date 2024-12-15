@@ -17,15 +17,18 @@ MonoBehaviour:
   Cooldown: 0
   ManaCost: 0
   AnimationName: Player_Throw
-  TargetType: 1
-  ColliderType: 1
+  CanBeInterrupted: 0
+  TargetType: 0
+  ColliderType: 0
   Offset: {x: 0, y: 0, z: 0}
   Radius: 0
   Size: {x: 0, y: 0, z: 0}
   Range: 0
+  Duration: 0
   Actions:
   - ActionType: 0
     TimeStamp: 0.1
+    Duration: 0
     EffectPrefabName: 
     Value: 10
     Direction: {x: 0, y: 0, z: 0}

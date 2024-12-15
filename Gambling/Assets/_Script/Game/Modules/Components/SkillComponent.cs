@@ -11,83 +11,82 @@ namespace Game.Component
     public class SkillComponent : ComponentBase
     {
         // スキルデータをスキル名で管理
-        private Dictionary<string, SkillData> skills = new Dictionary<string, SkillData>();
+        private Dictionary<int, Skill> skills = new Dictionary<int, Skill>();
         
-        // 現在のクールダウンタイマー
-        private Dictionary<string, float> cooldownTimers = new Dictionary<string, float>();
         public override void Initialize(EntityObject owner)
         {
             base.Initialize(owner);
-            AddSkill(ResManager.Instance.GetAssetCache<SkillData>("SkillData/Skill_1001"));
+            //AddSkill(ResManager.Instance.GetAssetCache<SkillData>("SkillData/Skill_1001"));
 
         }
 
         /// <summary>
         /// スキルを登録
         /// </summary>
-        /// <param name="skillData">登録するスキルデータ</param>
-        public void AddSkill(SkillData skillData)
+        /// <param name="Skill">登録するスキル</param>
+        public void AddSkill(Skill Skill)
         {
-            if (!skills.ContainsKey(skillData.SkillName))
+            if (!skills.ContainsKey(Skill.ID))
             {
-                skills.Add(skillData.SkillName, skillData);
-                cooldownTimers.Add(skillData.SkillName, 0f); // 初始化冷却时间
+                skills.Add(Skill.ID, Skill);
             }
             else
             {
-                Debug.LogWarning($"Skill {skillData.SkillName} is already registered.");
+                Debug.LogWarning($"Skill {Skill.Name} is already registered.");
             }
-        }
-        
-        /// <summary>
-        /// スキルのクールダウンチェック
-        /// </summary>
-        private bool IsSkillReady(string skillName)
-        {
-            return cooldownTimers[skillName] > 0;
         }
         
         /// <summary>
         /// スキルのクールダウン開始
         /// </summary>
         /// <param name="skillName"></param>
-        public void SetCooldown(string skillName)
+        public void SetCooldown(int id)
         {
-            if (!skills.ContainsKey(skillName))
+            if (!skills.ContainsKey(id))
             {
-                Debug.LogWarning($"Skill {skillName} does not exist.");
+                Debug.LogWarning($"Skill {id} does not exist.");
                 return;
             }
-
-            SkillData skillData = skills[skillName];
-            cooldownTimers[skillName] = skillData.Cooldown;
+            skills[id].SetCooldown();
         }
         
         /// <summary>
         /// スキルデータを取得する
         /// </summary>
-        /// <param name="skillName">スキル名称</param>
+        /// <param name="id">スキルid</param>
         /// <returns>スキルデータ</returns>
-        public SkillData  GetSkillData(string skillName)
+        public Skill GetSkill(int id)
         {
-            if (!skills.ContainsKey(skillName))
+            if (!skills.ContainsKey(id))
             {
-                Debug.LogWarning($"Skill {skillName} does not exist.");
+                Debug.LogWarning($"Skill {id} does not exist.");
                 return null;
             }
 
-            return skills[skillName];
+            return skills[id];
         }
 
         public void UpdateCooldown()
-        {   
-            foreach (var skillName in cooldownTimers.Keys.ToList())
+        {
+            foreach (var skill in skills.Values)
             {
-                if (cooldownTimers[skillName] > 0)
-                {
-                    cooldownTimers[skillName] -= Time.deltaTime;
-                }
+                if(!skill.IsReady())
+                    skill.UpdateCooldown();
             }
+        }
+        
+        /// <summary>
+        /// スキルのクールダウンチェック
+        /// </summary>
+        private bool IsSkillReady(int id)
+        {
+            if (!skills.ContainsKey(id))
+            {
+                Debug.LogWarning($"Skill {id} does not exist.");
+                return false;
+            }
+
+            return skills[id].IsReady();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace FrameWork.Component
 
         }
 
-        public void Move(Vector2 direction,float speed, bool rotation)
+        public void Move(Vector2 direction,float speed, bool rotation = false)
         {
             if (_rigidbody != null)
             {
