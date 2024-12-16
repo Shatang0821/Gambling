@@ -11,24 +11,27 @@ namespace Game.Component
     public class SkillComponent : ComponentBase
     {
         // スキルデータをスキル名で管理
-        private Dictionary<int, Skill> skills = new Dictionary<int, Skill>();
-        
+        private Dictionary<int, Skill> _skills = new Dictionary<int, Skill>();
+        private SkillProcessor _skillProcessor;
         public override void Initialize(EntityObject owner)
         {
             base.Initialize(owner);
             //AddSkill(ResManager.Instance.GetAssetCache<SkillData>("SkillData/Skill_1001"));
-
+            var skillData = ResManager.Instance.GetAssetCache<SkillData>("SkillData/Skill_1001");
+            var skill = SkillFactory.CreateSkill(skillData, owner);
+            AddSkill(skill);
+            _skillProcessor = new SkillProcessor(owner);
         }
-
+        
         /// <summary>
         /// スキルを登録
         /// </summary>
         /// <param name="Skill">登録するスキル</param>
         public void AddSkill(Skill Skill)
         {
-            if (!skills.ContainsKey(Skill.ID))
+            if (!_skills.ContainsKey(Skill.ID))
             {
-                skills.Add(Skill.ID, Skill);
+                _skills.Add(Skill.ID, Skill);
             }
             else
             {
@@ -42,12 +45,12 @@ namespace Game.Component
         /// <param name="skillName"></param>
         public void SetCooldown(int id)
         {
-            if (!skills.ContainsKey(id))
+            if (!_skills.ContainsKey(id))
             {
                 Debug.LogWarning($"Skill {id} does not exist.");
                 return;
             }
-            skills[id].SetCooldown();
+            _skills[id].SetCooldown();
         }
         
         /// <summary>
@@ -57,18 +60,18 @@ namespace Game.Component
         /// <returns>スキルデータ</returns>
         public Skill GetSkill(int id)
         {
-            if (!skills.ContainsKey(id))
+            if (!_skills.ContainsKey(id))
             {
                 Debug.LogWarning($"Skill {id} does not exist.");
                 return null;
             }
 
-            return skills[id];
+            return _skills[id];
         }
 
         public void UpdateCooldown()
         {
-            foreach (var skill in skills.Values)
+            foreach (var skill in _skills.Values)
             {
                 if(!skill.IsReady())
                     skill.UpdateCooldown();
@@ -80,13 +83,13 @@ namespace Game.Component
         /// </summary>
         private bool IsSkillReady(int id)
         {
-            if (!skills.ContainsKey(id))
+            if (!_skills.ContainsKey(id))
             {
                 Debug.LogWarning($"Skill {id} does not exist.");
                 return false;
             }
 
-            return skills[id].IsReady();
+            return _skills[id].IsReady();
         }
     }
 }

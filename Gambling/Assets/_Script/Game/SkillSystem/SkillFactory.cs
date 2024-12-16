@@ -46,7 +46,7 @@ namespace Game.SkillSystem
 
             try
             {
-                return (ISkillAction)Activator.CreateInstance(actionType);
+                return (ISkillAction)Activator.CreateInstance(actionType,actionData);
             }
             catch (Exception ex)
             {

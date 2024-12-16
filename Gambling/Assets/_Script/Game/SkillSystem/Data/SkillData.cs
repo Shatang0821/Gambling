@@ -65,7 +65,7 @@ namespace Game.SkillSystem
         public string EffectPrefabName;     // プレハブ名（必要に応じて）
         public float Value;                 // 効果値（ダメージ、距離など）
         public Vector3 Direction;           // オプションの方向ベクトル
-
+        public bool IsPersistent;           // 継続動作かどうか（True: 継続、False: 単発）
         public enum SkillActionType
         {
             Damage,         // ダメージ

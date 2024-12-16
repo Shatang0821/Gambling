@@ -7,18 +7,36 @@ namespace Game.SkillSystem
 {
     public class Skill
     {
-        public string Name => _skillData.SkillName;
-        public int ID => _skillData.SkillID;
-
+        private SkillData _skillData;
         public readonly List<ISkillAction> _actions;
         private readonly EntityObject _owner;
         private float _cooldownTimer = 0f;
-        private SkillData _skillData;
+        
+        public string Name => _skillData.SkillName;
+        public int ID => _skillData.SkillID;
+        public string AnimationName => _skillData.AnimationName;
+
         public Skill( EntityObject owner,SkillData skillData,List<ISkillAction> actions)
         {
             _owner = owner;
             _skillData = skillData;
             _actions = actions;
+        }
+        
+        /// <summary>
+        /// アクションのリストを取得
+        /// </summary>
+        public List<ISkillAction> GetActions()
+        {
+            return _actions;
+        }
+        
+        /// <summary>
+        /// スキルデータを取得
+        /// </summary>
+        public SkillData GetSkillData()
+        {
+            return _skillData;
         }
 
         /// <summary>

@@ -42,14 +42,6 @@ namespace Game.Entity
             _playerStateMachine.InitState(StateEnum.Idle);
         }
 
-        private void Start()
-        {
-            var skill = SkillFactory.CreateSkill(this.SkillData, this);
-            Debug.Log(skill.Name + skill.ID);
-            Debug.Log(skill._actions[0].ToString());
-            skill._actions[0].Execute(this);
-        }
-
         //一時的に使う
         private void Update()
         {

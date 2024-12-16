@@ -10,28 +10,47 @@ namespace Game.StateMachine.Player
     public class SkillState : BaseState
     {
         //private SkillData _skillData;               //現在スキルデータ
-        private SkillComponent _skillComponent;     
+        private SkillComponent _skillComponent;
+        private SkillProcessor _skillProcessor;
+
+        private SkillData _skillData;
         public SkillState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
         {
             _skillComponent = owner.GetEntityComponent<SkillComponent>();
+            _skillProcessor = new SkillProcessor(base.owner);
         }
 
         public override void Enter()
         {
             // スキルを取得する
-            //_skillData = _skillComponent.GetSkillData("Attack01");
+            var skill  = _skillComponent.GetSkill(1001);
+            if (!skill.IsReady())
+            {
+                Debug.Log("aaa");
+            }
+            _skillData = skill.GetSkillData();
             // アニメーションを指定する
-           // stateHash = Animator.StringToHash(_skillData.AnimationName);
+            stateHash = Animator.StringToHash(skill.AnimationName);
+            _skillProcessor.SetSkill(skill);
+            
             base.Enter();
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (stateTimer > 1.0f)
+            _skillProcessor.Update(stateTimer);
+            
+            if (stateTimer > _skillData.Duration)
             {
                 ChangeState(StateEnum.Idle);
             }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            
         }
     }
 }
