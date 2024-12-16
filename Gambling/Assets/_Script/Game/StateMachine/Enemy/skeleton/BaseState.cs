@@ -10,13 +10,13 @@ namespace Game.StateMachine.Enemy.skeleton
     {
         protected EntityObject entityObject;
         protected MovementComponent _movementComponent;
-        protected AttackComponent _attackComponent;
+        protected TargetSelectorComponent _targetSelectorComponent;
         
         public BaseState(EntityObject entityObject,string animName, MyStateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
         {
             this.entityObject = entityObject;
             this._movementComponent = entityObject.GetEntityComponent<MovementComponent>();
-            this._attackComponent = entityObject.GetEntityComponent<AttackComponent>();
+            this._targetSelectorComponent = entityObject.GetEntityComponent<TargetSelectorComponent>();
         }
 
         public override void Enter()

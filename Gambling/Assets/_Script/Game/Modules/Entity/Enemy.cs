@@ -24,9 +24,9 @@ namespace Game.Entity
         private void Awake()
         {
             var movementComponent = new MovementComponent();
-            var attackComponent = new AttackComponent();
+            var attackComponent = new TargetSelectorComponent();
             AddEntityComponent<MovementComponent>(movementComponent);
-            AddEntityComponent<AttackComponent>(attackComponent);
+            AddEntityComponent<TargetSelectorComponent>(attackComponent);
             movementComponent.Initialize(this);
 
             

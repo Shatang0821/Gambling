@@ -75,6 +75,14 @@ namespace FrameWork.Component
             }
         }
 
+        public void Jump(float jumpForce)
+        {
+            if (_rigidbody != null)
+            {
+                _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+        }
+
         public void Stop()
         {
             if (_rigidbody != null)
