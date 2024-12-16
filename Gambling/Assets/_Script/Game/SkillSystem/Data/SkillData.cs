@@ -25,9 +25,12 @@ namespace Game.SkillSystem
         [Header("スキル継続時間")] 
         public float Duration;
         
+        
         [Header("スキルアクション")]
         public List<SkillActionData> Actions; // スキルアクションリスト
-
+        
+        [Header("スキルコンボ")]
+        public List<ComboData> ComboWindow;
         private void OnValidate()
         {
             // 自身対象の場合、コライダーの設定を無効化
@@ -84,6 +87,15 @@ namespace Game.SkillSystem
         Sphere,     // 球体
         Box,        // 立方体
         Capsule     // カプセル
+    }
+    
+    [System.Serializable]
+    public class ComboData
+    {
+        public float StartTime;      // 開始時間
+        public float EndTime;        // 終了時間
+        public int NextSkillID;      // 次のスキルID
+        public string InputKey;      // 入力もしくは条件（例"Attack"）
     }
     
 }

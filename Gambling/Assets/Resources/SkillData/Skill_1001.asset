@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skill_1001
   m_EditorClassIdentifier: 
   SkillID: 1001
-  SkillName: Attack01
+  SkillName: Dash
   Cooldown: 0
   ManaCost: 0
   AnimationName: Player_Throw
@@ -24,11 +24,12 @@ MonoBehaviour:
   Radius: 0
   Size: {x: 0, y: 0, z: 0}
   Range: 0
-  Duration: 0
+  Duration: 1
   Actions:
-  - ActionType: 0
+  - ActionType: 3
     TimeStamp: 0.1
     Duration: 0
     EffectPrefabName: 
     Value: 10
     Direction: {x: 0, y: 0, z: 0}
+  ComboWindow: []

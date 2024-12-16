@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 using FrameWork.Component;
 using Framework.Entity;
 using FrameWork.EventCenter;
 using Game.Component;
 using Game.Input;
+using Game.SkillSystem;
 using Game.StateMachine;
 using Game.StateMachine.Player;
 
@@ -26,6 +28,8 @@ namespace Game.Entity
         private EntityStateMachine _playerStateMachine;
         private PlayerInputComponent _playerInputComponent;
         
+        //TEST
+        public SkillData SkillData;
         //一時的に使う
         private void Awake()
         {
@@ -37,7 +41,15 @@ namespace Game.Entity
             _playerStateMachine = CreateStateMachine();
             _playerStateMachine.InitState(StateEnum.Idle);
         }
-        
+
+        private void Start()
+        {
+            var skill = SkillFactory.CreateSkill(this.SkillData, this);
+            Debug.Log(skill.Name + skill.ID);
+            Debug.Log(skill._actions[0].ToString());
+            skill._actions[0].Execute(this);
+        }
+
         //一時的に使う
         private void Update()
         {

@@ -10,14 +10,15 @@ namespace Game.SkillSystem
         public string Name => _skillData.SkillName;
         public int ID => _skillData.SkillID;
 
-        private readonly List<ISkillAction> _actions;
+        public readonly List<ISkillAction> _actions;
         private readonly EntityObject _owner;
         private float _cooldownTimer = 0f;
         private SkillData _skillData;
-        public Skill( EntityObject owner,SkillData skillData)
+        public Skill( EntityObject owner,SkillData skillData,List<ISkillAction> actions)
         {
             _owner = owner;
             _skillData = skillData;
+            _actions = actions;
         }
 
         /// <summary>
