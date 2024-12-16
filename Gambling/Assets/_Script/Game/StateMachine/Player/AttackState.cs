@@ -16,7 +16,7 @@ namespace Game.StateMachine.Player
         public override void Enter()
         {
             base.Enter();
-
+            
         }
 
         public override void LogicUpdate()
