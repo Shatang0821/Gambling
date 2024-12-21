@@ -24,7 +24,7 @@ MonoBehaviour:
   Radius: 0
   Size: {x: 0, y: 0, z: 0}
   Range: 0
-  Duration: 2
+  Duration: 1
   Actions:
   - ActionType: 3
     TimeStamp: 0.1
@@ -33,4 +33,11 @@ MonoBehaviour:
     Value: 10
     Direction: {x: 0, y: 0, z: 0}
     IsPersistent: 0
+  - ActionType: 3
+    TimeStamp: 0.1
+    Duration: 1
+    EffectPrefabName: 
+    Value: 10
+    Direction: {x: 0, y: 0, z: 0}
+    IsPersistent: 1
   ComboWindow: []

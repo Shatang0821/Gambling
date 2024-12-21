@@ -58,6 +58,7 @@ namespace Game.SkillSystem
             
             foreach (var action in _actionsToRemove)
             {
+                action.StopExecute(_owner);
                 _pendingActions.Remove(action);
             }
 

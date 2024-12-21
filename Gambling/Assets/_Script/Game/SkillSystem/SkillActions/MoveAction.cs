@@ -23,8 +23,18 @@ namespace Game.SkillSystem.Actions
             var movement = owner.GetEntityComponent<MovementComponent>();
             if (movement != null)
             {
-                //movement.Move(direction: new Vector2(1.0f, 0.0f), speed: 10.0f);
+                movement.Move(direction: new Vector2(1.0f, 0.0f), speed: 10.0f);
                 Debug.Log("移動中");
+            }
+        }
+
+        public void StopExecute(EntityObject owner)
+        {
+            var movement = owner.GetEntityComponent<MovementComponent>();
+            if (movement != null)
+            {
+                movement.Stop();
+                Debug.Log("移動中止");
             }
         }
 

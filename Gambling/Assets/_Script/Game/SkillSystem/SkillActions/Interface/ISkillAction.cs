@@ -9,6 +9,7 @@ namespace Game.SkillSystem
         float EndTime { get; }                  // 終了時間
         bool IsPersistent { get; }              // 持続動作かどうか
         void Execute(EntityObject owner);       // 動作の実行
+        void StopExecute(EntityObject owner);   // 動作を止める
         bool IsActive(float elapsedTime);       // 動作が有効かどうか
     }
 }
