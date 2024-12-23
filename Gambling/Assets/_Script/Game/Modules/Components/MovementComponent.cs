@@ -75,11 +75,11 @@ namespace FrameWork.Component
             }
         }
 
-        public void Jump(float jumpForce)
+        public void AddForce(Vector2 direction ,float Force)
         {
             if (_rigidbody != null)
             {
-                _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                _rigidbody.AddForce(direction * Force, ForceMode2D.Impulse);
             }
         }
 

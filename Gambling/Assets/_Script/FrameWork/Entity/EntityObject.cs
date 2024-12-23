@@ -133,6 +133,15 @@ namespace Framework.Entity
             set => transform.localScale = value;
         }
 
+        /// <summary>
+        /// 向いてる方向の取得
+        /// </summary>
+        public int Direction
+        {
+            get => transform.localScale.x > 0 ? 1 : -1;
+        }
+
+
         #endregion
     }
 }
