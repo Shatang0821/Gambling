@@ -36,6 +36,7 @@ namespace Game.Entity
         private void Awake()
         {
                                     AddEntityComponent(new MovementComponent());
+                                    AddEntityComponent(new AttackComponent());
             _playerSkillComponent = AddEntityComponent(new SkillComponent());
             _playerInputComponent = AddEntityComponent(new PlayerInputComponent());
             

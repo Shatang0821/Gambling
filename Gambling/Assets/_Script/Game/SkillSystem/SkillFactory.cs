@@ -14,7 +14,6 @@ namespace Game.SkillSystem
             List<ISkillAction> actions = new List<ISkillAction>();
             foreach (var actionData in data.Actions)
             {
-                Debug.Log("aaa");
                 ISkillAction action = CreateAction(data,actionData, owner);
                 if (action != null)
                 {
@@ -32,7 +31,6 @@ namespace Game.SkillSystem
         private static ISkillAction CreateAction(SkillData data,SkillActionData actionData, EntityObject owner)
         {
             string className = $"{Namespace}.{actionData.ActionType}Action";
-            Debug.Log(className);
             // 
             if (!actionTypeCache.TryGetValue(className, out Type actionType))
             {

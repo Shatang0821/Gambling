@@ -22,22 +22,22 @@ namespace Game.StateMachine.Enemy.skeleton
             base.LogicUpdate();
             if (Keyboard.current.aKey.wasPressedThisFrame)
             {
-                ChangeState(StateEnum.Move);
+                //ChangeState(StateEnum.Move);
             }
 
             if (Keyboard.current.sKey.wasPressedThisFrame)
             {
-                ChangeState(StateEnum.Attack);
+                //ChangeState(StateEnum.Attack);
             }
 
             if (Keyboard.current.dKey.wasPressedThisFrame)
             {
-                ChangeState(StateEnum.Damaged);
+                //ChangeState(StateEnum.Damaged);
             }
 
             if (Keyboard.current.fKey.wasPressedThisFrame)
             {
-                ChangeState(StateEnum.Die);
+                //ChangeState(StateEnum.Die);
             }
         }
     }

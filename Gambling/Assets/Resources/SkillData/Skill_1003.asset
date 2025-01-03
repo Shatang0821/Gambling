@@ -18,7 +18,10 @@ MonoBehaviour:
   ManaCost: 0
   AnimationName: Attack_2
   CanBeInterrupted: 0
-  TargetType: 0
+  TargetType: 1
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 64
   ColliderType: 0
   Offset: {x: 0, y: 0, z: 0}
   Radius: 0
@@ -26,7 +29,7 @@ MonoBehaviour:
   Range: 0
   Duration: 0.4
   Actions:
-  - ActionType: 3
+  - ActionType: 1
     TimeStamp: 0.5
     Duration: 0.1
     EffectPrefabName: Attack

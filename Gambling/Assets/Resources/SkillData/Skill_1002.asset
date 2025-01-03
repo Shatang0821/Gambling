@@ -21,23 +21,30 @@ MonoBehaviour:
   TargetType: 1
   TargetLayer:
     serializedVersion: 2
-    m_Bits: 0
-  ColliderType: 0
-  Offset: {x: 0, y: 0, z: 0}
+    m_Bits: 64
+  ColliderType: 1
+  Offset: {x: 0.5, y: 0.15, z: 0}
   Radius: 0
-  Size: {x: 0, y: 0, z: 0}
+  Size: {x: 1.5, y: 1, z: 0}
   Range: 0
   Duration: 0.5
   Actions:
   - ActionType: 1
     TimeStamp: 0
-    Duration: 0.1
+    Duration: 0.02
+    EffectPrefabName: 
+    Value: 1
+    Direction: {x: 0, y: 0, z: 0}
+    IsPersistent: 0
+  - ActionType: 0
+    TimeStamp: 0.1
+    Duration: 0
     EffectPrefabName: 
     Value: 5
     Direction: {x: 0, y: 0, z: 0}
     IsPersistent: 0
   ComboDatas:
-  - StartTime: 0.2
-    EndTime: 0.5
+  - StartTime: 0.3
+    EndTime: 0.4
     NextSkillID: 1003
     InputKey: Attack

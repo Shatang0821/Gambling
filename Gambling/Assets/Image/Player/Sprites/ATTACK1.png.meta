@@ -176,9 +176,9 @@ TextureImporter:
       name: ATTACK1_3
       rect:
         serializedVersion: 2
-        x: 328
+        x: 318
         y: 16
-        width: 53
+        width: 63
         height: 42
       alignment: 6
       pivot: {x: 0, y: 0}
@@ -197,9 +197,9 @@ TextureImporter:
       name: ATTACK1_4
       rect:
         serializedVersion: 2
-        x: 424
+        x: 414
         y: 16
-        width: 31
+        width: 41
         height: 39
       alignment: 6
       pivot: {x: 0, y: 0}

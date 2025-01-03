@@ -18,7 +18,7 @@ namespace Framework.FSM
         {
             this.animator = animator;
             stateHash = Animator.StringToHash(animName);
-            transitionDuration = 0;
+            transitionDuration = 0f;
         }
 
         public override void Enter()

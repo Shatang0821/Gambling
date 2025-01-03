@@ -26,7 +26,7 @@ namespace Game.StateMachine.Enemy.skeleton
         {
             base.Enter();
             //_targetSelectorComponent.CloseRangeAttack(entityObject.LocalPosition, 30, 2, 10);
-            _attackComponent.DamageFlow();
+            //_attackComponent.DamageFlow();
         }
     }
 

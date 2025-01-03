@@ -14,7 +14,7 @@ namespace Game.StateMachine.Player
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (stateTimer > .2f)
+            if (stateTimer > .2f && !playerInputComponent.DefenceInput)
             {
                 ChangeState(StateEnum.Idle);
             }
