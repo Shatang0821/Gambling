@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 namespace Game.SkillSystem
@@ -15,7 +16,8 @@ namespace Game.SkillSystem
         public string AnimationName;         // アニメーション名
         public bool CanBeInterrupted;        // 中断できるか
         [Header("ターゲット設定")]
-        public TargetType TargetType;        // 対象タイプ
+        public TargetType TargetType;        // ターゲットタイプ
+        public LayerMask TargetLayer;        // ターゲットレイヤ
         public ColliderType ColliderType;    // コライダータイプ
         public Vector3 Offset;               // コライダーのオフセット
         public float Radius;                 // 半径（Sphere、Capsule）
@@ -36,7 +38,8 @@ namespace Game.SkillSystem
             // 自身対象の場合、コライダーの設定を無効化
             if (TargetType == TargetType.Self)
             {
-                ColliderType = ColliderType.Sphere;
+                TargetLayer = default;
+                ColliderType = ColliderType.Circle;
                 Offset = Vector3.zero;
                 Radius = 0f;
                 Size = Vector3.zero;
@@ -44,7 +47,7 @@ namespace Game.SkillSystem
             // 敵や範囲対象の場合、適切なフィールドをリセット
             else if (TargetType != TargetType.Self)
             {
-                if (ColliderType == ColliderType.Sphere)
+                if (ColliderType == ColliderType.Circle)
                 {
                     Size = Vector3.zero; // Boxのサイズをリセット
                 }
@@ -68,10 +71,8 @@ namespace Game.SkillSystem
         public bool IsPersistent;           // 継続動作かどうか（True: 継続、False: 単発）
         public enum SkillActionType
         {
-            Damage,         // ダメージ
-            Heal,           // 回復
-            SpawnPrefab,    // プレハブ生成
-            Move            // 移動
+            TargetSelector,         // ダメージ
+            Move                    // 移動
         }
     }
     
@@ -84,8 +85,8 @@ namespace Game.SkillSystem
 
     public enum ColliderType
     {
-        Sphere,     // 球体
-        Box,        // 立方体
+        Circle,     // 円
+        Box,        // 四角形
         Capsule     // カプセル
     }
     

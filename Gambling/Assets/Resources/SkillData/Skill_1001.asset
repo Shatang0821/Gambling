@@ -18,7 +18,10 @@ MonoBehaviour:
   ManaCost: 0
   AnimationName: Dash
   CanBeInterrupted: 0
-  TargetType: 0
+  TargetType: 1
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 0
   ColliderType: 0
   Offset: {x: 0, y: 0, z: 0}
   Radius: 0
@@ -33,4 +36,4 @@ MonoBehaviour:
     Value: 10
     Direction: {x: 1, y: 0, z: 0}
     IsPersistent: 0
-  ComboWindow: []
+  ComboDatas: []

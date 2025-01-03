@@ -14,7 +14,8 @@ namespace Game.SkillSystem
             List<ISkillAction> actions = new List<ISkillAction>();
             foreach (var actionData in data.Actions)
             {
-                ISkillAction action = CreateAction(actionData, owner);
+                Debug.Log("aaa");
+                ISkillAction action = CreateAction(data,actionData, owner);
                 if (action != null)
                 {
                     actions.Add(action);
@@ -28,10 +29,10 @@ namespace Game.SkillSystem
             return new Skill(owner,data,actions);
         }
         
-        private static ISkillAction CreateAction(SkillActionData actionData, EntityObject owner)
+        private static ISkillAction CreateAction(SkillData data,SkillActionData actionData, EntityObject owner)
         {
             string className = $"{Namespace}.{actionData.ActionType}Action";
-
+            Debug.Log(className);
             // 
             if (!actionTypeCache.TryGetValue(className, out Type actionType))
             {
@@ -46,7 +47,7 @@ namespace Game.SkillSystem
 
             try
             {
-                return (ISkillAction)Activator.CreateInstance(actionType,actionData);
+                return (ISkillAction)Activator.CreateInstance(actionType,data,actionData);
             }
             catch (Exception ex)
             {

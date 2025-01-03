@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b48dd51db79450f903f93a03ecf706f, type: 3}
   m_Name: Skill_1004
   m_EditorClassIdentifier: 
-  SkillID: 1003
+  SkillID: 1004
   SkillName: Attack
   Cooldown: 0
   ManaCost: 0
-  AnimationName: Attack_2
+  AnimationName: Attack_3
   CanBeInterrupted: 0
   TargetType: 0
   ColliderType: 0

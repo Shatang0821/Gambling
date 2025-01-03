@@ -11,7 +11,7 @@ public class SkillDataEditorWindow : EditorWindow
     private Animator animator;
     private string selectedAnimationName;
     private TargetType targetType = TargetType.Enemy;
-    private ColliderType colliderType = ColliderType.Sphere;
+    private ColliderType colliderType = ColliderType.Circle;
 
     [MenuItem("Tools/Skill Data Editor")]
     public static void ShowWindow()

@@ -4,6 +4,7 @@ namespace Game.SkillSystem
 {
     public interface ISkillAction
     {
+        SkillData SkillData { get; }
         SkillActionData SkillActionData { get; }
         float TimeStamp { get; }                // タイムスタンプ
         float Duration  { get; }                // 継続時間

@@ -27,10 +27,14 @@ MonoBehaviour:
   Duration: 0.4
   Actions:
   - ActionType: 3
-    TimeStamp: 0
+    TimeStamp: 0.5
     Duration: 0.1
-    EffectPrefabName: 
+    EffectPrefabName: Attack
     Value: 5
     Direction: {x: 0, y: 0, z: 0}
     IsPersistent: 0
-  ComboDatas: []
+  ComboDatas:
+  - StartTime: 0.2
+    EndTime: 0.5
+    NextSkillID: 1004
+    InputKey: Attack

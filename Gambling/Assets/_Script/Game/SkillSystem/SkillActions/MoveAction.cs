@@ -6,14 +6,16 @@ namespace Game.SkillSystem.Actions
 {
     public class MoveAction : ISkillAction
     {
+        public SkillData SkillData { get; }
         public SkillActionData SkillActionData { get; }
         public float TimeStamp { get; set; }
         public float Duration { get; set; }
         public bool IsPersistent  => SkillActionData.IsPersistent; // データから取得
 
-        public MoveAction(SkillActionData skillActionData)
+        public MoveAction(SkillData data,SkillActionData skillActionData)
         {
-            this.SkillActionData = skillActionData;
+            SkillData = data;
+            SkillActionData = skillActionData;
             TimeStamp = skillActionData.TimeStamp;
             Duration = skillActionData.Duration;
         }

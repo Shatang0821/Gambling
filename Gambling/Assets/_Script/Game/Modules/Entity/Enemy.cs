@@ -24,13 +24,13 @@ namespace Game.Entity
         private void Awake()
         {
             var movementComponent = new MovementComponent();
-            var targetSelectorComponent = new TargetSelectorComponent();
+            //var targetSelectorComponent = new TargetSelector();
             var attackComponent = new AttackComponent();
             AddEntityComponent<MovementComponent>(movementComponent);
-            AddEntityComponent<TargetSelectorComponent>(targetSelectorComponent);
+            //AddEntityComponent<TargetSelector>(targetSelectorComponent);
             AddEntityComponent<AttackComponent>(attackComponent);
             movementComponent.Initialize(this);
-            targetSelectorComponent.Initialize(this);
+            //targetSelectorComponent.Initialize(this);
             attackComponent.Initialize(this);
             
             _enemyStateMachine = CreateStateMachine();
