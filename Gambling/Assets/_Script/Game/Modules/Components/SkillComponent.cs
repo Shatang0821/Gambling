@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace Game.Component
 {
+    /// <summary>
+    /// スキル管理クラス
+    /// </summary>
     public class SkillComponent : ComponentBase
     {
         // スキルデータをスキル名で管理

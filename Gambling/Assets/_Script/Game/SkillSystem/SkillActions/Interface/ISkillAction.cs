@@ -5,11 +5,12 @@ namespace Game.SkillSystem
     public interface ISkillAction
     {
         SkillActionData SkillActionData { get; }
-        float StartTime { get; }                // 開始時間
-        float EndTime { get; }                  // 終了時間
+        float TimeStamp { get; }                // タイムスタンプ
+        float Duration  { get; }                // 継続時間
         bool IsPersistent { get; }              // 持続動作かどうか
-        void Execute(EntityObject owner);       // 動作の実行
-        void StopExecute(EntityObject owner);   // 動作を止める
+        void Enter(EntityObject owner);         // 
+        void Update(EntityObject owner);       　// 動作の更新処理
+        void Exit(EntityObject owner);
         bool IsActive(float elapsedTime);       // 動作が有効かどうか
     }
 }

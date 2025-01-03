@@ -9,8 +9,8 @@ namespace Game.SkillSystem
     public class SkillProcessor
     {
         private Skill _currentSkill;               // 現在実行中のスキル
-        private List<ISkillAction> _pendingActions;     // 実行待ちのアクション
-        private List<ISkillAction> _actionsToRemove;
+        private List<ISkillAction> _pendingActions;// 実行待ちのアクション
+        private ISkillAction _currentAction; 
         private float _currentTime;                // 現在のスキル経過時間
         private bool _isRunning;                   // スキルが実行中かどうか
         private EntityObject _owner;
@@ -18,7 +18,6 @@ namespace Game.SkillSystem
         {
             _owner = owner;
             _pendingActions = new List<ISkillAction>();
-            _actionsToRemove = new List<ISkillAction>();
         }
             
         /// <summary>
@@ -28,41 +27,42 @@ namespace Game.SkillSystem
         {
             _currentSkill = skill;
             _pendingActions.Clear();
-            _actionsToRemove.Clear();
             _pendingActions.AddRange(skill.GetActions());
+            _currentAction = null;
             _currentTime = 0f;
             _isRunning = true;
         }
 
         public void Update(float stateTime)
         {
-            if(!_isRunning || _currentSkill == null || _pendingActions.Count == 0) return;
+            if(!_isRunning || _currentSkill == null) return;
             
             _currentTime = stateTime;
-            
-            foreach (var action in _pendingActions)
+
+            // アクションがないもしくは完成時に、次のアクションの取得を試す
+            if (_currentAction == null && _pendingActions.Count > 0)
             {
-                if (action.IsActive(_currentTime))
-                {
-                    action.Execute(_owner);
-                    if (!action.IsPersistent)
-                    {
-                        _actionsToRemove.Add(action);
-                    }
-                }
-                else
-                {
-                    Debug.Log("実行失敗アクティブ時間以外");
-                }
-            }
-            
-            foreach (var action in _actionsToRemove)
-            {
-                action.StopExecute(_owner);
-                _pendingActions.Remove(action);
+                _currentAction = _pendingActions[0];
+                _pendingActions.RemoveAt(0);
+                _currentAction.Enter(_owner);
             }
 
-            if (_pendingActions.Count == 0)
+            if (_currentAction != null)
+            {
+                // 更新処理があるときにさせる
+                if (_currentAction.IsPersistent)
+                {
+                    _currentAction.Update(_owner);
+                }
+                // アクションの実行時間が終了した時
+                if (_currentTime >= _currentAction.TimeStamp + _currentAction.Duration)
+                {
+                    _currentAction.Exit(_owner);
+                    _currentAction = null;
+                }
+            }
+
+            if (_pendingActions.Count == 0 && _currentAction == null)
             {
                 FinishSkill();
             }

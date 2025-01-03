@@ -7,40 +7,45 @@ namespace Game.SkillSystem.Actions
     public class MoveAction : ISkillAction
     {
         public SkillActionData SkillActionData { get; }
-        public float StartTime { get; }
-        public float EndTime { get; }
+        public float TimeStamp { get; }
+        public float Duration { get; }
         public bool IsPersistent  => SkillActionData.IsPersistent; // データから取得
 
         public MoveAction(SkillActionData skillActionData)
         {
             this.SkillActionData = skillActionData;
-            StartTime = skillActionData.TimeStamp;
-            EndTime = skillActionData.TimeStamp + skillActionData.Duration;
+            TimeStamp = skillActionData.TimeStamp;
+            Duration = skillActionData.Duration;
         }
 
-        public void Execute(EntityObject owner)
+        public void Enter(EntityObject owner)
         {
             var movement = owner.GetEntityComponent<MovementComponent>();
             if (movement != null)
             {
-                movement.Move(direction: new Vector2(1.0f, 0.0f), speed: 10.0f);
-                Debug.Log("移動中");
+                movement.Move(direction: new Vector2(owner.Direction,0),  speed: SkillActionData.Value);
+                Debug.Log("移動");
             }
         }
 
-        public void StopExecute(EntityObject owner)
+        public void Update(EntityObject owner)
+        {
+            Debug.Log("Test MoveAction Update");
+        }
+
+        public void Exit(EntityObject owner)
         {
             var movement = owner.GetEntityComponent<MovementComponent>();
             if (movement != null)
             {
                 movement.Stop();
-                Debug.Log("移動中止");
+                Debug.Log("停止");
             }
         }
 
         public bool IsActive(float elapsedTime)
         {
-            return StartTime <= elapsedTime && elapsedTime < EndTime;
+            return TimeStamp <= elapsedTime && elapsedTime < TimeStamp + Duration;
         }
     }
 }
