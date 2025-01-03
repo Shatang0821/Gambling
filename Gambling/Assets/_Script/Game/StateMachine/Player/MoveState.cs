@@ -26,7 +26,6 @@ namespace Game.StateMachine.Player
             {
                 ChangeState(StateEnum.Idle);
             }
-            
         }
 
         public override void PhysicsUpdate()

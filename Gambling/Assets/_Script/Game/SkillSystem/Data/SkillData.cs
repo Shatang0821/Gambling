@@ -29,8 +29,8 @@ namespace Game.SkillSystem
         [Header("スキルアクション")]
         public List<SkillActionData> Actions; // スキルアクションリスト
         
-        [Header("スキルコンボ")]
-        public List<ComboData> ComboWindow;
+        [FormerlySerializedAs("ComboWindow")] [Header("スキルコンボ")]
+        public List<ComboData> ComboDatas;
         private void OnValidate()
         {
             // 自身対象の場合、コライダーの設定を無効化

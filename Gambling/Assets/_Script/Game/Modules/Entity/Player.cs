@@ -4,6 +4,7 @@ using UnityEngine;
 using FrameWork.Component;
 using Framework.Entity;
 using FrameWork.EventCenter;
+using FrameWork.Resource;
 using Game.Component;
 using Game.Input;
 using Game.SkillSystem;
@@ -27,15 +28,19 @@ namespace Game.Entity
         
         private EntityStateMachine _playerStateMachine;
         private PlayerInputComponent _playerInputComponent;
-        
+
+        private SkillComponent _playerSkillComponent;
         //TEST
         public SkillData SkillData;
         //一時的に使う
         private void Awake()
         {
                                     AddEntityComponent(new MovementComponent());
-                                    AddEntityComponent(new SkillComponent());
+            _playerSkillComponent = AddEntityComponent(new SkillComponent());
             _playerInputComponent = AddEntityComponent(new PlayerInputComponent());
+            
+            _playerSkillComponent.InitSkill(this,
+                ResManager.Instance.GetAssetCache<SkillList>("SkillData/SkillDataTable_Player"));
             
             // ステートマシンは最後に生成
             _playerStateMachine = CreateStateMachine();
@@ -46,6 +51,7 @@ namespace Game.Entity
         private void Update()
         {
             _playerStateMachine.LogicUpdate();
+            _playerSkillComponent.UpdateCooldown();
         }
 
         private void FixedUpdate()

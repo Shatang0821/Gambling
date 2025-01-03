@@ -1,5 +1,6 @@
 ﻿using Framework.Entity;
 using Framework.FSM;
+using Game.SkillSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,7 +26,7 @@ namespace Game.StateMachine.Player
 
             if (playerInputComponent.AttackInput)
             {
-                ChangeState(StateEnum.Skill);
+                ChangeToSkillState(1002);
             }
 
             if (playerInputComponent.DefenceInput)

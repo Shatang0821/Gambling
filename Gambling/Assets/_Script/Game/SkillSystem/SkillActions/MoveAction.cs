@@ -7,8 +7,8 @@ namespace Game.SkillSystem.Actions
     public class MoveAction : ISkillAction
     {
         public SkillActionData SkillActionData { get; }
-        public float TimeStamp { get; }
-        public float Duration { get; }
+        public float TimeStamp { get; set; }
+        public float Duration { get; set; }
         public bool IsPersistent  => SkillActionData.IsPersistent; // データから取得
 
         public MoveAction(SkillActionData skillActionData)
@@ -24,7 +24,7 @@ namespace Game.SkillSystem.Actions
             if (movement != null)
             {
                 movement.Move(direction: new Vector2(owner.Direction,0),  speed: SkillActionData.Value);
-                Debug.Log("移動");
+                //Debug.Log("移動");
             }
         }
 
@@ -39,7 +39,7 @@ namespace Game.SkillSystem.Actions
             if (movement != null)
             {
                 movement.Stop();
-                Debug.Log("停止");
+                //Debug.Log("停止");
             }
         }
 

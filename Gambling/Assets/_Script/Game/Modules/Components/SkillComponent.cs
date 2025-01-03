@@ -19,11 +19,20 @@ namespace Game.Component
         public override void Initialize(EntityObject owner)
         {
             base.Initialize(owner);
-            //AddSkill(ResManager.Instance.GetAssetCache<SkillData>("SkillData/Skill_1001"));
-            var skillData = ResManager.Instance.GetAssetCache<SkillData>("SkillData/Skill_1001");
-            var skill = SkillFactory.CreateSkill(skillData, owner);
-            AddSkill(skill);
             _skillProcessor = new SkillProcessor(owner);
+        }
+
+        /// <summary>
+        /// スキルの初期化
+        /// </summary>
+        /// <param name="owner"></param>
+        public void InitSkill(EntityObject owner,SkillList skillList)
+        {
+            foreach (var skillData in skillList.SkillDatas)
+            {
+                var skill = SkillFactory.CreateSkill(skillData, owner);
+                AddSkill(skill);
+            }
         }
         
         /// <summary>
@@ -84,7 +93,7 @@ namespace Game.Component
         /// <summary>
         /// スキルのクールダウンチェック
         /// </summary>
-        private bool IsSkillReady(int id)
+        public bool IsSkillReady(int id)
         {
             if (!_skills.ContainsKey(id))
             {
