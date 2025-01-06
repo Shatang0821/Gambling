@@ -30,8 +30,7 @@ namespace Game.Entity
         private PlayerInputComponent _playerInputComponent;
 
         private SkillComponent _playerSkillComponent;
-        //TEST
-        public SkillData SkillData;
+        
         //一時的に使う
         private void Awake()
         {

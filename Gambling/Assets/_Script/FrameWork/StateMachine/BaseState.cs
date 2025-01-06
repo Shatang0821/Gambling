@@ -10,7 +10,11 @@ namespace Framework.FSM
         public BaseState(MyStateMachine stateMachine)
         {
             this._stateMachine = stateMachine;
+            CanBeInterrupted = true;
         }
+
+        public bool CanBeInterrupted { get; }
+
         public virtual void Enter()
         {
             stateTimer = 0.0f;

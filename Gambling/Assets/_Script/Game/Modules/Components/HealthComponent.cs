@@ -6,7 +6,6 @@ namespace Game.Component
     public class HealthComponent : ComponentBase
     {
         // Data data Entityが持つデータ
-
         public void TakeDamage(float amount)
         {
             if(amount <= 0) return;

@@ -62,6 +62,10 @@ namespace Game.StateMachine.Player
         public override void Exit()
         {
             base.Exit();
+            if (_skillProcessor.IsRunning())
+            {
+                _skillProcessor.ForceFinish();
+            }
         }
         
         /// <summary>

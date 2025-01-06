@@ -84,6 +84,30 @@ namespace Game.SkillSystem
                 FinishSkill();
             }
         }
+
+        /// <summary>
+        /// 終了処理をリクエスト(強制終了)
+        /// </summary>
+        public void ForceFinish()
+        {
+            Debug.Log("強制終了が呼び出された");
+            // すべてのアクティブアクションを終了
+            foreach (var action in _activeActions)
+            {
+                action.Exit(_owner);
+            }
+            _activeActions.Clear();
+
+            // すべてのペンディングアクションを終了（未実行分）
+            foreach (var action in _pendingActions)
+            {
+                action.Exit(_owner);
+            }
+            _pendingActions.Clear();
+
+            // スキル終了処理
+            FinishSkill();
+        }
         
         /// <summary>
         /// スキルを終了する
