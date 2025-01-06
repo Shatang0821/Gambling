@@ -1,0 +1,68 @@
+﻿using Framework.Entity;
+using Framework.FSM;
+using Game.Component;
+using Game.Input;
+using Game.SkillSystem;
+using UnityEngine;
+
+namespace Game.StateMachine.Enemy
+{
+    using StateEnum = Game.Entity.Player.StateEnum;
+    public class SkillState : BaseState
+    {
+        //private SkillData _skillData;               //現在スキルデータ
+
+        private SkillProcessor _skillProcessor;
+
+        private SkillData _skillData;
+        public SkillState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
+        {
+            skillComponent = owner.GetEntityComponent<SkillComponent>();
+            _skillProcessor = new SkillProcessor(base.owner);
+        }
+
+        public override void Enter()
+        {
+            // スキルを取得する
+            var skill = skillComponent.GetSkill(SkillID);
+            if (!skill.IsReady())
+            {
+                Debug.Log("aaa");
+            }
+            _skillData = skill.GetSkillData();
+            // アニメーションを指定する
+            stateHash = Animator.StringToHash(skill.AnimationName);
+            _skillProcessor.SetSkill(skill);
+
+            base.Enter();
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+            _skillProcessor.Update(stateTimer);
+
+            foreach (var comboData in _skillData.ComboDatas)
+            {
+                if (stateTimer >= comboData.StartTime && stateTimer <= comboData.EndTime)
+                {
+
+                    ChangeToSkillState(comboData.NextSkillID);
+                    
+                }
+            }
+
+            if (stateTimer > _skillData.Duration)
+            {
+                ChangeState(StateEnum.Idle);
+            }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }
+
+
+    }
+}

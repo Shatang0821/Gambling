@@ -13,7 +13,7 @@ namespace Game.StateMachine.Enemy.skeleton
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            //_attackComponent.DamageFlow();
+
         }
 
         public override void PhysicsUpdate()
@@ -25,8 +25,6 @@ namespace Game.StateMachine.Enemy.skeleton
         public override void Enter()
         {
             base.Enter();
-            //_targetSelectorComponent.CloseRangeAttack(entityObject.LocalPosition, 30, 2, 10);
-            //_attackComponent.DamageFlow();
         }
     }
 

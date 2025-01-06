@@ -21,7 +21,6 @@ namespace Game.StateMachine.Enemy.skeleton
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            _movementComponent.Move(speed, 5.0f, 1.0f, true);
 
             
             

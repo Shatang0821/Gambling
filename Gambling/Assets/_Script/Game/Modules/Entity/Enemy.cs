@@ -4,6 +4,9 @@ using UnityEngine;
 using Game.StateMachine.Enemy.skeleton;
 using FrameWork.Component;
 using Game.Component;
+using FrameWork.Resource;
+using Game.SkillSystem;
+using Game.StateMachine.Enemy;
 
 namespace Game.Entity
 {
@@ -14,6 +17,7 @@ namespace Game.Entity
             Idle,
             Move,
             Attack,
+            Skill,
             Dash,
             Damaged,
             Die
@@ -24,14 +28,15 @@ namespace Game.Entity
         private void Awake()
         {
             var movementComponent = new MovementComponent();
-            //var targetSelectorComponent = new TargetSelector();
             var attackComponent = new AttackComponent();
+            var skillComponent = new SkillComponent();
+
             AddEntityComponent<MovementComponent>(movementComponent);
-            //AddEntityComponent<TargetSelector>(targetSelectorComponent);
             AddEntityComponent<AttackComponent>(attackComponent);
-            movementComponent.Initialize(this);
-            //targetSelectorComponent.Initialize(this);
-            attackComponent.Initialize(this);
+            AddEntityComponent<SkillComponent>(skillComponent);
+
+            skillComponent.InitSkill(this,
+                ResManager.Instance.GetAssetCache<SkillList>("SkillData/Enemy_SkillDataTable"));
             
             _enemyStateMachine = CreateStateMachine();
             _enemyStateMachine.InitState(StateEnum.Idle);
@@ -44,6 +49,7 @@ namespace Game.Entity
             stateMachine.RegisterState(StateEnum.Idle, new IdleState(this,StateEnum.Idle.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Move, new WalkState(this, StateEnum.Move.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Attack, new AttackState(this,StateEnum.Attack.ToString(), stateMachine, animator));
+            stateMachine.RegisterState(StateEnum.Skill, new SkillState(this, StateEnum.Skill.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Damaged, new DamageState(this,StateEnum.Damaged.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Die, new DeathState(this,StateEnum.Die.ToString(), stateMachine, animator));
 

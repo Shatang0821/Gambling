@@ -6,5 +6,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EntityData",menuName = "Data/Entity")]
 public class EntityData : ScriptableObject
 {
-    
+    public float HP;
 }

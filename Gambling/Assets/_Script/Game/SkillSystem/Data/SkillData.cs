@@ -73,6 +73,7 @@ namespace Game.SkillSystem
         {
             TargetSelector,         // ダメージ
             Move                    // 移動
+
         }
     }
     
