@@ -8,7 +8,6 @@ namespace Game.Component
     public class HealthComponent : ComponentBase
     {
         // Data data Entityが持つデータ
-
         public void TakeDamage(float amount)
         {
             var enemyData = ResManager.Instance.GetAssetCache<EntityData>("EnemyData");

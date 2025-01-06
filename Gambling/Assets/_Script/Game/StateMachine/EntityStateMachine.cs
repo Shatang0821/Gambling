@@ -17,6 +17,8 @@ namespace Game.StateMachine
             UnityEngine.Debug.Log("Initialize EntityStateMachine:  " + owner.name);
         }
         
+        
+        
     }
 }
 
