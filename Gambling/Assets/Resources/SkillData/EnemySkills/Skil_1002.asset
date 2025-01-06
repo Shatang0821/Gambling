@@ -18,22 +18,26 @@ MonoBehaviour:
   ManaCost: 0
   AnimationName: Skill02
   CanBeInterrupted: 0
-  TargetType: 1
+  TargetType: 0
   TargetLayer:
     serializedVersion: 2
-    m_Bits: 8
-  ColliderType: 1
-  Offset: {x: 2, y: -1.5, z: 0}
+    m_Bits: 0
+  ColliderType: 0
+  Offset: {x: 0, y: 0, z: 0}
   Radius: 0
-  Size: {x: 4, y: 1.2, z: 0}
+  Size: {x: 0, y: 0, z: 0}
   Range: 0
-  Duration: 1.4
+  Duration: 2
   Actions:
-  - ActionType: 0
-    TimeStamp: 0.3
-    Duration: 0.9
+  - ActionType: 1
+    TimeStamp: 1.2
+    Duration: 0.8
     EffectPrefabName: 
-    Value: 10
-    Direction: {x: 0, y: 0, z: 0}
+    Value: 3
+    Direction: {x: 1, y: 0, z: 0}
     IsPersistent: 0
-  ComboDatas: []
+  ComboDatas:
+  - StartTime: 1.8
+    EndTime: 2
+    NextSkillID: 1003
+    InputKey: 
