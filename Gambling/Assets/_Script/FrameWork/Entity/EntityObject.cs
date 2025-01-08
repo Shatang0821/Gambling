@@ -141,7 +141,17 @@ namespace Framework.Entity
             get => transform.localScale.x > 0 ? 1 : -1;
         }
 
+        public float Distance(EntityObject opponent)
+        {
+            Vector3 heading = this.transform.position - opponent.transform.position;
+            float distance = heading.magnitude;
+            return distance;
+        }
 
+        public float DistanceX(EntityObject opponent)
+        {
+            return Math.Abs(this.transform.position.x - opponent.transform.position.x);
+        }
         #endregion
     }
 }

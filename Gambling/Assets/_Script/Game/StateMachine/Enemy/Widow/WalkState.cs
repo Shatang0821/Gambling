@@ -8,12 +8,15 @@ namespace Game.StateMachine.Enemy.skeleton
     using StateEnum = Game.Entity.Enemy.StateEnum;
     public class WalkState : BaseState
     {
-        Vector2 speed;
-        float timer;
+        EntityObject owner;
+        MovementComponent _movement;
+        Rigidbody2D _rigidbody;
+        Vector2 direction;
         public WalkState(EntityObject entityObject, string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(entityObject,animName, stateMachine, animator)
         {
-            speed = new Vector2(-1, 0);
-            timer = 0;
+            owner = entityObject;
+            _movement = owner.GetEntityComponent<MovementComponent>();
+            _rigidbody = owner.GetComponent<Rigidbody2D>();
         }
 
 
@@ -21,8 +24,17 @@ namespace Game.StateMachine.Enemy.skeleton
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            float distance = owner.DistanceX(p_entity);
 
-            
+            if (distance > 1f)
+            {
+                _movement.Move(direction,1f);
+            }
+            else
+            {
+                
+                ChangeState(StateEnum.Idle);
+            }
             
         }
 
@@ -35,12 +47,14 @@ namespace Game.StateMachine.Enemy.skeleton
         public override void Enter()
         {
             base.Enter();
+            direction = new Vector2(owner.Scale.x, 0);
         }
 
         public override void Exit()
         {
             base.Exit();
-            
+            _rigidbody.velocity = Vector2.zero;
+
         }
     }
 

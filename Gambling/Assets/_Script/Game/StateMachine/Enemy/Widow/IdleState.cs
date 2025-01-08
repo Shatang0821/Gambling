@@ -1,5 +1,6 @@
 using Framework.Entity;
 using Framework.FSM;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,43 +10,44 @@ namespace Game.StateMachine.Enemy.skeleton
     public class IdleState : BaseState
     {
         EntityObject owner;
+        
         int random;
-        GameObject player;
+        float distamce;
         public IdleState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
             owner = entityObject;
-            
         }
 
         public override void Enter()
         {
             base.Enter();
-            random = Random.RandomRange(1, 5);
+            if (p_entity.Position.x <= owner.Position.x)
+            {
+                owner.Scale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                owner.Scale = new Vector3(1, 1, 1);
+            }
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            //switch(random)
-            //{
-            //    case 1:
-            //        ChangeToSkillState(1001);
-            //        break;
-            //    case 2:
-            //        ChangeToSkillState(1002);
-            //        break;
-            //    case 3:
-            //        ChangeToSkillState(1003);
-            //        break;
-            //    case 4:
-            //        ChangeToSkillState(1004);
-            //        break;
-            //    case 5:
-            //        ChangeToSkillState(1005);
-            //    break;
 
-            //}
-            ChangeToSkillState(1002);
+            distamce = owner.DistanceX(p_entity);
+            Debug.Log(distamce);
+
+            if (distamce > 1)
+            {
+                ChangeState(StateEnum.Move);
+            }
+            if (distamce < 1) {
+                ChangeToSkillState(1002);
+            }
+
+            
+            
         }
 
     }
