@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Framework.Aduio;
 using UnityEngine;
 using FrameWork.Component;
 using Framework.Entity;
+using FrameWork.Resource;
+using Unity.Mathematics;
 
 namespace Game.Component
 {
@@ -34,9 +37,16 @@ namespace Game.Component
                         // 攻撃者からターゲットへの方向を計算
                         Vector2 direction = (target.LocalPosition - entityObject.LocalPosition).normalized;
                         //Vector2 direction = (closerangetarget.LocalPosition - entityObject.LocalPosition).normalized;
-            
+                        EffectManager.Instance.SpawnEffect(
+                            ResManager.Instance.GetAssetCache<GameObject>("Prefabs/Effects/Hit_01"),target.Position,quaternion.identity);
+                        EffectManager.Instance.SpawnEffect(
+                            ResManager.Instance.GetAssetCache<GameObject>("Prefabs/Effects/Break_01"),target.Position,quaternion.identity);
+                        AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.Attack);
+                        AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.Hit,1.5f,2.0f);
+                        //CameraManager.Instance.ShakeCamera(0.1f,0.08f);
+                        TimeManager.Instance.PauseTime(0.05f);
                         // 移動させる
-                        _movementComponent.AddForce(direction, 2.0f);
+                        _movementComponent.AddForce(direction, 0.8f);
             
                         // デバッグログを出力
                         Debug.Log($"Target: {target.name}, Position: {target.transform.position}, Direction: {direction}");

@@ -104,10 +104,10 @@ namespace Game.Utility
             Vector2 bottomRight = origin + new Vector2(size.x / 2, -size.y / 2);
 
             // 四辺をデバッグ描画
-            Debug.DrawLine(topLeft, topRight, Color.green, 1f);
-            Debug.DrawLine(topRight, bottomRight, Color.green, 1f);
-            Debug.DrawLine(bottomRight, bottomLeft, Color.green, 1f);
-            Debug.DrawLine(bottomLeft, topLeft, Color.green, 1f);
+            Debug.DrawLine(topLeft, topRight, Color.green, 0.5f);
+            Debug.DrawLine(topRight, bottomRight, Color.green, 0.5f);
+            Debug.DrawLine(bottomRight, bottomLeft, Color.green, 0.5f);
+            Debug.DrawLine(bottomLeft, topLeft, Color.green, 0.5f);
         }
 
     }
