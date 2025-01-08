@@ -44,7 +44,7 @@ MonoBehaviour:
     Direction: {x: 0, y: 0, z: 0}
     IsPersistent: 0
   ComboDatas:
-  - StartTime: 1.8
-    EndTime: 2
+  - StartTime: 0.3
+    EndTime: 0.5
     NextSkillID: 1003
-    InputKey: 
+    InputKey: Attack
