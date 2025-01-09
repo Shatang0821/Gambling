@@ -19,13 +19,14 @@ namespace Game.Entity
         {
             Idle,
             Move,
+            Jump,
+            Fall,
             Attack,
             Defence,
             Skill,
             Damaged,
             Die
         }
-        
         private EntityStateMachine _playerStateMachine;
         private PlayerInputComponent _playerInputComponent;
 
@@ -40,13 +41,13 @@ namespace Game.Entity
             _playerInputComponent = AddEntityComponent(new PlayerInputComponent());
             
             _playerSkillComponent.InitSkill(this,
-                ResManager.Instance.GetAssetCache<SkillList>("SkillData/SkillDataTable_Player"));
+                ResManager.Instance.GetAssetCache<SkillList>("SkillData/Player_SkillDataTable"));
             
             // ステートマシンは最後に生成
             _playerStateMachine = CreateStateMachine();
             _playerStateMachine.InitState(StateEnum.Idle);
         }
-
+        
         //一時的に使う
         private void Update()
         {
@@ -81,6 +82,8 @@ namespace Game.Entity
             var animator = GetComponentInChildren<Animator>();
             stateMachine.RegisterState(StateEnum.Idle, new IdleState(this,StateEnum.Idle.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Move, new MoveState(this,StateEnum.Move.ToString(),stateMachine,animator));
+            stateMachine.RegisterState(StateEnum.Jump, new JumpState(this,StateEnum.Jump.ToString(),stateMachine,animator));
+            stateMachine.RegisterState(StateEnum.Fall, new FallState(this,StateEnum.Fall.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Attack, new AttackState(this,StateEnum.Attack.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Skill, new SkillState(this,StateEnum.Skill.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Damaged, new DamageState(this,StateEnum.Damaged.ToString(),stateMachine,animator));
@@ -88,7 +91,6 @@ namespace Game.Entity
             stateMachine.RegisterState(StateEnum.Defence, new DefenceState(this,StateEnum.Defence.ToString(),stateMachine,animator));
             return stateMachine;
         }
-
 
     
     }

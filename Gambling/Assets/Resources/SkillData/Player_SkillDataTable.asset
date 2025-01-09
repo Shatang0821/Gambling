@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 189af21d08044bc7bef9cf4b222f3df2, type: 3}
-  m_Name: SkillDataTable_Player
+  m_Name: Player_SkillDataTable
   m_EditorClassIdentifier: 
   SkillDatas:
   - {fileID: 11400000, guid: fe672ab21acb3734ba6ea8ea8afa551f, type: 2}
   - {fileID: 11400000, guid: fbebeeb8373a3324f8c1f1ee248f38d5, type: 2}
   - {fileID: 11400000, guid: dafb669b0dac5fa40beea788740284e6, type: 2}
   - {fileID: 11400000, guid: 5200e152412b5a147ae936fe8c7a28f6, type: 2}
+  - {fileID: 11400000, guid: 7fe68c2ddb466694aa81aff1b3e40624, type: 2}

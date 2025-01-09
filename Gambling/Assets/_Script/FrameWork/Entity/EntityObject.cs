@@ -10,6 +10,10 @@ namespace Framework.Entity
         private Dictionary<Type, object> _components = new Dictionary<Type, object>();
         private IDataProvider _dataProvider;
         
+        [SerializeField] private Transform groundCheck;         //地面チェック
+        [SerializeField] private float groundCheckDistance;     //チェック距離
+        [SerializeField] private LayerMask whatIsGround;        //レイヤー設定
+        
         //データ提供クラスの設定
         public void SetDataProvider(IDataProvider provider)
         {
@@ -85,6 +89,24 @@ namespace Framework.Entity
         {
             _components.Clear();
         }
+
+        #region Collision
+        /// <summary>
+        /// 地面チェック
+        /// </summary>
+        /// <returns>true or false</returns>
+        public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+
+        protected virtual void OnDrawGizmos()
+        {
+            if (groundCheck != null)
+            {
+                Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
+            }
+            
+        }
+
+        #endregion
 
         #region Transform
 

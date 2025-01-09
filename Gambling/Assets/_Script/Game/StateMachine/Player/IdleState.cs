@@ -8,7 +8,7 @@ namespace Game.StateMachine.Player
 {
     using StateEnum = Game.Entity.Player.StateEnum;
     
-    public class IdleState : BaseState
+    public class IdleState : GroundState
     {
         
         public IdleState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
@@ -24,15 +24,20 @@ namespace Game.StateMachine.Player
                 ChangeState(StateEnum.Move);
             }
 
-            if (playerInputComponent.AttackInput)
-            {
-                ChangeToSkillState(1002);
-            }
-
-            if (playerInputComponent.DefenceInput)
-            {
-                ChangeState(StateEnum.Defence);
-            }
+            // if (playerInputComponent.AttackInput)
+            // {
+            //     ChangeToSkillState(1002);
+            // }
+            //
+            // if (playerInputComponent.DefenceInput)
+            // {
+            //     ChangeState(StateEnum.Defence);
+            // }
+            //
+            // if (playerInputComponent.DashInput)
+            // {
+            //     ChangeToSkillState(1001);
+            // }
         }
 
         public override void Exit()

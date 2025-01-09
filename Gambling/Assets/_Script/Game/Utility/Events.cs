@@ -6,6 +6,8 @@
         OnVertical,
         OnAttack,
         OnDefence,
+        OnDash,
+        OnJump
     }
 
 }
