@@ -1,5 +1,6 @@
 using Framework.Entity;
 using FrameWork.Component;
+using FrameWork.Resource;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -26,9 +27,9 @@ namespace Game.StateMachine.Enemy.skeleton
             base.LogicUpdate();
             float distance = owner.DistanceX(p_entity);
 
-            if (distance > 1f)
+            if (distance > 1.5f)
             {
-                _movement.Move(direction,1f);
+                _movement.Move(direction,3f);
             }
             else
             {

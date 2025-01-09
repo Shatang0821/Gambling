@@ -10,7 +10,7 @@ namespace Game.Component
         // Data data Entityが持つデータ
         public void TakeDamage(float amount)
         {
-            var enemyData = ResManager.Instance.GetAssetCache<EntityData>("EnemyData");
+            var enemyData = ResManager.Instance.GetAssetCache<EntityData>("EntityData/EnemyData");
             if (amount <= 0) return;
             //if(無敵) return
 
