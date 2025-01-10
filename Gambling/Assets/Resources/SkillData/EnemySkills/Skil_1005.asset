@@ -30,7 +30,7 @@ MonoBehaviour:
   Duration: 1.6
   Actions:
   - ActionType: 0
-    TimeStamp: 0.2
+    TimeStamp: 0.3
     Duration: 0.7
     EffectPrefabName: 
     Value: 10

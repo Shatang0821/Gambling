@@ -17,11 +17,9 @@ namespace Game.StateMachine.Enemy.skeleton
         float distance;
         float attackrange = 3f; //UŒ‚‚É“ü‚é‹——£
         bool isHalf = false;
-        bool iscooltime;
         public IdleState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
             owner = entityObject;
-
         }
 
         public override void Enter()
@@ -38,33 +36,26 @@ namespace Game.StateMachine.Enemy.skeleton
                 owner.Scale = new Vector3(1, 1, 1);
             }
             random = Random.Range(1, 100);
-            iscooltime = true;
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            float timer = Time.deltaTime;
             distance = owner.DistanceX(p_entity);
             Debug.Log(distance);
 
-            if (timer > 3)
-            {
-                iscooltime = false;
-            }
             if (distance > attackrange)
             {
                 ChangeState(StateEnum.Move);
             }
             if (distance < attackrange)
             {
-                if (enemyData.HP < MaxHp / 2 && iscooltime)
+                if (enemyData.HP < MaxHp / 2)
                 {
                     if (!isHalf) {
                         ChangeToSkillState(1004);
                         isHalf = true;
                         
-                        enemyData.HP--;
                     }
                     else
                     {
@@ -74,10 +65,7 @@ namespace Game.StateMachine.Enemy.skeleton
                 }
                 else
                 {
-                    if (iscooltime)
-                    {
-                        HighHP(random);
-                    }
+                    HighHP(random);
                 }
 
                 
@@ -105,7 +93,7 @@ namespace Game.StateMachine.Enemy.skeleton
             {
                 ChangeToSkillState(1005);
             }
-            else if (rand >= 20 && rand < 50)
+            else if (rand >= 20 && rand < 60)
             {
                 ChangeToSkillState(1001);
             }
