@@ -450,6 +450,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae2a875b152481897f9116eabf77fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: {fileID: 0}
+  groundCheckDistance: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!212 &1500655917
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -597,14 +602,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1542644764629844421, guid: 10bae7b5fba8d72438f7c83329e11af6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1542644764629844421, guid: 10bae7b5fba8d72438f7c83329e11af6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5747636794401962619, guid: 10bae7b5fba8d72438f7c83329e11af6, type: 3}
       propertyPath: m_Name
       value: Widow

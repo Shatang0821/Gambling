@@ -47,6 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d18d2c6ff9eb2749898278a9b9478d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: {fileID: 0}
+  groundCheckDistance: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &9162676669517670242
 Rigidbody2D:
   serializedVersion: 4
