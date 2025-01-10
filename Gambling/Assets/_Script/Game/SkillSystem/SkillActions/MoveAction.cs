@@ -8,16 +8,14 @@ namespace Game.SkillSystem.Actions
     {
         public SkillData SkillData { get; }
         public SkillActionData SkillActionData { get; }
-        public float TimeStamp { get; set; }
-        public float Duration { get; set; }
+        public float TimeStamp => SkillActionData?.TimeStamp ?? 0f;
+        public float Duration => SkillActionData?.Duration ?? 0f;
         public bool IsPersistent  => SkillActionData.IsPersistent; // データから取得
 
         public MoveAction(SkillData data,SkillActionData skillActionData)
         {
             SkillData = data;
             SkillActionData = skillActionData;
-            TimeStamp = skillActionData.TimeStamp;
-            Duration = skillActionData.Duration;
         }
 
         public void Enter(EntityObject owner)
@@ -27,7 +25,6 @@ namespace Game.SkillSystem.Actions
             if (movement != null)
             {
                 movement.Move(direction: new Vector2(owner.Direction,0),  speed: SkillActionData.Value);
-                //Debug.Log("移動");
             }
         }
 

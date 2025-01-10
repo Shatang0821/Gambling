@@ -6,40 +6,37 @@ using UnityEngine;
 namespace Game.StateMachine.Player
 {
     using StateEnum = Game.Entity.Player.StateEnum;
-    public class MoveState : GroundState
+    public class AirState : BaseState
     {
-        private MovementComponent _movementComponent;
-        public MoveState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
+        protected MovementComponent movementComponent;
+        public AirState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
         {
-            _movementComponent = owner.GetEntityComponent<MovementComponent>();
+            movementComponent = owner.GetEntityComponent<MovementComponent>();
         }
+
         public override void Enter()
         {
             base.Enter();
-            
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (playerInputComponent.DirectionlInput.x == 0)
+            if (playerInputComponent.AttackInput)
             {
-                ChangeState(StateEnum.Idle);
+                ChangeToSkillState(1002);
             }
         }
-
+        
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            _movementComponent.Move(playerInputComponent.DirectionlInput,5.0f,true);
+            movementComponent.SetVelocityX(playerInputComponent.DirectionlInput.x * 5.0f);
         }
 
         public override void Exit()
         {
             base.Exit();
-            _movementComponent.Stop();
         }
-
-
     }
 }

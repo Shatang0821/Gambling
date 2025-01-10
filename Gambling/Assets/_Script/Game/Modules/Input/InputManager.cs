@@ -1,11 +1,6 @@
-
-using System;
-using Framework.Entity;
 using FrameWork.EventCenter;
 using UnityEngine.InputSystem;
 using Game.Event;
-using Unity.VisualScripting;
-using UnityEngine;
 
 namespace Game.Input
 {
@@ -79,6 +74,32 @@ namespace Game.Input
             if (context.canceled)
             {
                 EventCenter.TriggerEvent<bool>(InputEvents.OnDefence,false);
+            }
+        }
+
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                EventCenter.TriggerEvent<bool>(InputEvents.OnDash,true);
+            }
+
+            if (context.canceled)
+            {
+                EventCenter.TriggerEvent<bool>(InputEvents.OnDash,false);
+            }
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                EventCenter.TriggerEvent<bool>(InputEvents.OnJump,true);
+            }
+
+            if (context.canceled)
+            {
+                EventCenter.TriggerEvent<bool>(InputEvents.OnJump,false);
             }
         }
     }

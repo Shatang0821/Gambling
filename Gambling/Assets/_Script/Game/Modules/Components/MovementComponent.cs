@@ -11,6 +11,7 @@ namespace FrameWork.Component
     {
         private Rigidbody2D _rigidbody;
 
+        public Vector2 GetVel => _rigidbody.velocity;
         public override void Initialize(EntityObject owner)
         {
             base.Initialize(owner);
@@ -22,13 +23,36 @@ namespace FrameWork.Component
 
         }
 
+        public void SetVelocity(Vector2 newVel)
+        {
+            _rigidbody.velocity = newVel;
+        }
+
+        public void SetVelocityX(float x,bool rotation = true)
+        {
+            if (rotation)
+            {
+                if(x > 0) Rotation(1);
+                if(x < 0) Rotation(-1);
+            }
+            _rigidbody.velocity = new Vector2(x, _rigidbody.velocity.y);
+        }
+        
+        
+
+        public void SetVelocityY(float y)
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, y);
+        }
+
         public void Move(Vector2 direction,float speed, bool rotation = false)
         {
             if (_rigidbody != null)
             {
                 if (rotation)
                     Rotation(direction.x);
-                _rigidbody.velocity = new Vector2(direction.x * speed , 0);
+                var vel = new Vector2(direction.x * speed , _rigidbody.velocity.y);
+                _rigidbody.velocity = vel;
             }
                 
         }
@@ -112,12 +136,9 @@ namespace FrameWork.Component
             }
         }
 
-        void Rotation(float xDrection)
+        public void Rotation(float xDrection)
         {
             entityObject.transform.localScale = new Vector3(xDrection, 1, 1);
         }
-
-        
-        
     }
 }

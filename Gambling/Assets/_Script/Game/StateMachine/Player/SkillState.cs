@@ -55,7 +55,19 @@ namespace Game.StateMachine.Player
             
             if (stateTimer > _skillData.Duration)
             {
-                ChangeState(StateEnum.Idle);
+                if (!owner.IsGroundDetected())
+                {
+                    ChangeState(StateEnum.Fall);
+                }
+                if (playerInputComponent.DirectionlInput.x == 0)
+                {
+                    ChangeState(StateEnum.Idle);
+                }
+                else
+                {
+                    ChangeState(StateEnum.Move);
+                }
+                
             }
         }
 
