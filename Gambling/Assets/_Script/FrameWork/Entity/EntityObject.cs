@@ -71,7 +71,6 @@ namespace Framework.Entity
 
         #endregion
         
-
         // データ取得
         public float GetAttribute(string key)
         {

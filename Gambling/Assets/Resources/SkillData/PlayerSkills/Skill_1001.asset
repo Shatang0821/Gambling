@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillID: 1001
   SkillName: Dash
-  Cooldown: 1
+  Cooldown: 0
   ManaCost: 0
   AnimationName: Dash
   CanBeInterrupted: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     TimeStamp: 0
     Duration: 0.2
     EffectPrefabName: 
-    Value: 10
+    Value: 20
     Direction: {x: 1, y: 0, z: 0}
     IsPersistent: 0
   - ActionType: 1

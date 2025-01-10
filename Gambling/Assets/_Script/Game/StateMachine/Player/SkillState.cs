@@ -15,6 +15,7 @@ namespace Game.StateMachine.Player
         private SkillProcessor _skillProcessor;
 
         private SkillData _skillData;
+        private int _currentSkillID;
         public SkillState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
         {
             skillComponent = owner.GetEntityComponent<SkillComponent>();
@@ -23,6 +24,7 @@ namespace Game.StateMachine.Player
 
         public override void Enter()
         {
+            _currentSkillID = SkillID;
             // スキルを取得する
             var skill  = skillComponent.GetSkill(SkillID);
             if (!skill.IsReady())
@@ -78,6 +80,7 @@ namespace Game.StateMachine.Player
             {
                 _skillProcessor.ForceFinish();
             }
+            skillComponent.SetCooldown(_currentSkillID);
         }
         
         /// <summary>
