@@ -41,8 +41,6 @@ namespace Game.Component
                             ResManager.Instance.GetAssetCache<GameObject>("Prefabs/Effects/Hit_01"),target.Position,quaternion.identity);
                         EffectManager.Instance.SpawnEffect(
                             ResManager.Instance.GetAssetCache<GameObject>("Prefabs/Effects/Break_01"),target.Position,quaternion.identity);
-                        AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.Attack);
-                        AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.Hit,1.5f,2.0f);
                         CameraManager.Instance.ShakeCamera(0.1f,0.08f);
                         TimeManager.Instance.PauseTime(0.05f);
                         // ˆÚ“®‚³‚¹‚é

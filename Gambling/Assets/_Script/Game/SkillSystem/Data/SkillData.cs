@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Framework.Aduio;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
@@ -15,66 +16,37 @@ namespace Game.SkillSystem
         public float ManaCost;               // 消費マナ
         public string AnimationName;         // アニメーション名
         public bool CanBeInterrupted;        // 中断できるか
-        [Header("ターゲット設定")]
-        public TargetType TargetType;        // ターゲットタイプ
-        public LayerMask TargetLayer;        // ターゲットレイヤ
-        public ColliderType ColliderType;    // コライダータイプ
-        public Vector3 Offset;               // コライダーのオフセット
-        public float Radius;                 // 半径（Sphere、Capsule）
-        public Vector3 Size;                 // サイズ（Box）
-        public float Range;                  // 最大距離
-
         [Header("スキル継続時間")] 
         public float Duration;
-        
-        
         [Header("スキルアクション")]
         public List<SkillActionData> Actions; // スキルアクションリスト
-        
         [FormerlySerializedAs("ComboWindow")] [Header("スキルコンボ")]
         public List<ComboData> ComboDatas;
-        private void OnValidate()
-        {
-            // 自身対象の場合、コライダーの設定を無効化
-            if (TargetType == TargetType.Self)
-            {
-                TargetLayer = default;
-                ColliderType = ColliderType.Circle;
-                Offset = Vector3.zero;
-                Radius = 0f;
-                Size = Vector3.zero;
-            }
-            // 敵や範囲対象の場合、適切なフィールドをリセット
-            else if (TargetType != TargetType.Self)
-            {
-                if (ColliderType == ColliderType.Circle)
-                {
-                    Size = Vector3.zero; // Boxのサイズをリセット
-                }
-                else if (ColliderType == ColliderType.Box)
-                {
-                    Radius = 0f; // Sphereの半径をリセット
-                }
-            }
-        }
     }
+
     
     [System.Serializable]
     public class SkillActionData
     {
+        [Header("タイム")]
         public SkillActionType ActionType;  // アクションタイプ
         public float TimeStamp;             // 実行タイミング
         public float Duration;              // 継続時間
-        public string EffectPrefabName;     // プレハブ名（必要に応じて）
+        [Header("ユーティリティ")]
+        public GameObject Prefab;           // プレハブをキー（必要に応じて）
+        public AudioData AudioData;         // 効果音（必要に応じて）
         public float Value;                 // 効果値（ダメージ、距離など）
         public Vector3 Direction;           // オプションの方向ベクトル
         public bool IsPersistent;           // 継続動作かどうか（True: 継続、False: 単発）
+        [Header("ターゲット設定")]
+        public TargetSettings TargetSettings; // 折り畳み対象
         public enum SkillActionType
         {
             TargetSelector,         // ダメージ
-            Move                    // 移動
-
+            Move,                   // 移動
+            AudioPlay,              // ESを再生
         }
+        
     }
     
     public enum TargetType
@@ -83,12 +55,23 @@ namespace Game.SkillSystem
         Enemy,      // 単体敵
         AOE         // 範囲
     }
-
     public enum ColliderType
     {
         Circle,     // 円
         Box,        // 四角形
-        Capsule     // カプセル
+    }
+    
+    [System.Serializable]
+    public class TargetSettings
+    {
+        [Header("ターゲット設定")]
+        public TargetType TargetType;        // ターゲットタイプ
+        public LayerMask TargetLayer;        // ターゲットレイヤ
+        public ColliderType ColliderType;    // コライダータイプ
+        public Vector3 Offset;               // コライダーのオフセット
+        public float Radius;                 // 半径（Sphere、Capsule）
+        public Vector3 Size;                 // サイズ（Box）
+        public float Range;                  // 最大距離
     }
     
     [System.Serializable]

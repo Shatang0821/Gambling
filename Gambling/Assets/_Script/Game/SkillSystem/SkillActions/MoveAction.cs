@@ -6,15 +6,13 @@ namespace Game.SkillSystem.Actions
 {
     public class MoveAction : ISkillAction
     {
-        public SkillData SkillData { get; }
         public SkillActionData SkillActionData { get; }
         public float TimeStamp => SkillActionData?.TimeStamp ?? 0f;
         public float Duration => SkillActionData?.Duration ?? 0f;
         public bool IsPersistent  => SkillActionData.IsPersistent; // データから取得
 
-        public MoveAction(SkillData data,SkillActionData skillActionData)
+        public MoveAction(SkillActionData skillActionData)
         {
-            SkillData = data;
             SkillActionData = skillActionData;
         }
 
@@ -43,9 +41,9 @@ namespace Game.SkillSystem.Actions
             }
         }
 
-        public bool IsActive(float elapsedTime)
-        {
-            return TimeStamp <= elapsedTime && elapsedTime < TimeStamp + Duration;
-        }
+        // public bool IsActive(float elapsedTime)
+        // {
+        //     return TimeStamp <= elapsedTime && elapsedTime < TimeStamp + Duration;
+        // }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FrameWork.Utils;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Framework.Aduio
 {
@@ -9,20 +10,13 @@ namespace Framework.Aduio
     {
         [SerializeField] AudioSource sFXPlayer;
 
-        [SerializeField] float minPitch = 0.9f;
-
-        [SerializeField] float maxPitch = 1.1f;
-
-        public AudioData Attack;
-        public AudioData Hit;
-
         /// <summary>
         /// 音を出す
         /// </summary>
         /// <param name="audioData">音データ</param>
         public void PlaySFX(AudioData audioData)
         {
-            sFXPlayer.PlayOneShot(audioData.audioClip, audioData.volueme);
+            sFXPlayer.PlayOneShot(audioData.AudioClip, audioData.Volueme);
         }
 
         /// <summary>
@@ -31,19 +25,7 @@ namespace Framework.Aduio
         /// <param name="audioData">音データ</param>
         public void PlayRandomSFX(AudioData audioData)
         {
-            sFXPlayer.pitch = Random.Range(minPitch, maxPitch);
-            PlaySFX(audioData);
-        }
-
-        /// <summary>
-        /// Pitchをランダムに変更して音を出す
-        /// </summary>
-        /// <param name="audioData">音データ</param>
-        /// <param name="minPitch"></param>
-        /// <param name="maxPitch"></param>
-        public void PlayRandomSFX(AudioData audioData,float minPitch,float maxPitch)
-        {
-            sFXPlayer.pitch = Random.Range(minPitch, maxPitch);
+            sFXPlayer.pitch = Random.Range(audioData.MinPitch, audioData.MaxPitch);
             PlaySFX(audioData);
         }
 
@@ -66,11 +48,17 @@ namespace Framework.Aduio
         /// <summary>
         /// 音源
         /// </summary>
-        public AudioClip audioClip;
+        [FormerlySerializedAs("audioClip")] public AudioClip AudioClip;
 
         /// <summary>
         /// 音量
         /// </summary>
-        public float volueme;
+        [FormerlySerializedAs("volueme")] public float Volueme;
+
+        public bool IsPlayRandomPitch;
+        
+        public float MinPitch;
+
+        public float MaxPitch;
     }
 }

@@ -8,16 +8,14 @@ namespace Game.SkillSystem.Actions
 {
     public class TargetSelectorAction : ISkillAction
     {
-        public SkillData SkillData { get; }
         public SkillActionData SkillActionData { get; }
         public float TimeStamp { get; }
         public float Duration { get; }
         public bool IsPersistent { get; }
 
         private AttackComponent _attackComponent;
-        public TargetSelectorAction(SkillData data,SkillActionData skillActionData)
+        public TargetSelectorAction(SkillActionData skillActionData)
         {
-            SkillData = data;
             SkillActionData = skillActionData;
             TimeStamp = skillActionData.TimeStamp;
             Duration = skillActionData.Duration;
@@ -27,29 +25,27 @@ namespace Game.SkillSystem.Actions
             _attackComponent = owner.GetEntityComponent<AttackComponent>();
             List<EntityObject> targets = new List<EntityObject>();
             Debug.Log("Enter TargetSelector");
-            switch (SkillData.ColliderType) 
+            var targetSettings = SkillActionData.TargetSettings;
+            switch (targetSettings.ColliderType) 
             {
                 case ColliderType.Box:
-                    targets = TargetSelector.DetectBox(owner.Position,SkillData.Size,new Vector2(SkillData.Offset.x * owner.Direction,SkillData.Offset.y) ,SkillData.TargetLayer);
+                    targets = TargetSelector.DetectBox(owner.Position, targetSettings.Size,
+                        new Vector2(targetSettings.Offset.x * owner.Direction, targetSettings.Offset.y),
+                        targetSettings.TargetLayer);
                     break;
                 case ColliderType.Circle:
+                    targets = TargetSelector.DetectCircle(owner.Position + targetSettings.Offset, targetSettings.Radius,
+                        targetSettings.TargetLayer);
                     break;
                 default:
                     break;
             }
             _attackComponent.DamageFlow(targets);
-            // foreach (var target in targets)
-            // {
-            //     Debug.Log($"Applying {SkillActionData.Value} damage to {target.name}");
-            //     //target.ApplyDamage(_actionData.Value); // 
-            // }
-            
         }
 
         public void Update(EntityObject owner)
         {
-            Debug.Log("aaa");
-            //TargetSelector.DetectBox(owner.Position,SkillData.Size,SkillData.Offset,SkillData.TargetLayer);
+            
         }
 
         public void Exit(EntityObject owner)
@@ -57,9 +53,6 @@ namespace Game.SkillSystem.Actions
             
         }
 
-        public bool IsActive(float elapsedTime)
-        {
-            return TimeStamp <= elapsedTime && elapsedTime < TimeStamp + Duration;
-        }
+        //public bool IsActive(float elapsedTime) => TimeStamp <= elapsedTime && elapsedTime < TimeStamp + Duration;
     }
 }

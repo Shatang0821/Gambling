@@ -1066,14 +1066,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sFXPlayer: {fileID: 1081452000}
-  minPitch: 0.8
-  maxPitch: 1.2
-  Attack:
-    audioClip: {fileID: 8300000, guid: 6840a66d715a58c44b3dcc919fe0cd08, type: 3}
-    volueme: 1
-  Hit:
-    audioClip: {fileID: 8300000, guid: 1a69e0654bc7c4049b56b50904f58443, type: 3}
-    volueme: 0.3
 --- !u!4 &2115607990
 Transform:
   m_ObjectHideFlags: 0
