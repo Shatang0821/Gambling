@@ -58,7 +58,7 @@ namespace Game.Entity
 
         private void Update()
         {
-            //_enemyStateMachine.LogicUpdate();
+            _enemyStateMachine.LogicUpdate();
             _enemySkillComponent.UpdateCooldown();
         }
     }

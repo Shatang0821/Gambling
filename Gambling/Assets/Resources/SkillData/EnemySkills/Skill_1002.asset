@@ -10,30 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b48dd51db79450f903f93a03ecf706f, type: 3}
-  m_Name: Skil_1001
+  m_Name: Skill_1002
   m_EditorClassIdentifier: 
-  SkillID: 1001
-  SkillName: Skill01
-  Cooldown: 0.5
+  SkillID: 1002
+  SkillName: Skill02
+  Cooldown: 1
   ManaCost: 0
-  AnimationName: Skill01
+  AnimationName: Skill02
   CanBeInterrupted: 0
-  TargetType: 1
+  TargetType: 0
   TargetLayer:
     serializedVersion: 2
-    m_Bits: 8
-  ColliderType: 1
-  Offset: {x: 3, y: -0.5, z: 0}
+    m_Bits: 0
+  ColliderType: 0
+  Offset: {x: 0, y: 0, z: 0}
   Radius: 0
-  Size: {x: 4, y: 0.5, z: 0}
+  Size: {x: 0, y: 0, z: 0}
   Range: 0
-  Duration: 1.4
+  Duration: 2
   Actions:
-  - ActionType: 0
-    TimeStamp: 0.3
-    Duration: 0.9
+  - ActionType: 1
+    TimeStamp: 1.2
+    Duration: 0.8
     EffectPrefabName: 
-    Value: 10
-    Direction: {x: 0, y: 0, z: 0}
+    Value: 5
+    Direction: {x: 1, y: 0, z: 0}
     IsPersistent: 0
-  ComboDatas: []
+  ComboDatas:
+  - StartTime: 1.8
+    EndTime: 2
+    NextSkillID: 1003
+    InputKey: 

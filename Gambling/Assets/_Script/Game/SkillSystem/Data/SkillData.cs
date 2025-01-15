@@ -47,6 +47,7 @@ namespace Game.SkillSystem
             TargetSelector,         // ダメージ
             Move,                   // 移動
             AudioPlay,              // ESを再生
+            SpawnEffect,            // エフェクト生成
         }
         
     }
