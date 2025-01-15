@@ -29,17 +29,19 @@ namespace Game.SkillSystem
     public class SkillActionData
     {
         [Header("タイム")]
-        public SkillActionType ActionType;  // アクションタイプ
-        public float TimeStamp;             // 実行タイミング
-        public float Duration;              // 継続時間
-        [Header("ユーティリティ")]
-        public GameObject Prefab;           // プレハブをキー（必要に応じて）
-        public AudioData AudioData;         // 効果音（必要に応じて）
-        public float Value;                 // 効果値（ダメージ、距離など）
-        public Vector3 Direction;           // オプションの方向ベクトル
-        public bool IsPersistent;           // 継続動作かどうか（True: 継続、False: 単発）
+        public SkillActionType ActionType;      // アクションタイプ
+        public float TimeStamp;                 // 実行タイミング
+        public float Duration;                  // 継続時間
+        [Header("ユーティリティ")] 
+        public GameObject Prefab;               // プレハブをキー（必要に応じて）
+        public AudioData AudioData;             // 効果音（必要に応じて）
+        public float Value;                     // 効果値（ダメージ、距離など）
+        public Vector3 Direction;               // オプションの方向ベクトル
+        public bool IsPersistent;               // 継続動作かどうか（True: 継続、False: 単発）
         [Header("ターゲット設定")]
-        public TargetSettings TargetSettings; // 折り畳み対象
+        public TargetSettings TargetSettings;   // 折り畳み対象
+        [Header("フィードバック")] 
+        public FeedBackData FeedBackData;       // フィードバックデータ
         public enum SkillActionType
         {
             TargetSelector,         // ダメージ

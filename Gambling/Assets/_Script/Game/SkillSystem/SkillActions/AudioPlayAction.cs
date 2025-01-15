@@ -18,14 +18,7 @@ namespace Game.SkillSystem.Actions
         public void Enter(EntityObject owner)
         {
             var audioData = SkillActionData.AudioData;
-            if (audioData.IsPlayRandomPitch)
-            {
-                AudioManager.Instance.PlayRandomSFX(audioData);
-            }
-            else
-            {
-                AudioManager.Instance.PlaySFX(audioData);
-            }
+            AudioManager.Instance.PlaySFX(audioData);
         }
 
         public void Update(EntityObject owner)

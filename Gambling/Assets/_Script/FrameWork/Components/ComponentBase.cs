@@ -4,10 +4,10 @@ namespace FrameWork.Component
 {
     public class ComponentBase : IComponent
     {
-        protected EntityObject entityObject;
+        protected EntityObject owner;
         public virtual void Initialize(EntityObject owner)
         {
-            entityObject = owner;
+            this.owner = owner;
         }
     }
 }

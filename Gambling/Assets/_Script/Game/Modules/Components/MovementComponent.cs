@@ -15,10 +15,10 @@ namespace FrameWork.Component
         public override void Initialize(EntityObject owner)
         {
             base.Initialize(owner);
-            _rigidbody = entityObject.GetComponent<Rigidbody2D>();
+            _rigidbody = base.owner.GetComponent<Rigidbody2D>();
             if (_rigidbody == null)
             {
-                Debug.LogError($"Missing Rigidbody2D on {entityObject.name}");
+                Debug.LogError($"Missing Rigidbody2D on {base.owner.name}");
             }
 
         }
@@ -138,7 +138,7 @@ namespace FrameWork.Component
 
         public void Rotation(float xDrection)
         {
-            entityObject.transform.localScale = new Vector3(xDrection, 1, 1);
+            owner.transform.localScale = new Vector3(xDrection, 1, 1);
         }
     }
 }

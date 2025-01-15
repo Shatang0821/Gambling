@@ -40,7 +40,7 @@ namespace Game.SkillSystem.Actions
                 default:
                     break;
             }
-            _attackComponent.DamageFlow(targets);
+            _attackComponent.DamageFlow(targets,SkillActionData.FeedBackData);
         }
 
         public void Update(EntityObject owner)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using FrameWork.Utils;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,24 +10,33 @@ namespace Framework.Aduio
     public class AudioManager : UnityPersistentSingleton<AudioManager>
     {
         [SerializeField] AudioSource sFXPlayer;
-
+        private readonly float DefaultPitch = 1;
         /// <summary>
         /// 音を出す
         /// </summary>
         /// <param name="audioData">音データ</param>
         public void PlaySFX(AudioData audioData)
         {
-            sFXPlayer.PlayOneShot(audioData.AudioClip, audioData.Volueme);
+            sFXPlayer.volume = audioData.Volueme;
+            if (audioData.IsPlayRandomPitch)
+            {
+                PlayRandomSFX(audioData);
+            }
+            else
+            {
+                sFXPlayer.pitch = DefaultPitch;
+                sFXPlayer.PlayOneShot(audioData.AudioClip, audioData.Volueme);
+            }
         }
 
         /// <summary>
         /// Pitchをランダムに変更して音を出す
         /// </summary>
         /// <param name="audioData">音データ</param>
-        public void PlayRandomSFX(AudioData audioData)
+        private void PlayRandomSFX(AudioData audioData)
         {
             sFXPlayer.pitch = Random.Range(audioData.MinPitch, audioData.MaxPitch);
-            PlaySFX(audioData);
+            sFXPlayer.PlayOneShot(audioData.AudioClip, audioData.Volueme);
         }
 
         /// <summary>

@@ -71,7 +71,12 @@ namespace Framework.Entity
 
         #endregion
         
-        // データ取得
+
+        /// <summary>
+        /// データ取得
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public float GetAttribute(string key)
         {
             return _dataProvider?.GetData(key) ?? 0.0f;
@@ -174,5 +179,6 @@ namespace Framework.Entity
             return Math.Abs(this.transform.position.x - opponent.transform.position.x);
         }
         #endregion
+
     }
 }
