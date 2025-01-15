@@ -72,8 +72,9 @@ namespace Game.SkillSystem
         public enum SkillActionType
         {
             TargetSelector,         // ダメージ
-            Move                    // 移動
-
+            Move,                   // 移動
+            AudioPlay,              // ESを再生
+            SpawnEffect,            // エフェクト生成
         }
     }
     
