@@ -44,4 +44,6 @@ public class TimeManager : UnitySingleton<TimeManager>
 
         _isPausing = false;
     }
+    
+    
 }

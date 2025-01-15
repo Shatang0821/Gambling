@@ -23,21 +23,6 @@ namespace Game.StateMachine.Player
             {
                 ChangeState(StateEnum.Move);
             }
-
-            // if (playerInputComponent.AttackInput)
-            // {
-            //     ChangeToSkillState(1002);
-            // }
-            //
-            // if (playerInputComponent.DefenceInput)
-            // {
-            //     ChangeState(StateEnum.Defence);
-            // }
-            //
-            // if (playerInputComponent.DashInput)
-            // {
-            //     ChangeToSkillState(1001);
-            // }
         }
 
         public override void Exit()
