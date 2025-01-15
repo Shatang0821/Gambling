@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillID: 1005
   SkillName: Attack
-  Cooldown: 1
+  Cooldown: 0.5
   ManaCost: 0
   AnimationName: Attack
   CanBeInterrupted: 0
