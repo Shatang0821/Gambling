@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1417792448043738306}
   - component: {fileID: 730346367573133348}
   - component: {fileID: 2446273839455129360}
+  - component: {fileID: -342782008549197228}
   m_Layer: 0
   m_Name: SignEffect
   m_TagString: Untagged
@@ -27,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 7433890044364336314}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.17, y: -0.31, z: 0}
-  m_LocalScale: {x: 3.8130436, y: 11.40768, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,3 +107,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-342782008549197228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7433890044364336314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcbc068cd27ffc458f72db5272901e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

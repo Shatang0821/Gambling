@@ -63,4 +63,47 @@ MonoBehaviour:
       EnableKnockback: 0
       KnockbackForce: 0
       KnockbackDuration: 0
+  - ActionType: 2
+    TimeStamp: 0
+    Duration: 0
+    Prefab: {fileID: 0}
+    AudioData:
+      AudioClip: {fileID: 8300000, guid: 8df4fbb7af935cc4f92bf4c8fb9af2cf, type: 3}
+      Volueme: 1
+      IsPlayRandomPitch: 0
+      MinPitch: 1.1
+      MaxPitch: 1.1
+    Value: 0
+    Direction: {x: 0, y: 0, z: 0}
+    IsPersistent: 0
+    TargetSettings:
+      TargetType: 1
+      TargetLayer:
+        serializedVersion: 2
+        m_Bits: 8
+      ColliderType: 1
+      Offset: {x: 3, y: -0.5, z: 0}
+      Radius: 0
+      Size: {x: 4, y: 0.5, z: 0}
+      Range: 0
+    FeedBackData:
+      EnableCameraShake: 0
+      ShakeIntensity: 0
+      ShakeDuration: 0
+      EnableTimeFreeze: 0
+      FreezeScale: 0
+      FreezeDuration: 0
+      EnableEffect: 0
+      EffectPrefabs: []
+      EffectOffset: {x: 0, y: 0}
+      EnableAudio: 0
+      AudioData:
+        AudioClip: {fileID: 0}
+        Volueme: 0
+        IsPlayRandomPitch: 0
+        MinPitch: 0
+        MaxPitch: 0
+      EnableKnockback: 0
+      KnockbackForce: 0
+      KnockbackDuration: 0
   ComboDatas: []

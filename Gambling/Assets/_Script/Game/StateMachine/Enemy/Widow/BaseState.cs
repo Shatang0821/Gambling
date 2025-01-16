@@ -20,6 +20,7 @@ namespace Game.StateMachine.Enemy
         public EntityObject p_entity;
         public EntityData enemyData;
         public float MaxHp = 100;
+        public float attackrange = 4.5f; //攻撃に入る距離
 
         public BaseState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
         {

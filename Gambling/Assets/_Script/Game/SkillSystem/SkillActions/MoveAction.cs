@@ -20,9 +20,11 @@ namespace Game.SkillSystem.Actions
         {
             Debug.Log("Enter Move");
             var movement = owner.GetEntityComponent<MovementComponent>();
+            var collider = owner.GetComponent<BoxCollider2D>();
             if (movement != null)
             {
                 movement.Move(direction: new Vector2(owner.Direction,0),  speed: SkillActionData.Value);
+                collider.enabled = false;
             }
         }
 
@@ -34,9 +36,11 @@ namespace Game.SkillSystem.Actions
         public void Exit(EntityObject owner)
         {
             var movement = owner.GetEntityComponent<MovementComponent>();
+            var collider = owner.GetComponent<BoxCollider2D>();
             if (movement != null)
             {
                 movement.Stop();
+                collider.enabled = true;
                 //Debug.Log("停止");
             }
         }

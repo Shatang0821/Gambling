@@ -4,6 +4,7 @@ using FrameWork.Resource;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 
 namespace Game.StateMachine.Enemy.skeleton
@@ -15,8 +16,10 @@ namespace Game.StateMachine.Enemy.skeleton
         
         int random;
         float distance;
-        float attackrange = 3f; //UŒ‚‚É“ü‚é‹——£
         bool isHalf = false;
+        private float meleeRange = 3f; // ‹ß‹——£UŒ‚”ÍˆÍ
+        private float rangedRange = 4.5f; // ’†‹——£UŒ‚”ÍˆÍ
+
         public IdleState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
             owner = entityObject;
@@ -27,6 +30,11 @@ namespace Game.StateMachine.Enemy.skeleton
             base.Enter();
             enemyData = ResManager.Instance.GetAssetCache<EntityData>("EntityData/EnemyData");
             Debug.Log(enemyData.HP);
+            if (enemyData.HP < MaxHp /2 && !isHalf)
+            {
+                ChangeToSkillState(1004);
+                isHalf = true;
+            }
             if (p_entity.Position.x <= owner.Position.x)
             {
                 owner.Scale = new Vector3(-1, 1, 1);
@@ -44,40 +52,42 @@ namespace Game.StateMachine.Enemy.skeleton
             distance = owner.DistanceX(p_entity);
             Debug.Log(distance);
 
-            if (distance > attackrange)
+
+            // ‹——£‚É‰‚¶‚ÄUŒ‚‚Ìí—Ş‚ğ‘I‘ğ
+            if (distance <= meleeRange)
             {
-                ChangeState(StateEnum.Move);
-            }
-            if (distance < attackrange)
-            {
-                if (enemyData.HP < MaxHp / 2)
+                if (isHalf)
                 {
-                    if (!isHalf) {
-                        ChangeToSkillState(1004);
-                        isHalf = true;
-                        
-                    }
-                    else
-                    {
-                        LowHP(random);
-                    }
-                    
+                    MeleeLowHP(random);
                 }
                 else
                 {
-                    HighHP(random);
+                    MeleeHighHP(random);
                 }
-
-                
+            }
+            else if (distance > meleeRange && distance <= rangedRange)
+            {
+                if (isHalf)
+                {
+                    RangeLowHP(random);
+                }
+                else
+                {
+                    RangeHighHP(random);
+                }
+            }
+            else
+            {
+                // ‹——£‚ª’·‚·‚¬‚éê‡‚Í’ÇÕs“®‚È‚Ç
+                ChangeState(StateEnum.Move); // ˆÚ“®ó‘Ô‚ÉˆÚs
             }
 
-            
-            
+
         }
 
-        void HighHP(int rand)
+        void MeleeHighHP(int rand)
         {
-            if(rand >= 1 && rand < 60) 
+            if(rand >= 1 && rand < 80) 
             {
                 ChangeToSkillState(1005);
             }
@@ -87,9 +97,21 @@ namespace Game.StateMachine.Enemy.skeleton
             }
         }
 
-        void LowHP(int rand)
+        void RangeHighHP(int rand)
         {
-            if (rand >= 1 && rand < 20)
+            if (rand >= 1 && rand < 10)
+            {
+                ChangeToSkillState(1005);
+            }
+            else
+            {
+                ChangeToSkillState(1001);
+            }
+        }
+
+        void MeleeLowHP(int rand)
+        {
+            if (rand >= 1 && rand < 40)
             {
                 ChangeToSkillState(1005);
             }
@@ -103,6 +125,21 @@ namespace Game.StateMachine.Enemy.skeleton
             }
         }
 
+        void RangeLowHP(int rand)
+        {
+            if (rand >= 1 && rand < 10)
+            {
+                ChangeToSkillState(1005);
+            }
+            else if (rand >= 20 && rand < 60)
+            {
+                ChangeToSkillState(1001);
+            }
+            else
+            {
+                ChangeToSkillState(1002);
+            }
+        }
     }
 }
 

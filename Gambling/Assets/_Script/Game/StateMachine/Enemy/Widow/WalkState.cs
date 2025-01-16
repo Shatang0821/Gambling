@@ -27,7 +27,7 @@ namespace Game.StateMachine.Enemy.skeleton
             base.LogicUpdate();
             float distance = owner.DistanceX(p_entity);
 
-            if (distance > 1.5f)
+            if (distance > attackrange)
             {
                 _movement.Move(direction,3f);
             }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3024493490595452776}
   - component: {fileID: 9162676669517670242}
   - component: {fileID: 8954604284590945730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Widow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5747636794401962619}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.97, y: 0.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -64,10 +64,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -78,7 +78,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8954604284590945730
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.64500594, y: -0.2744707}
+  m_Offset: {x: -0.37235123, y: -0.5047426}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -122,7 +122,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8819413, y: 2.866398}
+  m_Size: {x: 3.002421, y: 2.0094848}
   m_EdgeRadius: 0
 --- !u!1 &7927409838296013952
 GameObject:
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1542644764629844421}
   - component: {fileID: 764043619451799120}
   - component: {fileID: 7202551426682585358}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
