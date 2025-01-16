@@ -70,7 +70,7 @@ MonoBehaviour:
     AudioData:
       AudioClip: {fileID: 8300000, guid: 8df4fbb7af935cc4f92bf4c8fb9af2cf, type: 3}
       Volueme: 1
-      IsPlayRandomPitch: 0
+      IsPlayRandomPitch: 1
       MinPitch: 1.1
       MaxPitch: 1.1
     Value: 0
