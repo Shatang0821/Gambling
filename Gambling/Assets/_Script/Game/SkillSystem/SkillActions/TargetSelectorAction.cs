@@ -30,7 +30,7 @@ namespace Game.SkillSystem.Actions
             {
                 case ColliderType.Box:
                     targets = TargetSelector.DetectBox(owner.Position, targetSettings.Size,
-                        new Vector2(targetSettings.Offset.x * owner.Direction, targetSettings.Offset.y),
+                        new Vector2(targetSettings.Offset.x * owner.FacingDir, targetSettings.Offset.y),
                         targetSettings.TargetLayer);
                     break;
                 case ColliderType.Circle:

@@ -62,7 +62,7 @@ namespace Game.Component
                 {
                     if (prefab != null)
                     {
-                        Vector3 position = owner.Position + new Vector3(feedback.EffectOffset.x * owner.Direction, feedback.EffectOffset.y);
+                        Vector3 position = owner.Position + new Vector3(feedback.EffectOffset.x * owner.FacingDir, feedback.EffectOffset.y);
                         EffectManager.Instance.SpawnEffect(prefab, position, quaternion.identity);
                     }
                 }
