@@ -22,7 +22,7 @@ namespace Game.SkillSystem.Actions
             var movement = owner.GetEntityComponent<MovementComponent>();
             if (movement != null)
             {
-                movement.Move(direction: new Vector2(owner.Direction,0),  speed: SkillActionData.Value);
+                movement.Move(direction: new Vector2(owner.FacingDir,0),  speed: SkillActionData.Value);
             }
         }
 

@@ -11,7 +11,9 @@ namespace Framework.Entity
         private IDataProvider _dataProvider;
         
         [SerializeField] private Transform groundCheck;         //地面チェック
-        [SerializeField] private float groundCheckDistance;     //チェック距離
+        [SerializeField] private Transform wallCheck;         //地面チェック
+        [SerializeField] private float groundCheckDistance;     //地面判定チェック距離
+        [SerializeField] private float wallCheckDistance;       //壁判定チェック距離
         [SerializeField] private LayerMask whatIsGround;        //レイヤー設定
         
         //データ提供クラスの設定
@@ -101,11 +103,14 @@ namespace Framework.Entity
         /// <returns>true or false</returns>
         public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
 
+        public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDir,
+            wallCheckDistance, whatIsGround);
         protected virtual void OnDrawGizmos()
         {
             if (groundCheck != null)
             {
                 Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
+                Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
             }
             
         }
@@ -162,7 +167,7 @@ namespace Framework.Entity
         /// <summary>
         /// 向いてる方向の取得
         /// </summary>
-        public int Direction
+        public int FacingDir
         {
             get => transform.localScale.x > 0 ? 1 : -1;
         }
