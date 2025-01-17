@@ -17,6 +17,7 @@ namespace Game.StateMachine.Enemy.skeleton
         int random;
         float distance;
         bool isHalf = false;
+        bool isWall;
         private float meleeRange = 3f; // ‹ß‹——£UŒ‚”ÍˆÍ
         private float rangedRange = 4.5f; // ’†‹——£UŒ‚”ÍˆÍ
 
@@ -29,7 +30,7 @@ namespace Game.StateMachine.Enemy.skeleton
         {
             base.Enter();
             enemyData = ResManager.Instance.GetAssetCache<EntityData>("EntityData/EnemyData");
-            Debug.Log(enemyData.HP);
+            Debug.Log(isWall);
             if (enemyData.HP < MaxHp /2 && !isHalf)
             {
                 ChangeToSkillState(1004);
@@ -43,6 +44,13 @@ namespace Game.StateMachine.Enemy.skeleton
             {
                 owner.Scale = new Vector3(1, 1, 1);
             }
+
+            isWall = owner.IsWallDetected();
+
+            if (isWall)
+            {
+                ChangeToSkillState(1002);
+            }
             random = Random.Range(1, 100);
         }
 
@@ -50,7 +58,7 @@ namespace Game.StateMachine.Enemy.skeleton
         {
             base.LogicUpdate();
             distance = owner.DistanceX(p_entity);
-            Debug.Log(distance);
+
 
 
             // ‹——£‚É‰‚¶‚ÄUŒ‚‚Ìí—Ş‚ğ‘I‘ğ
@@ -76,9 +84,9 @@ namespace Game.StateMachine.Enemy.skeleton
                     RangeHighHP(random);
                 }
             }
+
             else
             {
-                // ‹——£‚ª’·‚·‚¬‚éê‡‚Í’ÇÕs“®‚È‚Ç
                 ChangeState(StateEnum.Move); // ˆÚ“®ó‘Ô‚ÉˆÚs
             }
 
