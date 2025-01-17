@@ -766,7 +766,9 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: -0.4625981, y: -1.5524795}
-  - {x: -0.18579364, y: -1.5524791}
+  - {x: -0.4184401, y: -1.5524789}
+  - {x: -0.4184401, y: -1.5524789}
+  - {x: -0.43921232, y: -1.5483247}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -1284,8 +1286,8 @@ Transform:
   m_GameObject: {fileID: 2105106006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -339, y: -51, z: -3406.4998}
-  m_LocalScale: {x: 725.20886, y: 37.85, z: 37.85}
+  m_LocalPosition: {x: -347.18, y: -51, z: -3406.4998}
+  m_LocalScale: {x: 725.20886, y: 36.63857, z: 37.85}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1750177344}
@@ -1526,6 +1528,14 @@ PrefabInstance:
       propertyPath: wallCheck
       value: 
       objectReference: {fileID: 7586432}
+    - target: {fileID: 3024493490595452776, guid: 10bae7b5fba8d72438f7c83329e11af6, type: 3}
+      propertyPath: wallCheckDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024493490595452776, guid: 10bae7b5fba8d72438f7c83329e11af6, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 5747636794401962619, guid: 10bae7b5fba8d72438f7c83329e11af6, type: 3}
       propertyPath: m_Name
       value: Widow

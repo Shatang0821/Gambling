@@ -60,9 +60,9 @@ MonoBehaviour:
         IsPlayRandomPitch: 0
         MinPitch: 0
         MaxPitch: 0
-      EnableKnockback: 0
-      KnockbackForce: 0
-      KnockbackDuration: 0
+      EnableKnockback: 1
+      KnockbackForce: 3
+      KnockbackDuration: 3
   - ActionType: 2
     TimeStamp: 0.3
     Duration: 0
