@@ -48,6 +48,7 @@ namespace Game.SkillSystem
             Move,                   // 移動
             AudioPlay,              // ESを再生
             SpawnEffect,            // エフェクト生成
+            CleanCollision          // 当たり判定の有無
         }
         
     }

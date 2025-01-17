@@ -18,11 +18,11 @@ MonoBehaviour:
   ManaCost: 0
   AnimationName: Skill02
   CanBeInterrupted: 0
-  Duration: 2
+  Duration: 2.3
   Actions:
   - ActionType: 1
     TimeStamp: 1.2
-    Duration: 0.8
+    Duration: 0.6
     Prefab: {fileID: 0}
     AudioData:
       AudioClip: {fileID: 0}
@@ -64,8 +64,8 @@ MonoBehaviour:
       KnockbackForce: 0
       KnockbackDuration: 0
   - ActionType: 3
-    TimeStamp: 1.2
-    Duration: 0.8
+    TimeStamp: 1.8
+    Duration: 0
     Prefab: {fileID: 7433890044364336314, guid: 2a28a9a69eb8f0f4bbd8b149f1d32eb0, type: 3}
     AudioData:
       AudioClip: {fileID: 0}
@@ -149,8 +149,51 @@ MonoBehaviour:
       EnableKnockback: 0
       KnockbackForce: 0
       KnockbackDuration: 0
+  - ActionType: 4
+    TimeStamp: 1.2
+    Duration: 1.1
+    Prefab: {fileID: 0}
+    AudioData:
+      AudioClip: {fileID: 8300000, guid: 550c3b6c1fa49fe42b9616e64a9f865c, type: 3}
+      Volueme: 1
+      IsPlayRandomPitch: 1
+      MinPitch: 1.1
+      MaxPitch: 1.1
+    Value: 0
+    Direction: {x: 0, y: 0, z: 0}
+    IsPersistent: 0
+    TargetSettings:
+      TargetType: 0
+      TargetLayer:
+        serializedVersion: 2
+        m_Bits: 0
+      ColliderType: 0
+      Offset: {x: 0, y: 0, z: 0}
+      Radius: 0
+      Size: {x: 0, y: 0, z: 0}
+      Range: 0
+    FeedBackData:
+      EnableCameraShake: 0
+      ShakeIntensity: 0
+      ShakeDuration: 0
+      EnableTimeFreeze: 0
+      FreezeScale: 0
+      FreezeDuration: 0
+      EnableEffect: 0
+      EffectPrefabs: []
+      EffectOffset: {x: 0, y: 0}
+      EnableAudio: 0
+      AudioData:
+        AudioClip: {fileID: 0}
+        Volueme: 0
+        IsPlayRandomPitch: 0
+        MinPitch: 0
+        MaxPitch: 0
+      EnableKnockback: 0
+      KnockbackForce: 0
+      KnockbackDuration: 0
   ComboDatas:
-  - StartTime: 1.8
-    EndTime: 2
+  - StartTime: 2.3
+    EndTime: 2.5
     NextSkillID: 1003
     InputKey: 
