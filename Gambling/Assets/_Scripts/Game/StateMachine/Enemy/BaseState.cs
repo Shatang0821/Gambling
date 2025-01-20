@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Game.StateMachine.Enemy
 {
-    using StateEnum = Game.Entity.Player.StateEnum;
+    using StateEnum = Game.Entity.Enemy.StateEnum;
     public class BaseState : MyAnimationState
     {
         protected EntityObject owner;
