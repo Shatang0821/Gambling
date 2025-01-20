@@ -3,7 +3,7 @@ using FrameWork.Resource;
 
 namespace Game.StateMachine.Enemy.Hoarder
 {
-    using StateEnum = Game.Entity.Enemy.StateEnum;
+    using StateEnum = Game.Entity.EnemyHoarder.StateEnum;
     public class DamageState : BaseState
     {
         public DamageState(EntityObject entityObject, string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(entityObject, animName, stateMachine, animator)

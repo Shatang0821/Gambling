@@ -6,7 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 
 namespace Game.StateMachine.Enemy.Hoarder
 {
-    using StateEnum = Game.Entity.Enemy.StateEnum;
+    using StateEnum = Game.Entity.EnemyHoarder.StateEnum;
     public class WalkState : BaseState
     {
         EntityObject owner;
