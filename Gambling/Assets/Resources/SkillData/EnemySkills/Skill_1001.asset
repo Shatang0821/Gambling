@@ -44,6 +44,7 @@ MonoBehaviour:
       Size: {x: 4, y: 0.5, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 5
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0
@@ -87,6 +88,7 @@ MonoBehaviour:
       Size: {x: 4, y: 0.5, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 0
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0

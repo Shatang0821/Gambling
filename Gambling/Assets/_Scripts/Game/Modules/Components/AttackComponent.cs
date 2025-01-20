@@ -5,8 +5,10 @@ using UnityEngine;
 using FrameWork.Component;
 using Framework.Entity;
 using FrameWork.Resource;
+using Game.Components;
 using Game.SkillSystem;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 
 namespace Game.Component
 {
@@ -24,12 +26,46 @@ namespace Game.Component
             {
                 foreach (var target in targets)
                 {
-                    ExecuteFeedback(target, fbData);
+                    if (!TryDefend(target))
+                    {
+                        ExecuteFeedback(target, fbData);
+                        ApplyDamage(target, fbData);
+                    }
+                        
                 }
             }
             else
             {
                 Debug.Log("No target detected.");
+            }
+        }
+
+        /// <summary>
+        /// 防御処理を試みる
+        /// </summary>
+        /// <param name="target">ターゲット</param>
+        /// <param name="feedBackData">フィードバックデータ</param>
+        /// <returns></returns>
+        public bool TryDefend(EntityObject target)
+        {
+            var defendComponent = target.GetEntityComponent<DefendComponent>();
+            if (defendComponent != null && defendComponent.TryDefend())
+            {
+                Debug.Log($"{target.name} は攻撃を防御しました。");
+                return true;
+            }
+
+            return false;
+        }
+
+        public void ApplyDamage(EntityObject target,FeedBackData feedBackData)
+        {
+            // デバッグログを出力
+            Debug.Log($"Target: {target.name}, にダメージを与える");
+            var healthComponent = target.GetEntityComponent<HealthComponent>();
+            if (healthComponent != null)
+            {
+                healthComponent.ApplyDamage(feedBackData.Damage);
             }
         }
 

@@ -85,7 +85,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Hurt
+  m_Name: Damaged
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -457,7 +457,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_DefenceTrigger
+  m_Name: Parry
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

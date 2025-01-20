@@ -7,6 +7,9 @@ namespace Game.SkillSystem
     [Serializable]
     public class FeedBackData
     {
+        [Header("ダメージ")] 
+        public float Damage;
+        
         [Header("カメラ")]
         public bool EnableCameraShake;       // カメラ震動を有効にするか
         public float ShakeIntensity;         // カメラ震動の強さ

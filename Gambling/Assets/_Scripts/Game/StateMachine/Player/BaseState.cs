@@ -11,14 +11,19 @@ namespace Game.StateMachine.Player
     public class BaseState : MyAnimationState
     {
         protected EntityObject owner;
+        protected HealthComponent healthComponent;
         protected PlayerInputComponent playerInputComponent;
         protected SkillComponent skillComponent;
+        
         protected static int SkillID;
         public BaseState(EntityObject owner,string animName, MyStateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
         {
             this.owner = owner;
             playerInputComponent = owner.GetEntityComponent<PlayerInputComponent>();
             skillComponent = this.owner.GetEntityComponent<SkillComponent>();
+            
+            healthComponent = this.owner.GetEntityComponent<HealthComponent>();
+            healthComponent.AddDamageAction(TakenDamage);
         }
 
         public override void Enter()
@@ -37,6 +42,11 @@ namespace Game.StateMachine.Player
             {
                 ChangeState(StateEnum.Skill);
             }
+        }
+
+        protected void TakenDamage(float damage)
+        {
+            ChangeState(StateEnum.Damaged);
         }
     }
 }
