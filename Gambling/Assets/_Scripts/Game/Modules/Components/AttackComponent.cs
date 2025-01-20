@@ -44,7 +44,6 @@ namespace Game.Component
         /// 防御処理を試みる
         /// </summary>
         /// <param name="target">ターゲット</param>
-        /// <param name="feedBackData">フィードバックデータ</param>
         /// <returns></returns>
         public bool TryDefend(EntityObject target)
         {

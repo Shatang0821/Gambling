@@ -44,6 +44,22 @@ namespace Game.StateMachine.Player
             base.LogicUpdate();
             _skillProcessor.Update(stateTimer);
 
+            if (_skillData.CanBeInterrupted)
+            {
+                if (stateTimer < _skillData.InterruptedTime)
+                {
+                    if (playerInputComponent.DefenceInput)
+                    {
+                        ChangeState(StateEnum.Defence);
+                    }
+
+                    if (playerInputComponent.DashInput)
+                    {
+                        ChangeToSkillState(1001);
+                    }
+                }
+            }
+            
             foreach (var comboData in _skillData.ComboDatas)
             {
                 if (stateTimer >= comboData.StartTime && stateTimer <= comboData.EndTime)
