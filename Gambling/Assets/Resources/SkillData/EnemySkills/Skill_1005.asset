@@ -18,6 +18,7 @@ MonoBehaviour:
   ManaCost: 0
   AnimationName: Attack
   CanBeInterrupted: 0
+  InterruptedTime: 0
   Duration: 1.6
   Actions:
   - ActionType: 0
@@ -44,6 +45,7 @@ MonoBehaviour:
       Size: {x: 1, y: 2, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 5
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0
@@ -87,6 +89,7 @@ MonoBehaviour:
       Size: {x: 1, y: 2, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 0
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0

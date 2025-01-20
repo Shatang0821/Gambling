@@ -6,6 +6,7 @@ using Framework.Entity;
 using FrameWork.EventCenter;
 using FrameWork.Resource;
 using Game.Component;
+using Game.Components;
 using Game.Input;
 using Game.SkillSystem;
 using Game.StateMachine;
@@ -37,6 +38,8 @@ namespace Game.Entity
         {
                                     AddEntityComponent(new MovementComponent());
                                     AddEntityComponent(new AttackComponent());
+                                    AddEntityComponent(new HealthComponent());
+                                    AddEntityComponent(new DefendComponent());
             _playerSkillComponent = AddEntityComponent(new SkillComponent());
             _playerInputComponent = AddEntityComponent(new PlayerInputComponent());
             

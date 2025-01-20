@@ -16,6 +16,7 @@ namespace Game.SkillSystem
         public float ManaCost;               // 消費マナ
         public string AnimationName;         // アニメーション名
         public bool CanBeInterrupted;        // 中断できるか
+        public float InterruptedTime;        // 中断できる時間枠
         [Header("スキル継続時間")] 
         public float Duration;
         [Header("スキルアクション")]
