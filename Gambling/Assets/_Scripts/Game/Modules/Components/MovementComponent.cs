@@ -50,7 +50,10 @@ namespace FrameWork.Component
             if (_rigidbody != null)
             {
                 if (rotation)
-                    Rotation(direction.x);
+                {
+                    if(direction.x > 0) Rotation(1);
+                    if(direction.x < 0) Rotation(-1);
+                }
                 var vel = new Vector2(direction.x * speed , _rigidbody.velocity.y);
                 _rigidbody.velocity = vel;
             }

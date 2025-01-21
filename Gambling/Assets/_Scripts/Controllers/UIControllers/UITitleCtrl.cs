@@ -26,7 +26,7 @@ public class UITitleCtrl : UICtrl
 
 	void Start() {
 		UIInput.Instance.SelectUI(_startButton);
-		UIInput.Instance.SelectUI(_tutorialButton);
+		//UIInput.Instance.SelectUI(_tutorialButton);
         StartCoroutine(FadeInBGM());
     }
 
