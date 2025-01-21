@@ -13,7 +13,9 @@ public class UITitleCtrl : UICtrl
 	private HID.Button _exitButton;
 	public GameObject Tutorial;
 	public GameObject player;
-	public override void Awake() {
+    public AudioSource bgmAudioSource; // BGMのAudioSource
+    public float fadeDuration = 2.0f; // フェードイン・アウトの時間
+    public override void Awake() {
 
 		base.Awake();
 		_startButton = View["Buttons/Start_Button"].GetComponent<Button>();
@@ -25,12 +27,19 @@ public class UITitleCtrl : UICtrl
 	void Start() {
 		UIInput.Instance.SelectUI(_startButton);
 		UIInput.Instance.SelectUI(_tutorialButton);
-	}
+        StartCoroutine(FadeInBGM());
+    }
 
 	public void Test()
 	{
 		Debug.Log("Click Start");
-	}
+
+        StartCoroutine(FadeOutBGM(() => {
+            // フェードアウト後の処理
+            Debug.Log("BGM Faded Out. Starting Game...");
+            // ここでシーン切り替えなどを行う
+        }));
+    }
 
 	public void OnTutorial()
 	{
@@ -45,4 +54,41 @@ public class UITitleCtrl : UICtrl
         }
 	}
 
+    // BGMをフェードイン
+    private IEnumerator FadeInBGM()
+    {
+        float currentTime = 0f;
+        float startVolume = 0f;
+
+        bgmAudioSource.volume = startVolume;
+        bgmAudioSource.Play();
+
+        while (currentTime < fadeDuration)
+        {
+            currentTime += Time.deltaTime;
+            bgmAudioSource.volume = Mathf.Lerp(startVolume, 0.3f, currentTime / fadeDuration);
+            yield return null;
+        }
+
+        bgmAudioSource.volume = 0.3f;
+    }
+
+    // BGMをフェードアウト
+    private IEnumerator FadeOutBGM(System.Action onFadeComplete = null)
+    {
+        float currentTime = 0f;
+        float startVolume = bgmAudioSource.volume;
+
+        while (currentTime < fadeDuration)
+        {
+            currentTime += Time.deltaTime;
+            bgmAudioSource.volume = Mathf.Lerp(startVolume, 0f, currentTime / fadeDuration);
+            yield return null;
+        }
+
+        bgmAudioSource.volume = 0f;
+        bgmAudioSource.Stop();
+
+        onFadeComplete?.Invoke();
+    }
 }
