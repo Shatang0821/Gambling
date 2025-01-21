@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillID: 2002
   SkillName: Skill2002
-  Cooldown: 1
+  Cooldown: 0.5
   ManaCost: 0
   AnimationName: Skill2002
   CanBeInterrupted: 0
+  InterruptedTime: 0
   Duration: 0.7
   Actions:
   - ActionType: 1
@@ -44,6 +45,7 @@ MonoBehaviour:
       Size: {x: 0, y: 0, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 0
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0
@@ -87,6 +89,51 @@ MonoBehaviour:
       Size: {x: 1.5, y: 1, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 0
+      EnableCameraShake: 0
+      ShakeIntensity: 0
+      ShakeDuration: 0
+      EnableTimeFreeze: 0
+      FreezeScale: 0
+      FreezeDuration: 0
+      EnableEffect: 0
+      EffectPrefabs: []
+      EffectOffset: {x: 0, y: 0}
+      EnableAudio: 0
+      AudioData:
+        AudioClip: {fileID: 0}
+        Volueme: 0
+        IsPlayRandomPitch: 0
+        MinPitch: 0
+        MaxPitch: 0
+      EnableKnockback: 0
+      KnockbackForce: 0
+      KnockbackDuration: 0
+  - ActionType: 2
+    TimeStamp: 0
+    Duration: 0
+    Prefab: {fileID: 0}
+    AudioData:
+      AudioClip: {fileID: 8300000, guid: 1731a90a43595e44d8d07fa9d14b7404, type: 3}
+      Volueme: 0.7
+      IsPlayRandomPitch: 0
+      MinPitch: 1
+      MaxPitch: 1
+    Value: 1
+    Direction: {x: 0, y: 0, z: 0}
+    IsPersistent: 0
+    TargetSettings:
+      TargetType: 1
+      TargetLayer:
+        serializedVersion: 2
+        m_Bits: 8
+      ColliderType: 1
+      Offset: {x: 2, y: -0.7, z: 0}
+      Radius: 0
+      Size: {x: 1.5, y: 1, z: 0}
+      Range: 0
+    FeedBackData:
+      Damage: 0
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0

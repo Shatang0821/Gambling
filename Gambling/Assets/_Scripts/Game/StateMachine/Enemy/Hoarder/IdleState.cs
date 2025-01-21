@@ -33,7 +33,6 @@ namespace Game.StateMachine.Enemy.Hoarder
             Debug.Log(isWall);
             if (enemyData.HP < MaxHp /2 && !isHalf)
             {
-                ChangeToSkillState(1004);
                 isHalf = true;
             }
             if (p_entity.Position.x <= owner.Position.x)
@@ -49,7 +48,7 @@ namespace Game.StateMachine.Enemy.Hoarder
 
             if (isWall)
             {
-                ChangeToSkillState(2001);
+                ChangeToSkillState(2002);
             }
             random = Random.Range(1, 100);
         }
@@ -101,25 +100,25 @@ namespace Game.StateMachine.Enemy.Hoarder
             }
             else
             {
-                ChangeToSkillState(2002);
+                ChangeToSkillState(2001);
             }
         }
 
         void RangeHighHP(int rand)
         {
-            if (rand >= 1 && rand < 10)
+            if (rand >= 1 && rand < 30)
             {
-                ChangeToSkillState(2002);
+                ChangeToSkillState(2004);
             }
             else
             {
-                ChangeToSkillState(2003);
+                ChangeToSkillState(2001);
             }
         }
 
         void MeleeLowHP(int rand)
         {
-            if (rand >= 1 && rand < 40)
+            if (rand >= 1 && rand < 20)
             {
                 ChangeToSkillState(2002);
             }
@@ -141,11 +140,11 @@ namespace Game.StateMachine.Enemy.Hoarder
             }
             else if (rand >= 20 && rand < 60)
             {
-                ChangeToSkillState(2001);
+                ChangeToSkillState(2003);
             }
             else
             {
-                ChangeToSkillState(2003);
+                ChangeToSkillState(2004);
             }
         }
     }

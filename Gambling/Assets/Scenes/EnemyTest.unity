@@ -194,10 +194,51 @@ MonoBehaviour:
   groundCheck: {fileID: 0}
   wallCheck: {fileID: 1281815327}
   groundCheckDistance: 0
-  wallCheckDistance: 0
+  wallCheckDistance: 3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 0
+--- !u!68 &214272194
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214272181}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.01398845, y: -1.540723}
+  - {x: 0.015798464, y: -1.541325}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &385485354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,7 +1596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5630283661025881053, guid: dfd22763399e0464f85627fb10a7bc01, type: 3}
       propertyPath: m_Size.y
-      value: 1.8493484
+      value: 1.6313615
       objectReference: {fileID: 0}
     - target: {fileID: 5630283661025881053, guid: dfd22763399e0464f85627fb10a7bc01, type: 3}
       propertyPath: m_Offset.x
@@ -1563,7 +1604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5630283661025881053, guid: dfd22763399e0464f85627fb10a7bc01, type: 3}
       propertyPath: m_Offset.y
-      value: -0.5956271
+      value: -0.7046206
       objectReference: {fileID: 0}
     - target: {fileID: 6460698905733269749, guid: dfd22763399e0464f85627fb10a7bc01, type: 3}
       propertyPath: m_Layer
@@ -1593,6 +1634,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4821847293402438871, guid: dfd22763399e0464f85627fb10a7bc01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 214272190}
+    - targetCorrespondingSourceObject: {fileID: 4821847293402438871, guid: dfd22763399e0464f85627fb10a7bc01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 214272194}
   m_SourcePrefab: {fileID: 100100000, guid: dfd22763399e0464f85627fb10a7bc01, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

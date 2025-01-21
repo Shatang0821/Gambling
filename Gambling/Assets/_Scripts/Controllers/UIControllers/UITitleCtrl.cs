@@ -12,6 +12,7 @@ public class UITitleCtrl : UICtrl
 	private Button _tutorialButton;
 	private HID.Button _exitButton;
 	public GameObject Tutorial;
+	public GameObject player;
 	public override void Awake() {
 
 		base.Awake();
@@ -36,6 +37,7 @@ public class UITitleCtrl : UICtrl
 		if (Tutorial.activeSelf)
 		{
 			Tutorial.SetActive(false);
+			player.SetActive(false);
 		}
 		else
 		{
