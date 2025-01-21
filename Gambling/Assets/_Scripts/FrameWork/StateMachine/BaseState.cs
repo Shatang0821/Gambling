@@ -5,11 +5,11 @@ namespace Framework.FSM
     public class BaseState : IState
     {
         protected float stateTimer = 0;  // ステート持続時間
-        private MyStateMachine _stateMachine;    //状態マシンインスタンス
+        protected MyStateMachine stateMachine;    //状態マシンインスタンス
 
         public BaseState(MyStateMachine stateMachine)
         {
-            this._stateMachine = stateMachine;
+            this.stateMachine = stateMachine;
             CanBeInterrupted = true;
         }
 
@@ -37,7 +37,7 @@ namespace Framework.FSM
 
         protected virtual void ChangeState<TEnum>(TEnum state)where TEnum : Enum
         {
-            _stateMachine.ChangeState(state);
+            stateMachine.ChangeState(state);
         }
     }
 }

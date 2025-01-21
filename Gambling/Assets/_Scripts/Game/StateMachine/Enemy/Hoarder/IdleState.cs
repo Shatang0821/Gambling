@@ -18,8 +18,8 @@ namespace Game.StateMachine.Enemy.Hoarder
         float distance;
         bool isHalf = false;
         bool isWall;
-        private float meleeRange = 3f; // ‹ß‹——£UŒ‚”ÍˆÍ
-        private float rangedRange = 4.5f; // ’†‹——£UŒ‚”ÍˆÍ
+        private float meleeRange = 3f; // ï¿½ß‹ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½Íˆï¿½
+        private float rangedRange = 4.5f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½Íˆï¿½
 
         public IdleState(EntityObject entityObject, string animName, MyStateMachine stateMachine, Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
@@ -29,7 +29,6 @@ namespace Game.StateMachine.Enemy.Hoarder
         public override void Enter()
         {
             base.Enter();
-            enemyData = ResManager.Instance.GetAssetCache<EntityData>("EntityData/EnemyData");
             Debug.Log(isWall);
             if (enemyData.HP < MaxHp /2 && !isHalf)
             {
@@ -60,7 +59,7 @@ namespace Game.StateMachine.Enemy.Hoarder
 
 
 
-            // ‹——£‚É‰‚¶‚ÄUŒ‚‚Ìí—Ş‚ğ‘I‘ğ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½É‰ï¿½ï¿½ï¿½ï¿½ÄUï¿½ï¿½ï¿½Ìï¿½Ş‚ï¿½Iï¿½ï¿½
             if (distance <= meleeRange)
             {
                 if (isHalf)
@@ -86,7 +85,7 @@ namespace Game.StateMachine.Enemy.Hoarder
 
             else
             {
-                ChangeState(StateEnum.Move); // ˆÚ“®ó‘Ô‚ÉˆÚs
+                ChangeState(StateEnum.Move); // ï¿½Ú“ï¿½ï¿½ï¿½Ô‚ÉˆÚs
             }
 
 

@@ -7,10 +7,9 @@ namespace Framework.FSM
 {
     public class MyStateMachine
     {
-        protected IState currentState;
+        public IState CurrentState;
 
         private Dictionary<string, IState> _stateTable = new();
-
         /// <summary>
         /// ステートの初期設定
         /// </summary>
@@ -25,26 +24,28 @@ namespace Framework.FSM
             var stateName = newState.ToString();
             if (_stateTable.TryGetValue(stateName, out IState state))
             {
-                currentState?.Exit();
-                currentState = state;
-                currentState.Enter();
+                CurrentState?.Exit();
+                CurrentState = state;
+                CurrentState.Enter();
             }
         }
         
         public void LogicUpdate()
         {
-            currentState?.LogicUpdate();
+            CurrentState?.LogicUpdate();
         }
 
         public void PhysicsUpdate()
         {
-            currentState?.PhysicsUpdate();
+            CurrentState?.PhysicsUpdate();
         }
 
         public void RegisterState(Enum stateEnum, IState state)
         {
             _stateTable[stateEnum.ToString()] = state;
         }
+
+        public IState GetState(string stateName) => _stateTable[stateName];
 
 
     }

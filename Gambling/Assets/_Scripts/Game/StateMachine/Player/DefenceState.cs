@@ -23,7 +23,7 @@ namespace Game.StateMachine.Player
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            _defendComponent.SetCanParry(stateTimer); 
+            _defendComponent.SetParryState(stateTimer); 
             if (_defendComponent.SuccessParry)
             {
                 ChangeToSkillState(1006);

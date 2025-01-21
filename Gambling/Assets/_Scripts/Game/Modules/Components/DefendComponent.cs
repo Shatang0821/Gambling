@@ -7,19 +7,22 @@ namespace Game.Components
 {
     public class DefendComponent : ComponentBase
     {
-        public bool IsDefending { get; private set; }       // 現在防御状態であるか
-        public bool SuccessDefend { get; private set; }
+        public enum DefendState
+        {
+            None,       // 未防御
+            Blocking,   // 防御中
+            Parrying    // 弾き成功
+        }
+        public DefendState CurrentState { get; private set; } = DefendState.None;
         public bool SuccessParry { get; private set; }
-        private bool _canParry;
         private float _parryWindowTime;                     // パリィ可能な時間枠
-        private float _blockMultiplier;                     // 防御によるダメージ軽減割合
+        public float BlockMultiplier { get; private set; }                     // 防御によるダメージ軽減割合
         
         public override void Initialize(EntityObject owner)
         {
             base.Initialize(owner);
-            IsDefending = false;
             _parryWindowTime = 0.3f;        // パリィの時間枠を設定
-            _blockMultiplier = 0.5f;    // ダメージ軽減率（50%）
+            BlockMultiplier = 0.5f;    // ダメージ軽減率（50%）
         }
         
         /// <summary>
@@ -27,35 +30,29 @@ namespace Game.Components
         /// </summary>
         /// <param name="attackData">攻撃データ</param>
         /// <returns>防御成功かどうか</returns>
-        public bool TryDefend()
+        public bool TryParry()
         {
-            // 防御状態でない場合は失敗
-            if (!IsDefending) return false;
-
-            if (_canParry)
+            if (CurrentState == DefendState.Parrying)
             {
                 SuccessParry = true;
                 return true;
             }
-            
-            // 防御失敗
+
             return false;
         }
 
         /// <summary>
-        /// パリできるか
+        /// パリィ可能か設定
         /// </summary>
-        /// <param name="stateTime">防御の時間</param>
-        /// <returns></returns>
-        public void SetCanParry(float stateTime)
+        public void SetParryState(float stateTime)
         {
             if (stateTime < _parryWindowTime)
             {
-                _canParry = true;
+                CurrentState = DefendState.Parrying;
             }
             else
             {
-                _canParry = false;
+                CurrentState = DefendState.Blocking;
             }
         }
         
@@ -64,7 +61,8 @@ namespace Game.Components
         /// </summary>
         public void StartDefend()
         {
-            IsDefending = true;
+            CurrentState = DefendState.Blocking;
+            SuccessParry = false;
         }
 
         /// <summary>
@@ -72,7 +70,16 @@ namespace Game.Components
         /// </summary>
         public void StopDefend()
         {
-            IsDefending = false;
+            CurrentState = DefendState.None;
+            SuccessParry = false;
+        }
+        
+        /// <summary>
+        /// 現在の防御状態をリセット
+        /// </summary>
+        public void ResetDefendState()
+        {
+            CurrentState = DefendState.None;
             SuccessParry = false;
         }
     }

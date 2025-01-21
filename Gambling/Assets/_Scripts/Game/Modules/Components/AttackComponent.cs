@@ -14,7 +14,6 @@ namespace Game.Component
 {
     public class AttackComponent : ComponentBase
     {
-        
         /// <summary>
         /// ダメージを与える
         /// </summary>
@@ -26,12 +25,8 @@ namespace Game.Component
             {
                 foreach (var target in targets)
                 {
-                    if (!TryDefend(target))
-                    {
-                        ExecuteFeedback(target, fbData);
-                        ApplyDamage(target, fbData);
-                    }
-                        
+                    ExecuteFeedback(target, fbData);
+                    ApplyDamage(target, fbData);
                 }
             }
             else
@@ -40,31 +35,43 @@ namespace Game.Component
             }
         }
 
-        /// <summary>
-        /// 防御処理を試みる
-        /// </summary>
-        /// <param name="target">ターゲット</param>
-        /// <returns></returns>
-        public bool TryDefend(EntityObject target)
-        {
-            var defendComponent = target.GetEntityComponent<DefendComponent>();
-            if (defendComponent != null && defendComponent.TryDefend())
-            {
-                Debug.Log($"{target.name} は攻撃を防御しました。");
-                return true;
-            }
-
-            return false;
-        }
-
         public void ApplyDamage(EntityObject target,FeedBackData feedBackData)
         {
-            // デバッグログを出力
-            Debug.Log($"Target: {target.name}, にダメージを与える");
-            var healthComponent = target.GetEntityComponent<HealthComponent>();
-            if (healthComponent != null)
+            var defendComponent = target.GetEntityComponent<DefendComponent>();
+            if (defendComponent != null)
             {
-                healthComponent.ApplyDamage(feedBackData.Damage);
+                float reducedDamage = feedBackData.Damage * defendComponent.BlockMultiplier;
+                switch (defendComponent.CurrentState)
+                {
+                    case DefendComponent.DefendState.Blocking:
+                        target.GetEntityComponent<HealthComponent>()?.ApplyDamage(reducedDamage);
+                        Debug.Log($"Target is blocking. Reduced damage: {reducedDamage}");
+                        break;
+                    case DefendComponent.DefendState.Parrying:
+                        if (!defendComponent.TryParry())
+                        {
+                            target.GetEntityComponent<HealthComponent>()?.ApplyDamage(reducedDamage);
+                            Debug.Log($"Target is blocking. Reduced damage: {reducedDamage}");
+                        }
+                        else
+                        {
+                            // パリィ成功時はダメージを受けない
+                            Debug.Log($"Target successfully parried the attack. No damage taken.");
+                        }
+                        break;
+                    case DefendComponent.DefendState.None:
+                    default:
+                        // 通常ダメージ
+                        target.GetEntityComponent<HealthComponent>()?.ApplyDamage(feedBackData.Damage);
+                        Debug.Log($"Target took full damage: {feedBackData.Damage}");
+                        break;
+                }
+            }
+            else
+            {
+                // 防御コンポーネントがない場合は通常ダメージ
+                target.GetEntityComponent<HealthComponent>()?.ApplyDamage(feedBackData.Damage);
+                Debug.Log($"Target has no defend component. Took full damage: {feedBackData.Damage}");
             }
         }
 

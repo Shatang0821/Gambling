@@ -46,7 +46,15 @@ namespace Game.StateMachine.Player
 
         protected void TakenDamage(float damage)
         {
-            ChangeState(StateEnum.Damaged);
+            if (stateMachine.CurrentState != stateMachine.GetState(StateEnum.Defence.ToString()))
+            {
+                ChangeState(StateEnum.Damaged);
+            }
+            else
+            {
+                AnimatorUtility.Blink(owner.GetComponentInChildren<SpriteRenderer>(),0.3f,0.1f);
+            }
+            
         }
     }
 }

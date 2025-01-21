@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class UIInput : UnitySingleton<UIInput>
 {
-
     /// <summary>
     /// UIの入力を管理するコンポーネント
     /// </summary>

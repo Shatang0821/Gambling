@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using FrameWork.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.HID;
 
 
@@ -10,7 +12,7 @@ public class UITitleCtrl : UICtrl
 {
 	private Button _startButton;
 	private Button _tutorialButton;
-	private HID.Button _exitButton;
+	private Button _exitButton;
 	public GameObject Tutorial;
 	public GameObject player;
     public AudioSource bgmAudioSource; // BGMのAudioSource
@@ -18,10 +20,10 @@ public class UITitleCtrl : UICtrl
     public override void Awake() {
 
 		base.Awake();
-		_startButton = View["Buttons/Start_Button"].GetComponent<Button>();
-        _tutorialButton = View["Buttons/Tutorial_Button"].GetComponent<Button>();
-        AddButtonListener("Buttons/Start_Button",Test);
-        AddButtonListener("Buttons/Tutorial_Button",OnTutorial);
+		_startButton = View["Button Container/Start_Button"].GetComponent<Button>();
+        _tutorialButton = View["Button Container/Tutorial_Button"].GetComponent<Button>();
+        AddButtonListener("Button Container/Start_Button",Test);
+        AddButtonListener("Button Container/Tutorial_Button",OnTutorial);
 	}
 
 	void Start() {
@@ -29,6 +31,31 @@ public class UITitleCtrl : UICtrl
 		//UIInput.Instance.SelectUI(_tutorialButton);
         StartCoroutine(FadeInBGM());
     }
+
+	/// <summary>
+	/// アプリケーションを開いたら
+	/// </summary>
+	/// <param name="hasFocus"></param>
+	private void OnApplicationFocus(bool hasFocus)
+	{
+		if (hasFocus)
+		{
+			// 現在選択中のボタンが消えたら選択できるように
+			if (EventSystem.current.currentSelectedGameObject == null)
+			{
+				UIInput.Instance.SelectUI(_startButton);
+			}
+		}
+	}
+
+	private void Update()
+	{
+		// 何も選択していないときにデフォルト(startボタンを選択)
+		if (EventSystem.current.currentSelectedGameObject == null)
+		{
+			UIInput.Instance.SelectUI(_startButton);
+		}
+	}
 
 	public void Test()
 	{

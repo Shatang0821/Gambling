@@ -30,22 +30,25 @@ namespace Game.Entity
         }
         private EntityStateMachine _playerStateMachine;
         private PlayerInputComponent _playerInputComponent;
-
+        private HealthComponent _healthComponent;
         private SkillComponent _playerSkillComponent;
-        
+
+        public EntityData MyData;
         //一時的に使う
         private void Awake()
         {
                                     AddEntityComponent(new MovementComponent());
                                     AddEntityComponent(new AttackComponent());
-                                    AddEntityComponent(new HealthComponent());
+            _healthComponent      = AddEntityComponent(new HealthComponent());
                                     AddEntityComponent(new DefendComponent());
             _playerSkillComponent = AddEntityComponent(new SkillComponent());
             _playerInputComponent = AddEntityComponent(new PlayerInputComponent());
             
             _playerSkillComponent.InitSkill(this,
                 ResManager.Instance.GetAssetCache<SkillList>("SkillData/Player_SkillDataTable"));
-            
+
+            MyData = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/PlayerData").EntityData;
+            _healthComponent.AddDamageAction(ApplyDamage);
             // ステートマシンは最後に生成
             _playerStateMachine = CreateStateMachine();
             _playerStateMachine.InitState(StateEnum.Idle);
@@ -95,6 +98,15 @@ namespace Game.Entity
             return stateMachine;
         }
 
+        private void ApplyDamage(float amount)
+        {
+            MyData.HP -= amount;
+            if (MyData.HP <= 0)
+            {
+                MyData.HP = 0;
+                _healthComponent.Die();
+            }
+        }
     
     }
 }

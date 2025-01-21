@@ -14,7 +14,6 @@ namespace Game.StateMachine.Enemy.skeleton
         public override void Enter()
         {
             base.Enter();
-            enemyData = ResManager.Instance.GetAssetCache<EntityData>("EntityData/EnemyData");
             if (enemyData.HP <= 0)
             {
                 ChangeState(StateEnum.Die);

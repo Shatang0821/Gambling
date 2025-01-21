@@ -115,7 +115,7 @@ namespace Game.SkillSystem
         private void FinishSkill()
         {
             _isRunning = false;
-            Debug.Log($"Skill {_currentSkill.Name} finished.");
+//            Debug.Log($"Skill {_currentSkill.Name} finished.");
         }
         
         /// <summary>

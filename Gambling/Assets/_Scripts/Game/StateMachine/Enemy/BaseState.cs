@@ -26,7 +26,7 @@ namespace Game.StateMachine.Enemy
         {
             this.owner = owner;
             skillComponent = this.owner.GetEntityComponent<SkillComponent>();
-            enemyData = ResManager.Instance.GetAssetCache<EntityData>("EntityData/EnemyData");
+            enemyData = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/EnemyData").EntityData;
             enemyData.HP = MaxHp;
 
         }
