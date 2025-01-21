@@ -15,14 +15,18 @@ namespace Game.StateMachine.Enemy.Hoarder
         {
             base.Enter();
             enemyData = ResManager.Instance.GetAssetCache<EntityData>("EntityData/EnemyData");
+            if (enemyData.HP <= 0)
+            {
+                ChangeState(StateEnum.Die);
+            }
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (enemyData.HP <= 0)
+            if (stateTimer > 0.6f)
             {
-                ChangeState(StateEnum.Die);
+                ChangeState(StateEnum.Idle);
             }
         }
         public override void Exit()

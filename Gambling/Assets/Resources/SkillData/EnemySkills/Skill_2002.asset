@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillID: 2002
   SkillName: Skill2002
-  Cooldown: 0.5
+  Cooldown: 1
   ManaCost: 0
   AnimationName: Skill2002
   CanBeInterrupted: 0
