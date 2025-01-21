@@ -13,6 +13,7 @@ public class Tutorial : EntityObject
     private Sprite[] _ReleasedButton;
     [SerializeField]
     private SpriteRenderer[] _Buttons;
+    public GameObject player;
 
     private void Awake()
     {
@@ -94,6 +95,11 @@ public class Tutorial : EntityObject
                 _Buttons[5 + i].sprite = _ReleasedButton[5 + i];
             }
         }
+    }
+
+    public void ActivePlayer()
+    {
+        player.SetActive(true);
     }
 
 }
