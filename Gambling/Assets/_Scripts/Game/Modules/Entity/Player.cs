@@ -11,6 +11,7 @@ using Game.Input;
 using Game.SkillSystem;
 using Game.StateMachine;
 using Game.StateMachine.Player;
+using Unity.VisualScripting;
 
 namespace Game.Entity
 {
@@ -54,6 +55,8 @@ namespace Game.Entity
             _playerStateMachine.InitState(StateEnum.Idle);
         }
         
+        
+        
         //一時的に使う
         private void Update()
         {
@@ -71,6 +74,7 @@ namespace Game.Entity
         {
             _playerInputComponent.OnEnable();
             EventCenter.DebugEventTable();
+            _playerStateMachine.InitState(StateEnum.Idle);
         }
 
         private void OnDisable()
