@@ -10,6 +10,8 @@ namespace Framework.Aduio
     public class AudioManager : UnityPersistentSingleton<AudioManager>
     {
         [SerializeField] AudioSource sFXPlayer;
+        [SerializeField] AudioSource BGMPlayer;
+        public float fadeDuration = 2.0f; // フェードイン・アウトの時間
         private readonly float DefaultPitch = 1;
         /// <summary>
         /// 音を出す
@@ -46,6 +48,50 @@ namespace Framework.Aduio
         public void PlayRandomSFX(AudioData[] audioData)
         {
             PlayRandomSFX(audioData[Random.Range(0, audioData.Length)]);
+        }
+
+        /// <summary>
+        /// BGMをフェードインしながら再生する
+        /// </summary>
+        /// <param name="audioData">BGM音データ</param>
+        public IEnumerator FadeInBGM(AudioData audioData)
+        {
+            if (audioData == null || audioData.AudioClip == null) yield break;
+
+            float currentTime = 0f;
+            BGMPlayer.clip = audioData.AudioClip;
+            BGMPlayer.volume = 0f;
+            BGMPlayer.Play();
+
+            while (currentTime < fadeDuration)
+            {
+                currentTime += Time.deltaTime;
+                BGMPlayer.volume = Mathf.Lerp(0f, audioData.Volueme, currentTime / fadeDuration);
+                yield return null;
+            }
+
+            BGMPlayer.volume = audioData.Volueme;
+        }
+
+        /// <summary>
+        /// BGMをフェードアウトする
+        /// </summary>
+        /// <param name="onFadeComplete">フェード完了時のコールバック</param>
+        public IEnumerator FadeOutBGM(System.Action onFadeComplete = null)
+        {
+            float currentTime = 0f;
+            float startVolume = BGMPlayer.volume;
+
+            while (currentTime < fadeDuration)
+            {
+                currentTime += Time.deltaTime;
+                BGMPlayer.volume = Mathf.Lerp(startVolume, 0f, currentTime / fadeDuration);
+                yield return null;
+            }
+
+            BGMPlayer.volume = 0f;
+            BGMPlayer.Stop();
+            onFadeComplete?.Invoke();
         }
     }
 

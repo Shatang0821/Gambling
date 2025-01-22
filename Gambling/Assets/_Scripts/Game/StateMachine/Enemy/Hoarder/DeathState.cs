@@ -12,13 +12,15 @@ namespace Game.StateMachine.Enemy.Hoarder
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
+            if (stateTimer > 4.5f)
+            {
+                EnemyManager.Instance.destroyEnemy();
+            }
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-
         }
 
         public override void Enter()

@@ -1,3 +1,4 @@
+using Framework.Aduio;
 using FrameWork.Utils;
 using Game.Input;
 using System.Collections;
@@ -8,12 +9,16 @@ namespace Game.Core
 {
     public class GameManager : UnityPersistentSingleton<GameManager>
     {
+
         public Text timerText; // UIのTextを割り当てる
         public Text resultText; // UIのTextを割り当てる
         private float elapsedTime; // 経過時間を追跡する変数
         private bool isRunning; // タイマーが動作中かを判定するフラグ
+
         public bool isResult;
+        public bool isClear;
         public GameObject ResultPanel;
+        public Color loadToColor = Color.black;
 
         protected override void Awake()
         {
@@ -36,8 +41,12 @@ namespace Game.Core
             elapsedTime = 0f;
             isRunning = true;
             isResult = false;
+            isClear = false;
             StartCoroutine(CountUpTimer());
             ResultPanel.SetActive(false);
+
+            EnemyManager.Instance.SpawnEnemy();
+            
 
         }
 
@@ -47,6 +56,16 @@ namespace Game.Core
             {
                 timerText.text = "";
                 ShowResult();
+            }
+
+            if (isClear)
+            {
+                StartCoroutine(AudioManager.Instance.FadeOutBGM(() => {
+                    // フェードアウト後の処理
+                    Debug.Log("BGM Faded Out. Starting Game...");
+                }));
+                Initiate.Fade("Title", loadToColor, 1.0f);
+                isClear = false;
             }
         }
 
@@ -118,6 +137,14 @@ namespace Game.Core
             int seconds = Mathf.FloorToInt(time % 60f);
             int milliseconds = Mathf.FloorToInt((time * 1000) % 1000);
             resultText.text = $"{minutes:00}:{seconds:00}:{milliseconds:000}";
+        }
+
+        public void NextButton()
+        {
+            isResult = false;
+            ResultPanel.SetActive(false);
+            elapsedTime = 0;
+            EnemyManager.Instance.SpawnEnemy();
         }
     }
 }
