@@ -81,7 +81,7 @@ namespace Game.Component
         private void ExecuteFeedback(EntityObject target, FeedBackData feedback)
         {
             // デバッグログを出力
-            Debug.Log($"Target: {target.name}, Position: {target.transform.position}");
+            //Debug.Log($"Target: {target.name}, Position: {target.transform.position}");
 
             if (feedback == null) return;
 

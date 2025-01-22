@@ -24,15 +24,18 @@ namespace Game.Entity
 
         private EntityStateMachine _enemyStateMachine;
         private SkillComponent _enemySkillComponent;
+        private HealthComponent _healthComponent;
         private void Awake()
         {
             var movementComponent = new MovementComponent();
             var attackComponent = new AttackComponent();
             var skillComponent = new SkillComponent();
+            var healthComponent = new HealthComponent();
 
             AddEntityComponent<MovementComponent>(movementComponent);
             AddEntityComponent<AttackComponent>(attackComponent);
             _enemySkillComponent = AddEntityComponent<SkillComponent>(skillComponent);
+            _healthComponent = AddEntityComponent<HealthComponent>(healthComponent);
 
             skillComponent.InitSkill(this,
                 ResManager.Instance.GetAssetCache<SkillList>("SkillData/EnemyHoarder_SkillDataTable"));

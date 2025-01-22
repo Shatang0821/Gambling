@@ -15,6 +15,7 @@ namespace Game.StateMachine.Enemy.Hoarder
         EntityObject owner;
         
         int random;
+        int attackrand;
         float distance;
         bool isHalf = false;
         bool isWall;
@@ -29,7 +30,6 @@ namespace Game.StateMachine.Enemy.Hoarder
         public override void Enter()
         {
             base.Enter();
-            Debug.Log(isWall);
             if (enemyData.HP < MaxHp /2 && !isHalf)
             {
                 isHalf = true;
@@ -50,6 +50,8 @@ namespace Game.StateMachine.Enemy.Hoarder
                 ChangeToSkillState(2002);
             }
             random = Random.Range(1, 100);
+            attackrand = Random.Range(30, 100);
+
         }
 
         public override void LogicUpdate()
@@ -57,35 +59,37 @@ namespace Game.StateMachine.Enemy.Hoarder
             base.LogicUpdate();
             distance = owner.DistanceX(p_entity);
 
-
-
-            // �����ɉ����čU���̎�ނ�I��
-            if (distance <= meleeRange)
+            
+            if( stateTimer > attackrand / 100)
             {
-                if (isHalf)
+                // �����ɉ����čU���̎�ނ�I��
+                if (distance <= meleeRange)
                 {
-                    MeleeLowHP(random);
+                    if (isHalf)
+                    {
+                        MeleeLowHP(random);
+                    }
+                    else
+                    {
+                        MeleeHighHP(random);
+                    }
                 }
+                else if (distance > meleeRange && distance <= rangedRange)
+                {
+                    if (isHalf)
+                    {
+                        RangeLowHP(random);
+                    }
+                    else
+                    {
+                        RangeHighHP(random);
+                    }
+                }
+
                 else
                 {
-                    MeleeHighHP(random);
+                    ChangeState(StateEnum.Move); // �ړ���ԂɈڍs
                 }
-            }
-            else if (distance > meleeRange && distance <= rangedRange)
-            {
-                if (isHalf)
-                {
-                    RangeLowHP(random);
-                }
-                else
-                {
-                    RangeHighHP(random);
-                }
-            }
-
-            else
-            {
-                ChangeState(StateEnum.Move); // �ړ���ԂɈڍs
             }
 
 

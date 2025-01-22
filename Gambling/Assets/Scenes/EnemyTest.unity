@@ -2288,6 +2288,8 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
+  MyData:
+    HP: 0
 --- !u!4 &2118120891
 Transform:
   m_ObjectHideFlags: 0

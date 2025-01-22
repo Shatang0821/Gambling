@@ -22,7 +22,7 @@ MonoBehaviour:
   Duration: 0.7
   Actions:
   - ActionType: 1
-    TimeStamp: 0
+    TimeStamp: 0.2
     Duration: 0.7
     Prefab: {fileID: 0}
     AudioData:
@@ -89,7 +89,7 @@ MonoBehaviour:
       Size: {x: 1.5, y: 1, z: 0}
       Range: 0
     FeedBackData:
-      Damage: 0
+      Damage: 10
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0
@@ -151,6 +151,6 @@ MonoBehaviour:
         MinPitch: 0
         MaxPitch: 0
       EnableKnockback: 0
-      KnockbackForce: 0
-      KnockbackDuration: 0
+      KnockbackForce: 3
+      KnockbackDuration: 3
   ComboDatas: []
