@@ -4,6 +4,7 @@ using Framework.FSM;
 using Game.Component;
 using Game.Input;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Game.StateMachine.Player
 {
@@ -21,16 +22,29 @@ namespace Game.StateMachine.Player
             this.owner = owner;
             playerInputComponent = owner.GetEntityComponent<PlayerInputComponent>();
             skillComponent = this.owner.GetEntityComponent<SkillComponent>();
-            
             healthComponent = this.owner.GetEntityComponent<HealthComponent>();
-            healthComponent.AddDamageAction(TakenDamage);
         }
 
         public override void Enter()
         {
             base.Enter();
         }
-        
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+            if (healthComponent.GetFlag("TakenDamage"))
+            {
+                TakenDamage();
+                healthComponent.SetFlag("TakenDamage",false);
+            }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }
+
         /// <summary>
         /// スキル状態遷移するための専用メソッド
         /// </summary>
@@ -44,7 +58,7 @@ namespace Game.StateMachine.Player
             }
         }
 
-        protected void TakenDamage(float damage)
+        protected void TakenDamage()
         {
             if (stateMachine.CurrentState != stateMachine.GetState(StateEnum.Defence.ToString()))
             {
@@ -52,7 +66,7 @@ namespace Game.StateMachine.Player
             }
             else
             {
-                AnimatorUtility.Blink(owner.GetComponentInChildren<SpriteRenderer>(),0.3f,0.1f);
+                AnimatorUtility.Blink(owner.GetComponentInChildren<SpriteRenderer>(),0.2f,0.1f);
             }
             
         }

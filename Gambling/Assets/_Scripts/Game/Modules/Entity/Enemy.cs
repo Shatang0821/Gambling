@@ -25,6 +25,7 @@ namespace Game.Entity
         
         private EntityStateMachine _enemyStateMachine;
         private SkillComponent _enemySkillComponent;
+        private HealthComponent _healthComponent;
         private void Awake()
         {
             var movementComponent = new MovementComponent();
@@ -34,7 +35,8 @@ namespace Game.Entity
             AddEntityComponent<MovementComponent>(movementComponent);
             AddEntityComponent<AttackComponent>(attackComponent);
             _enemySkillComponent = AddEntityComponent<SkillComponent>(skillComponent);
-
+            _healthComponent = AddEntityComponent<HealthComponent>(new HealthComponent());
+            
             skillComponent.InitSkill(this,
                 ResManager.Instance.GetAssetCache<SkillList>("SkillData/Enemy_SkillDataTable"));
             

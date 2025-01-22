@@ -11,7 +11,8 @@ namespace Game.Components
         {
             None,       // 未防御
             Blocking,   // 防御中
-            Parrying    // 弾き成功
+            Parrying,   // 弾き成功
+            Invincible  // 無敵
         }
         public DefendState CurrentState { get; private set; } = DefendState.None;
         public bool SuccessParry { get; private set; }
