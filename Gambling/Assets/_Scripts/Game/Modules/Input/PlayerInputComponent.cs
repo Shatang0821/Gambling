@@ -53,6 +53,7 @@ namespace Game.Input
         /// <param name="inputValue">入力方向</param>
         private void SetHorizontal(float inputValue)
         {
+            Debug.Log("SetHorizontal");
             DirectionlInput= new Vector2(inputValue,DirectionlInput.y);
         }
 
