@@ -6,7 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 
 namespace Game.StateMachine.Enemy.skeleton
 {
-    using StateEnum = Game.Entity.Enemy.StateEnum;
+    using StateEnum = Game.Entity.EnemyWidow.StateEnum;
     public class WalkState : BaseState
     {
         EntityObject owner;

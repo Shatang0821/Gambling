@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using FrameWork.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.HID;
+using Framework.Aduio;
 
 
 public class UITitleCtrl : UICtrl
@@ -13,10 +14,12 @@ public class UITitleCtrl : UICtrl
 	private Button _startButton;
 	private Button _tutorialButton;
 	private Button _exitButton;
+
 	public GameObject Tutorial;
 	public GameObject player;
-    public AudioSource bgmAudioSource; // BGMのAudioSource
-    public float fadeDuration = 2.0f; // フェードイン・アウトの時間
+	public AudioData bgm;
+    public Color loadToColor = Color.black;
+
     public override void Awake() {
 
 		base.Awake();
@@ -29,7 +32,7 @@ public class UITitleCtrl : UICtrl
 	void Start() {
 		UIInput.Instance.SelectUI(_startButton);
 		//UIInput.Instance.SelectUI(_tutorialButton);
-        StartCoroutine(FadeInBGM());
+        StartCoroutine(AudioManager.Instance.FadeInBGM(bgm));
     }
 
 	/// <summary>
@@ -61,10 +64,11 @@ public class UITitleCtrl : UICtrl
 	{
 		Debug.Log("Click Start");
 
-        StartCoroutine(FadeOutBGM(() => {
+        StartCoroutine(AudioManager.Instance.FadeOutBGM(() => {
             // フェードアウト後の処理
             Debug.Log("BGM Faded Out. Starting Game...");
-            // ここでシーン切り替えなどを行う
+			// ここでシーン切り替えなどを行う
+			Initiate.Fade("EnemyTest", loadToColor, 1.0f);
         }));
     }
 
@@ -81,41 +85,4 @@ public class UITitleCtrl : UICtrl
         }
 	}
 
-    // BGMをフェードイン
-    private IEnumerator FadeInBGM()
-    {
-        float currentTime = 0f;
-        float startVolume = 0f;
-
-        bgmAudioSource.volume = startVolume;
-        bgmAudioSource.Play();
-
-        while (currentTime < fadeDuration)
-        {
-            currentTime += Time.deltaTime;
-            bgmAudioSource.volume = Mathf.Lerp(startVolume, 0.3f, currentTime / fadeDuration);
-            yield return null;
-        }
-
-        bgmAudioSource.volume = 0.3f;
-    }
-
-    // BGMをフェードアウト
-    private IEnumerator FadeOutBGM(System.Action onFadeComplete = null)
-    {
-        float currentTime = 0f;
-        float startVolume = bgmAudioSource.volume;
-
-        while (currentTime < fadeDuration)
-        {
-            currentTime += Time.deltaTime;
-            bgmAudioSource.volume = Mathf.Lerp(startVolume, 0f, currentTime / fadeDuration);
-            yield return null;
-        }
-
-        bgmAudioSource.volume = 0f;
-        bgmAudioSource.Stop();
-
-        onFadeComplete?.Invoke();
-    }
 }

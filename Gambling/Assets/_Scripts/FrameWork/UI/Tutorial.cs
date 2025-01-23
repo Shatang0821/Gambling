@@ -35,7 +35,7 @@ public class Tutorial : EntityObject
 
     private void Update()
     {
-         if (_uITutorial.DirectionlInput.y > 0)
+         if (_uITutorial.JumpInput)
          {
             _Buttons[0].sprite = _PressedButton[0];
          }

@@ -2,7 +2,6 @@ using Framework.Entity;
 using Game.StateMachine;
 using UnityEngine;
 using Game.StateMachine.Enemy.skeleton;
-using Game.StateMachine.Enemy.Hoarder;
 using FrameWork.Component;
 using Game.Component;
 using FrameWork.Resource;
@@ -12,7 +11,7 @@ using Game.StateMachine.Enemy;
 
 namespace Game.Entity
 {
-    public class Enemy : EntityObject
+    public class EnemyWidow : EntityObject
     {
         public enum StateEnum
         {
@@ -58,14 +57,6 @@ namespace Game.Entity
             stateMachine.RegisterState(StateEnum.Skill, new SkillState(this, StateEnum.Skill.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Damaged, new StateMachine.Enemy.skeleton.DamagedState(this,StateEnum.Damaged.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Die, new StateMachine.Enemy.skeleton.DieState(this,StateEnum.Die.ToString(), stateMachine, animator));
-
-
-            // stateMachine.RegisterState(StateEnum.Idle, new StateMachine.Enemy.Hoarder.IdleState(this, StateEnum.Idle.ToString(), stateMachine, animator));
-            // stateMachine.RegisterState(StateEnum.Move, new StateMachine.Enemy.Hoarder.WalkState(this, StateEnum.Move.ToString(), stateMachine, animator));
-            // stateMachine.RegisterState(StateEnum.Attack, new StateMachine.Enemy.Hoarder.AttackState(this, StateEnum.Attack.ToString(), stateMachine, animator));
-            // stateMachine.RegisterState(StateEnum.Skill, new SkillState(this, StateEnum.Skill.ToString(), stateMachine, animator));
-            // stateMachine.RegisterState(StateEnum.Damaged, new StateMachine.Enemy.Hoarder.DamageState(this, StateEnum.Damaged.ToString(), stateMachine, animator));
-            // stateMachine.RegisterState(StateEnum.Die, new StateMachine.Enemy.Hoarder.DeathState(this, StateEnum.Die.ToString(), stateMachine, animator));
 
             return stateMachine;
         }
