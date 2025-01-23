@@ -25,7 +25,7 @@ public class UITitleCtrl : UICtrl
 		base.Awake();
 		_startButton = View["Button Container/Start_Button"].GetComponent<Button>();
         _tutorialButton = View["Button Container/Tutorial_Button"].GetComponent<Button>();
-        AddButtonListener("Button Container/Start_Button",Test);
+        AddButtonListener("Button Container/Start_Button",GameStart);
         AddButtonListener("Button Container/Tutorial_Button",OnTutorial);
 	}
 
@@ -60,7 +60,7 @@ public class UITitleCtrl : UICtrl
 		}
 	}
 
-	public void Test()
+	public void GameStart()
 	{
 		Debug.Log("Click Start");
 
@@ -68,7 +68,7 @@ public class UITitleCtrl : UICtrl
             // フェードアウト後の処理
             Debug.Log("BGM Faded Out. Starting Game...");
 			// ここでシーン切り替えなどを行う
-			Initiate.Fade("EnemyTest", loadToColor, 1.0f);
+			Initiate.Fade("MainGame", loadToColor, 1.0f);
         }));
     }
 

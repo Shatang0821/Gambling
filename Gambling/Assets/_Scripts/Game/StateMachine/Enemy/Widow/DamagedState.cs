@@ -3,7 +3,7 @@ using FrameWork.Resource;
 
 namespace Game.StateMachine.Enemy.skeleton
 {
-    using StateEnum = Game.Entity.Enemy.StateEnum;
+    using StateEnum = Game.Entity.EnemyWidow.StateEnum;
     public class DamagedState : BaseState
     {
         public DamagedState(EntityObject entityObject, string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(entityObject, animName, stateMachine, animator)

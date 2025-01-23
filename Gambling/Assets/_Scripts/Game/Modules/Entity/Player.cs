@@ -50,30 +50,24 @@ namespace Game.Entity
 
             MyData.HP = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/PlayerData").EntityData.HP;
             _healthComponent.AddDamageAction(ApplyDamage);
-            _healthComponent.AddDeathAction(Test);
+            //_healthComponent.AddDeathAction(Test);
             // ステートマシンは最後に生成
             _playerStateMachine = CreateStateMachine();
             _playerStateMachine.InitState(StateEnum.Idle);
         }
 
-        void Test()
+        public override void LogicUpdate()
         {
-            Debug.Log("Death");
-        }
-        
-        
-        //一時的に使う
-        private void Update()
-        {
+            base.LogicUpdate();
             _playerStateMachine.LogicUpdate();
             _playerSkillComponent.UpdateCooldown();
         }
 
-        private void FixedUpdate()
+        public override void PhysicsUpdate()
         {
+            base.PhysicsUpdate();
             _playerStateMachine.PhysicsUpdate();
         }
-
 
         private void OnEnable()
         {

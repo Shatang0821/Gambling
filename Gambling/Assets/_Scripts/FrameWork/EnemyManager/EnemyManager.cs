@@ -10,7 +10,7 @@ public class EnemyManager : UnitySingleton<EnemyManager>
     [SerializeField]
     GameObject[] EnemyPrefab;
     public AudioData bgm;
-    public static int enemycount = 1;
+    public static int enemycount = 0;
 
     private List<GameObject> spawnedEnemies = new List<GameObject>();
 
@@ -26,11 +26,6 @@ public class EnemyManager : UnitySingleton<EnemyManager>
             GameObject enemy = Instantiate(EnemyPrefab[enemycount], new Vector3(4, -1.2f, 0), Quaternion.identity);
             spawnedEnemies.Add(enemy);
         }
-        else
-        {
-            Debug.LogWarning("No more enemy prefabs to spawn.");
-            GameManager.Instance.isClear = true;
-        }
     }
 
     public void destroyEnemy()
@@ -42,7 +37,6 @@ public class EnemyManager : UnitySingleton<EnemyManager>
 
             Destroy(enemyToDestroy); // ƒV[ƒ““à‚Ì“G‚ğíœ
             enemycount++;
-            GameManager.Instance.isResult = true;
         }
         else
         {

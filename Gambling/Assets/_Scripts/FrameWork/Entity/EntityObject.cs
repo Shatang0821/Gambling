@@ -84,10 +84,22 @@ namespace Framework.Entity
             return _dataProvider?.GetData(key) ?? 0.0f;
         }
 
+        #region LiveCycle
+
         // ライフサイクル：初期化
         public virtual void Initialize()
         {
             Debug.Log($"{name} initialized.");
+        }
+
+        public virtual void LogicUpdate()
+        {
+            
+        }
+
+        public virtual void PhysicsUpdate()
+        {
+            
         }
         
         // ライフサイクル：削除
@@ -95,6 +107,9 @@ namespace Framework.Entity
         {
             _components.Clear();
         }
+
+        #endregion
+        
 
         #region Collision
         /// <summary>

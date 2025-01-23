@@ -1,3 +1,4 @@
+using System;
 using Framework.Aduio;
 using FrameWork.Utils;
 using Game.Input;
@@ -7,19 +8,19 @@ using UnityEngine.UI;
 
 namespace Game.Core
 {
-    public class GameManager : UnityPersistentSingleton<GameManager>
+    public enum GameState
     {
-
-        public Text timerText; // UIのTextを割り当てる
-        public Text resultText; // UIのTextを割り当てる
-        private float elapsedTime; // 経過時間を追跡する変数
-        private bool isRunning; // タイマーが動作中かを判定するフラグ
-
-        public bool isResult;
-        public bool isClear;
-        public GameObject ResultPanel;
-        public Color loadToColor = Color.black;
-
+        Idle,
+        Countdown,
+        InGame,
+        Result
+    }
+    public class GameManager : UnitySingleton<GameManager>
+    {
+        [SerializeField]private PlayerManager playerManager;
+        [SerializeField]private EnemyManager enemyManager;
+        
+        [SerializeField] private GameState _currentState;
         protected override void Awake()
         {
             base.Awake();
@@ -38,113 +39,67 @@ namespace Game.Core
 
         private void Start()
         {
-            elapsedTime = 0f;
-            isRunning = true;
-            isResult = false;
-            isClear = false;
-            StartCoroutine(CountUpTimer());
-            ResultPanel.SetActive(false);
-
-            EnemyManager.Instance.SpawnEnemy();
+            ChangeState(GameState.Idle);
             
-
+            playerManager.SpawnPlayer();
+            //enemyManager.SpawnEnemy();
+            
         }
-
+        
         private void Update()
         {
-            if (isResult)
+            switch (_currentState)
             {
-                timerText.text = "";
-                ShowResult();
-            }
-
-            if (isClear)
-            {
-                StartCoroutine(AudioManager.Instance.FadeOutBGM(() => {
-                    // フェードアウト後の処理
-                    Debug.Log("BGM Faded Out. Starting Game...");
-                }));
-                Initiate.Fade("Title", loadToColor, 1.0f);
-                isClear = false;
+                case GameState.Idle:
+                    break;
+                case GameState.Countdown:
+                    break;
+                case GameState.InGame:
+                    playerManager.UpdatePlayer();
+                    break;
+                case GameState.Result:
+                    break;
             }
         }
 
-        private IEnumerator CountUpTimer()
+        private void FixedUpdate()
         {
-            while (isRunning)
+            switch (_currentState)
             {
-                // 経過時間を増加させる
-                elapsedTime += Time.deltaTime;
-
-                // 秒数をフォーマットして表示
-                UpdateTimerDisplay(elapsedTime);
-
-                // 次のフレームまで待機
-                yield return null;
+                case GameState.Idle:
+                    break;
+                case GameState.Countdown:
+                    break;
+                case GameState.InGame:
+                    playerManager.FixedUpdatePlayer();
+                    break;
+                case GameState.Result:
+                    break;
             }
         }
-
-        private void UpdateTimerDisplay(float time)
+        
+        public void ChangeState(GameState newState)
         {
-            // 時間をフォーマット (分:秒:ミリ秒)
-            int minutes = Mathf.FloorToInt(time / 60f);
-            int seconds = Mathf.FloorToInt(time % 60f);
-            int milliseconds = Mathf.FloorToInt((time * 1000) % 1000);
-            timerText.text = $"{minutes:00}:{seconds:00}:{milliseconds:000}";
-        }
-
-        public void ShowResult()
-        {
-            if (!ResultPanel.activeSelf)
+            _currentState = newState;
+            switch (_currentState)
             {
-                // タイマー停止
-                isRunning = false;
-
-                // 結果パネルを表示
-                ResultPanel.SetActive(true);
-
-                // 結果をカウントアップで表示
-                StartCoroutine(CountUpResult());
+                case GameState.Idle:
+                    Debug.Log("Game is idle.");
+                    break;
+                case GameState.Countdown:
+                    Debug.Log("Countdown started.");
+                    //_uiManager.StartCountdown(() => ChangeState(GameState.InGame));
+                    break;
+                case GameState.InGame:
+                    Debug.Log("Game started.");
+                    //_playerManager.SpawnPlayer();
+                    //_enemyManager.SpawnEnemies();
+                    break;
+                case GameState.Result:
+                    Debug.Log("Game ended. Showing result.");
+                    //_uiManager.ShowResult();
+                    break;
             }
-        }
-
-        private IEnumerator CountUpResult()
-        {
-            float displayTime = 0f; // 結果表示用のカウント
-            float incrementSpeed = 0.03f; // カウントアップ速度
-            float finalTime = elapsedTime; // 最終的な経過時間
-
-            yield return new WaitForSeconds(1.5f);
-            while (displayTime < finalTime)
-            {
-                displayTime += Time.deltaTime / incrementSpeed;
-
-                // 表示用タイマーを更新
-                UpdateResultDisplay(displayTime);
-
-                // 次のフレームまで待機
-                yield return null;
-            }
-
-            // 最終的な正確な時間を表示
-            UpdateResultDisplay(finalTime);
-        }
-
-        private void UpdateResultDisplay(float time)
-        {
-            // 時間をフォーマット (分:秒:ミリ秒)
-            int minutes = Mathf.FloorToInt(time / 60f);
-            int seconds = Mathf.FloorToInt(time % 60f);
-            int milliseconds = Mathf.FloorToInt((time * 1000) % 1000);
-            resultText.text = $"{minutes:00}:{seconds:00}:{milliseconds:000}";
-        }
-
-        public void NextButton()
-        {
-            isResult = false;
-            ResultPanel.SetActive(false);
-            elapsedTime = 0;
-            EnemyManager.Instance.SpawnEnemy();
         }
     }
 }
