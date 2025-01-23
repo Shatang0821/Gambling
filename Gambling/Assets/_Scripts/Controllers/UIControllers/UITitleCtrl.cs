@@ -7,16 +7,25 @@ using FrameWork.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.HID;
 using Framework.Aduio;
+using FrameWork.EventCenter;
+using Game.Entity;
+using Game.Event;
+using Game.Input;
+using UnityEngine.InputSystem.UI;
 
 
 public class UITitleCtrl : UICtrl
 {
+	/// <summary>
+	/// UIの入力を管理するコンポーネント
+	/// </summary>
+	[SerializeField] InputSystemUIInputModule UIInputModule;
 	private Button _startButton;
 	private Button _tutorialButton;
 	private Button _exitButton;
 
 	public GameObject Tutorial;
-	public GameObject player;
+	public Player player;
 	public AudioData bgm;
     public Color loadToColor = Color.black;
 
@@ -29,12 +38,23 @@ public class UITitleCtrl : UICtrl
         AddButtonListener("Button Container/Tutorial_Button",OnTutorial);
 	}
 
-	void Start() {
+	void Start()
+	{
 		UIInput.Instance.SelectUI(_startButton);
 		//UIInput.Instance.SelectUI(_tutorialButton);
         StartCoroutine(AudioManager.Instance.FadeInBGM(bgm));
     }
 
+	private void OnEnable()
+	{
+		EventCenter.AddListener(TitleEvents.OnClosePanel, CloseTutorial);
+	}
+
+	private void OnDisable()
+	{
+		EventCenter.RemoveListener(TitleEvents.OnClosePanel, CloseTutorial);
+	}
+	
 	/// <summary>
 	/// アプリケーションを開いたら
 	/// </summary>
@@ -44,7 +64,7 @@ public class UITitleCtrl : UICtrl
 		if (hasFocus)
 		{
 			// 現在選択中のボタンが消えたら選択できるように
-			if (EventSystem.current.currentSelectedGameObject == null)
+			if (EventSystem.current?.currentSelectedGameObject == null)
 			{
 				UIInput.Instance.SelectUI(_startButton);
 			}
@@ -54,9 +74,22 @@ public class UITitleCtrl : UICtrl
 	private void Update()
 	{
 		// 何も選択していないときにデフォルト(startボタンを選択)
-		if (EventSystem.current.currentSelectedGameObject == null)
+		if (EventSystem.current?.currentSelectedGameObject == null)
 		{
 			UIInput.Instance.SelectUI(_startButton);
+		}
+
+		if (player.isActiveAndEnabled)
+		{
+			player.LogicUpdate();
+		}
+	}
+
+	private void FixedUpdate()
+	{
+		if (player.isActiveAndEnabled)
+		{
+			player.PhysicsUpdate();
 		}
 	}
 
@@ -74,15 +107,19 @@ public class UITitleCtrl : UICtrl
 
 	public void OnTutorial()
 	{
-		if (Tutorial.activeSelf)
-		{
-			Tutorial.SetActive(false);
-			player.SetActive(false);
-		}
-		else
-		{
-            Tutorial.SetActive(true);
-        }
+		Tutorial.SetActive(true);
+		UIInputModule.enabled = false;
+		InputManager.Instance.EnableTitleInput();
 	}
 
+	private void CloseTutorial()
+	{
+		Debug.Log("Close Tutorial");
+		player.gameObject.SetActive(false);
+		Tutorial.SetActive(false);
+		UIInputModule.enabled = true;
+		UIInput.Instance.SelectUI(_startButton);
+		InputManager.Instance.DisableAllInputs();
+	}
+	
 }

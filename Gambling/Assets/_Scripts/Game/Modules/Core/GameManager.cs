@@ -22,22 +22,7 @@ namespace Game.Core
         
         [SerializeField] private GameState _currentState;
         public GameState CurrentState => _currentState;
-        protected override void Awake()
-        {
-            base.Awake();
-            InputManager.Instance.Initialize();
-        }
-
-        private void OnEnable()
-        {
-            InputManager.Instance.OnEnable();
-        }
-
-        private void OnDisable()
-        {
-            InputManager.Instance.OnDisable();
-        }
-
+        
         private void Start()
         {
             ChangeState(GameState.Idle);
@@ -95,6 +80,7 @@ namespace Game.Core
                     Debug.Log("Game started.");
                     // タイマースタート
                     TimeManager.Instance.StartMeasurement();
+                    InputManager.Instance.EnableGameplayInput();
                     playerManager.SpawnPlayer();
                     enemyManager.SpawnEnemy();
                     break;

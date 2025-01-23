@@ -1,105 +1,182 @@
-using Framework.Entity;
-using Game.Input;
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using FrameWork.EventCenter;
+using Game.Entity;
+using Game.Event;
+using Game.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
-public class Tutorial : EntityObject
+public class Tutorial : MonoBehaviour
 {
-    private UITutorial _uITutorial;
-    [SerializeField]
-    private Sprite[] _PressedButton;
-    [SerializeField] 
-    private Sprite[] _ReleasedButton;
-    [SerializeField]
-    private SpriteRenderer[] _Buttons;
-    public GameObject player;
-
-    private void Awake()
-    {
-        _uITutorial = AddEntityComponent(new UITutorial());
-        for (int i = 0; i >_Buttons.Length; i++)
-        {
-            _Buttons[i] = gameObject.GetComponent<SpriteRenderer>();
-        }
-    }
+    [Header("入力項目リスト")]
+    [SerializeField] private List<InputTutorialItem> tutorialItems;
+    [SerializeField] private Player _player;
+    [SerializeField] private InputTutorialItem right;
+    [SerializeField] private InputTutorialItem left;
+    
+    [SerializeField] private Image lStickImage;
+    [SerializeField] private Sprite[] lStick;
     private void OnEnable()
     {
-        _uITutorial.OnEnable();
+        // 各アイテムのイベントを初期化してバインド
+        foreach (var item in tutorialItems)
+        {
+            BindInputEvent(item);
+        }
+        EventCenter.AddListener<float>(InputEvents.OnHorizontal, value =>UpdateHorizontalSprite(right,left,value));
+        InputManager.Instance.CurrentDevice.Register(new Action<InputDevice>(OnDeviceChanged));
     }
 
     private void OnDisable()
     {
-        _uITutorial.OnDisable();
+        // イベントバインドを解除
+        foreach (var item in tutorialItems)
+        {
+            EventCenter.RemoveListener<bool>(InputEvents.OnJump, state => UpdateSprite(item, state));
+            EventCenter.RemoveListener<bool>(InputEvents.OnAttack, state => UpdateSprite(item, state));
+            EventCenter.RemoveListener<bool>(InputEvents.OnDefence, state => UpdateSprite(item, state));
+            EventCenter.RemoveListener<bool>(InputEvents.OnDash, state => UpdateSprite(item, state));
+        }
+        EventCenter.RemoveListener<float>(InputEvents.OnHorizontal, value =>UpdateHorizontalSprite(right,left,value));
+        InputManager.Instance.CurrentDevice.UnRegister(new Action<InputDevice>(OnDeviceChanged));
+        
+    }
+    
+    private void BindInputEvent(InputTutorialItem item)
+    {
+        // イベントセンターを使用して対応するイベントをバインド
+        switch (item.EventName)
+        {
+            case "Jump":
+                EventCenter.AddListener<bool>(InputEvents.OnJump, state => UpdateSprite(item, state));
+                break;
+            case "Attack":
+                EventCenter.AddListener<bool>(InputEvents.OnAttack, state => UpdateSprite(item, state));
+                break;
+            case "Defence":
+                EventCenter.AddListener<bool>(InputEvents.OnDefence, state => UpdateSprite(item, state));
+                break;
+            case "Dash":
+                EventCenter.AddListener<bool>(InputEvents.OnDash, state => UpdateSprite(item, state));
+                break;
+        }
     }
 
-    private void Update()
+    
+    protected void OnDeviceChanged(InputDevice device)
     {
-         if (_uITutorial.JumpInput)
-         {
-            _Buttons[0].sprite = _PressedButton[0];
-         }
-         else
+        foreach (var item in tutorialItems)
         {
-            _Buttons[0].sprite = _ReleasedButton[0];
+            UpdateSprite(item,false);
         }
 
-        if (_uITutorial.DirectionlInput.x < 0)
-        {
-            _Buttons[1].sprite = _PressedButton[1];
-        }
-        else
-        {
-            _Buttons[1].sprite = _ReleasedButton[1];
-        }
+        UpdateHorizontal(device);
 
-        if (_uITutorial.DirectionlInput.x > 0)
-        {
-            _Buttons[2].sprite = _PressedButton[2];
-        }
-        else
-        {
-            _Buttons[2].sprite = _ReleasedButton[2];
-        }
+    }
 
-        if (_uITutorial.AttackInput)
+    private void UpdateHorizontal(InputDevice device)
+    {
+        switch (device)
         {
-            _Buttons[3].sprite = _PressedButton[3];
+            case Keyboard:
+                lStickImage.enabled = false;
+                right.Image.enabled = true;
+                left.Image.enabled = true;
+                break;
+            case Gamepad:
+                lStickImage.enabled = true;
+                right.Image.enabled = false;
+                left.Image.enabled = false;
+                break;
         }
-        else
-        {
-            _Buttons[3].sprite = _ReleasedButton[3];
-        }
+    }
 
-        if (_uITutorial.DefenceInput)
-        {
-            _Buttons[4].sprite = _PressedButton[4];
-        }
-        else
-        {
-            _Buttons[4].sprite = _ReleasedButton[4];
-        }
+    private void UpdateSprite(InputTutorialItem item, bool isPressed)
+    {
+        // 入力デバイスタイプに応じたスプライトを更新
+        var spriteSet = item.GetCurrentSpriteSet();
+        item.Image.sprite = isPressed ? spriteSet.PressedSprite : spriteSet.ReleasedSprite;
+    }
 
-        if (_uITutorial.DashInput)
+    private void UpdateHorizontalSprite(InputTutorialItem right,InputTutorialItem left,float value)
+    {
+        SpriteSet spriteSet;
+        var currentDevice = InputManager.Instance.CurrentDevice.Value;
+        switch (currentDevice)
         {
-            for(int i = 0;i<3;i++)
-            {
-                _Buttons[5 + i].sprite = _PressedButton[5 + i];
-            }
-            
+            case Keyboard:
+                if (value > 0)
+                {
+                    spriteSet = this.right.GetCurrentSpriteSet();
+                    right.Image.sprite = spriteSet.PressedSprite; // 右方向入力
+                }
+                else if (value < 0)
+                {
+                    spriteSet = this.left.GetCurrentSpriteSet();
+                    left.Image.sprite = spriteSet.PressedSprite; // 左方向入力
+                }
+                else
+                {
+                    // デフォルト状態に戻す
+                    spriteSet = this.right.GetCurrentSpriteSet();
+                    right.Image.sprite = spriteSet.ReleasedSprite; 
+                    spriteSet = this.left.GetCurrentSpriteSet();
+                    left.Image.sprite = spriteSet.ReleasedSprite;
+                }
+                //Debug.Log(_currentDevice);
+                break;
+            case Gamepad:
+                if (value > 0)
+                {
+                    lStickImage.sprite = lStick[1];
+                }
+                else if (value < 0)
+                {
+                    lStickImage.sprite = lStick[2];
+                }
+                else
+                {
+                    lStickImage.sprite = lStick[0];
+                }
+                break;
         }
-        else
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                _Buttons[5 + i].sprite = _ReleasedButton[5 + i];
-            }
-        }
+        
     }
 
     public void ActivePlayer()
     {
-        player.SetActive(true);
+        _player.gameObject.SetActive(true);
     }
+}
 
+[System.Serializable]
+public class InputTutorialItem
+{
+    public string InputName;              // 入力の名前（例："Jump"）
+    public SpriteSet KeyboardSprites;     // キーボード用スプライトセット
+    public SpriteSet GamepadSprites;      // コントローラー用スプライトセット
+    public string EventName;              // イベント名
+    public Image Image;       // スプライト表示用コンポーネント
+
+    // 現在のデバイスタイプに応じたスプライトセットを取得
+    public SpriteSet GetCurrentSpriteSet()
+    {
+        return InputManager.Instance.CurrentDevice.Value == Keyboard.current ? KeyboardSprites : GamepadSprites;
+    }
+}
+
+[System.Serializable]
+public class SpriteSet
+{
+    public Sprite PressedSprite;   // 押下時のスプライト
+    public Sprite ReleasedSprite;  // 通常時のスプライト
+}
+
+public enum InputDeviceType
+{
+    Keyboard,  // キーボード
+    Gamepad    // コントローラー
 }

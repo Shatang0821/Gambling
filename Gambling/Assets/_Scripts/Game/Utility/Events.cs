@@ -10,4 +10,9 @@
         OnJump
     }
 
+    public enum TitleEvents
+    {
+        OnClosePanel,
+    }
+
 }
