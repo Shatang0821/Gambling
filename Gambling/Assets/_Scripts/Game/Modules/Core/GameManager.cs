@@ -21,6 +21,7 @@ namespace Game.Core
         [SerializeField]private EnemyManager enemyManager;
         
         [SerializeField] private GameState _currentState;
+        public GameState CurrentState => _currentState;
         protected override void Awake()
         {
             base.Awake();
@@ -41,7 +42,7 @@ namespace Game.Core
         {
             ChangeState(GameState.Idle);
             
-            playerManager.SpawnPlayer();
+            //playerManager.SpawnPlayer();
             //enemyManager.SpawnEnemy();
             
         }
@@ -88,12 +89,14 @@ namespace Game.Core
                     break;
                 case GameState.Countdown:
                     Debug.Log("Countdown started.");
-                    //_uiManager.StartCountdown(() => ChangeState(GameState.InGame));
+                    
                     break;
                 case GameState.InGame:
                     Debug.Log("Game started.");
-                    //_playerManager.SpawnPlayer();
-                    //_enemyManager.SpawnEnemies();
+                    // タイマースタート
+                    TimeManager.Instance.StartMeasurement();
+                    playerManager.SpawnPlayer();
+                    enemyManager.SpawnEnemy();
                     break;
                 case GameState.Result:
                     Debug.Log("Game ended. Showing result.");

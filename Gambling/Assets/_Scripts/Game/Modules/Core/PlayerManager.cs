@@ -33,12 +33,12 @@ namespace Game.Core
 
         public void UpdatePlayer()
         {
-            SpawnedPlayer.LogicUpdate();
+            SpawnedPlayer?.LogicUpdate();
         }
 
         public void FixedUpdatePlayer()
         {
-            SpawnedPlayer.PhysicsUpdate();
+            SpawnedPlayer?.PhysicsUpdate();
         }
     }
 }
