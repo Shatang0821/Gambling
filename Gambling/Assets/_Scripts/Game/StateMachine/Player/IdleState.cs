@@ -25,11 +25,6 @@ namespace Game.StateMachine.Player
             }
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
 
     }
 }

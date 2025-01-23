@@ -29,8 +29,8 @@ namespace Game.StateMachine.Enemy.skeleton
         public override void Enter()
         {
             base.Enter();
-            Debug.Log(isWall);
-            if (enemyData.HP < MaxHp /2 && !isHalf)
+//            Debug.Log(isWall);
+            if (owner.MyData.HP < MaxHp /2 && !isHalf)
             {
                 ChangeToSkillState(1004);
                 isHalf = true;

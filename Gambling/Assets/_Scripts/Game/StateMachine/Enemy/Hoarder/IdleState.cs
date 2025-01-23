@@ -30,7 +30,7 @@ namespace Game.StateMachine.Enemy.Hoarder
         public override void Enter()
         {
             base.Enter();
-            if (enemyData.HP < MaxHp /2 && !isHalf)
+            if (owner.MyData.HP < MaxHp /2 && !isHalf)
             {
                 isHalf = true;
             }

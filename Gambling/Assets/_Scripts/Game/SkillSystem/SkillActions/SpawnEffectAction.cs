@@ -28,8 +28,8 @@ namespace Game.SkillSystem.Actions
 
         public void Enter(EntityObject owner)
         {
-            Debug.Log("Enter SpawnEffect");
-            Debug.Log(owner.LocalPosition);
+//            Debug.Log("Enter SpawnEffect");
+//            Debug.Log(owner.LocalPosition);
             EffectManager.Instance.SpawnEffect(SpawnEffect, owner.LocalPosition, Quaternion.identity);
         }
 

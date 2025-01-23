@@ -18,7 +18,7 @@ namespace Game.SkillSystem.Actions
 
         public void Enter(EntityObject owner)
         {
-            Debug.Log("Enter Move");
+//            Debug.Log("Enter Move");
             var movement = owner.GetEntityComponent<MovementComponent>();
             if (movement != null)
             {

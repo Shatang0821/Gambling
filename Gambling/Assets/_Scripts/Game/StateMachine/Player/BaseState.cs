@@ -2,6 +2,7 @@
 using Framework.Entity;
 using Framework.FSM;
 using Game.Component;
+using Game.Components;
 using Game.Input;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -13,6 +14,7 @@ namespace Game.StateMachine.Player
     {
         protected EntityObject owner;
         protected HealthComponent healthComponent;
+        protected DefendComponent defendComponent;
         protected PlayerInputComponent playerInputComponent;
         protected SkillComponent skillComponent;
         
@@ -21,8 +23,9 @@ namespace Game.StateMachine.Player
         {
             this.owner = owner;
             playerInputComponent = owner.GetEntityComponent<PlayerInputComponent>();
-            skillComponent = this.owner.GetEntityComponent<SkillComponent>();
-            healthComponent = this.owner.GetEntityComponent<HealthComponent>();
+            skillComponent = owner.GetEntityComponent<SkillComponent>();
+            healthComponent = owner.GetEntityComponent<HealthComponent>();
+            defendComponent = owner.GetEntityComponent<DefendComponent>();
         }
 
         public override void Enter()
@@ -37,6 +40,12 @@ namespace Game.StateMachine.Player
             {
                 TakenDamage();
                 healthComponent.SetFlag("TakenDamage",false);
+            }
+            
+            if (healthComponent.GetFlag("Die"))
+            {
+                if(stateMachine.CurrentState != stateMachine.GetState(StateEnum.Die.ToString()))
+                    ChangeState(StateEnum.Die);
             }
         }
 

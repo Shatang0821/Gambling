@@ -25,8 +25,11 @@ namespace Game.Component
             {
                 foreach (var target in targets)
                 {
-                    ExecuteFeedback(target, fbData);
-                    ApplyDamage(target, fbData);
+                    if(target == owner) return;
+                    if (ApplyDamage(target, fbData))
+                    {
+                        ExecuteFeedback(target, fbData);
+                    }
                 }
             }
             else
@@ -35,7 +38,13 @@ namespace Game.Component
             }
         }
 
-        public void ApplyDamage(EntityObject target,FeedBackData feedBackData)
+        /// <summary>
+        /// ダメージ与える判定
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="feedBackData"></param>
+        /// <returns>フィードバック実施するか</returns>
+        public bool ApplyDamage(EntityObject target,FeedBackData feedBackData)
         {
             var defendComponent = target.GetEntityComponent<DefendComponent>();
             if (defendComponent != null)
@@ -45,33 +54,39 @@ namespace Game.Component
                 {
                     case DefendComponent.DefendState.Blocking:
                         target.GetEntityComponent<HealthComponent>()?.ApplyDamage(reducedDamage);
-                        Debug.Log($"Target is blocking. Reduced damage: {reducedDamage}");
+                        //Debug.Log($"Target is blocking. Reduced damage: {reducedDamage}");
+                        return true;
                         break;
                     case DefendComponent.DefendState.Parrying:
-                        if (!defendComponent.TryParry())
+                        if (defendComponent.HandleDefend())
                         {
                             target.GetEntityComponent<HealthComponent>()?.ApplyDamage(reducedDamage);
-                            Debug.Log($"Target is blocking. Reduced damage: {reducedDamage}");
+                            //Debug.Log($"Target is blocking. Reduced damage: {reducedDamage}");
+                            return true;
                         }
                         else
                         {
                             // パリィ成功時はダメージを受けない
                             Debug.Log($"Target successfully parried the attack. No damage taken.");
+                            return false;
                         }
-                        break;
+                    case DefendComponent.DefendState.Invincible:
+                        Debug.Log($"Target successfully Invincible the attack. No damage taken.");
+                        return false;
                     case DefendComponent.DefendState.None:
                     default:
                         // 通常ダメージ
                         target.GetEntityComponent<HealthComponent>()?.ApplyDamage(feedBackData.Damage);
-                        Debug.Log($"Target took full damage: {feedBackData.Damage}");
-                        break;
+//                        Debug.Log($"Target took full damage: {feedBackData.Damage}");
+                        return true;
                 }
             }
             else
             {
                 // 防御コンポーネントがない場合は通常ダメージ
                 target.GetEntityComponent<HealthComponent>()?.ApplyDamage(feedBackData.Damage);
-                Debug.Log($"Target has no defend component. Took full damage: {feedBackData.Damage}");
+                //Debug.Log($"Target has no defend component. Took full damage: {feedBackData.Damage}");
+                return true;
             }
         }
 

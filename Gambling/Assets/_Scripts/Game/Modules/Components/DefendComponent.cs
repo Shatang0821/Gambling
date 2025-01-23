@@ -27,19 +27,28 @@ namespace Game.Components
         }
         
         /// <summary>
-        /// 攻撃を防御できるか試みる
+        /// ダメージが受ける状態なのか
         /// </summary>
-        /// <param name="attackData">攻撃データ</param>
-        /// <returns>防御成功かどうか</returns>
-        public bool TryParry()
+        /// <returns>ダメージが受けるがかどうか</returns>
+        public bool HandleDefend()
         {
             if (CurrentState == DefendState.Parrying)
             {
                 SuccessParry = true;
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
+        }
+
+        public void StartInvincible()
+        {
+            CurrentState = DefendState.Invincible;
+        }
+
+        public void StopInvincible()
+        {
+            CurrentState = DefendState.None;
         }
 
         /// <summary>

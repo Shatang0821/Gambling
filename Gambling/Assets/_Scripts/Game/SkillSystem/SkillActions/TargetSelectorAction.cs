@@ -24,7 +24,7 @@ namespace Game.SkillSystem.Actions
         {
             _attackComponent = owner.GetEntityComponent<AttackComponent>();
             List<EntityObject> targets = new List<EntityObject>();
-            Debug.Log("Enter TargetSelector");
+//            Debug.Log("Enter TargetSelector");
             var targetSettings = SkillActionData.TargetSettings;
             switch (targetSettings.ColliderType) 
             {

@@ -1,18 +1,15 @@
-using FrameWork.Component;
 using Framework.Entity;
-using Framework.FSM;
-using Game.Components;
-using UnityEngine;
 
-namespace Game.StateMachine.Player
+namespace Game.StateMachine.Enemy.skeleton
 {
     public class DieState : BaseState
     {
         private bool isDied = false;
-        public DieState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
+        public DieState(EntityObject entityObject, string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
-            
+
         }
+
         public override void Enter()
         {
             base.Enter();
@@ -41,7 +38,7 @@ namespace Game.StateMachine.Player
             base.Exit();
             defendComponent.StopInvincible();
         }
-
-
     }
+
+
 }

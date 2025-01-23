@@ -31,7 +31,7 @@ MonoBehaviour:
       IsPlayRandomPitch: 0
       MinPitch: 0
       MaxPitch: 0
-    Value: 20
+    Value: 10
     Direction: {x: 1, y: 0, z: 0}
     IsPersistent: 0
     TargetSettings:
@@ -65,7 +65,7 @@ MonoBehaviour:
       EnableKnockback: 0
       KnockbackForce: 0
       KnockbackDuration: 0
-  - ActionType: 1
+  - ActionType: 4
     TimeStamp: 0
     Duration: 0.2
     Prefab: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
       TargetType: 0
       TargetLayer:
         serializedVersion: 2
-        m_Bits: 0
+        m_Bits: 64
       ColliderType: 0
       Offset: {x: 0, y: 0, z: 0}
       Radius: 0

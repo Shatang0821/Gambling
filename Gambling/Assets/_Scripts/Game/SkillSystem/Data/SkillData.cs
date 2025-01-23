@@ -50,7 +50,8 @@ namespace Game.SkillSystem
             AudioPlay,              // ESを再生
             SpawnEffect,            // エフェクト生成
             CleanCollision,         // 当たり判定の有無
-            CameraShake             // カメラシェイク
+            CameraShake,            // カメラシェイク
+            Invincible,             // 無敵するアクション
         }
         
     }

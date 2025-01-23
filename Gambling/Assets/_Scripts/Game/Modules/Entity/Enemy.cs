@@ -6,6 +6,7 @@ using Game.StateMachine.Enemy.Hoarder;
 using FrameWork.Component;
 using Game.Component;
 using FrameWork.Resource;
+using Game.Components;
 using Game.SkillSystem;
 using Game.StateMachine.Enemy;
 
@@ -26,6 +27,7 @@ namespace Game.Entity
         private EntityStateMachine _enemyStateMachine;
         private SkillComponent _enemySkillComponent;
         private HealthComponent _healthComponent;
+        
         private void Awake()
         {
             var movementComponent = new MovementComponent();
@@ -34,12 +36,14 @@ namespace Game.Entity
 
             AddEntityComponent<MovementComponent>(movementComponent);
             AddEntityComponent<AttackComponent>(attackComponent);
+            AddEntityComponent<DefendComponent>(new DefendComponent());
             _enemySkillComponent = AddEntityComponent<SkillComponent>(skillComponent);
             _healthComponent = AddEntityComponent<HealthComponent>(new HealthComponent());
             
             skillComponent.InitSkill(this,
                 ResManager.Instance.GetAssetCache<SkillList>("SkillData/Enemy_SkillDataTable"));
-            
+            MyData.HP = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/EnemyData").EntityData.HP;
+            _healthComponent.AddDamageAction(ApplyDamage);
             _enemyStateMachine = CreateStateMachine();
             _enemyStateMachine.InitState(StateEnum.Idle);
         }
@@ -52,8 +56,8 @@ namespace Game.Entity
             stateMachine.RegisterState(StateEnum.Move, new StateMachine.Enemy.skeleton.WalkState(this, StateEnum.Move.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Attack, new StateMachine.Enemy.skeleton.AttackState(this,StateEnum.Attack.ToString(), stateMachine, animator));
             stateMachine.RegisterState(StateEnum.Skill, new SkillState(this, StateEnum.Skill.ToString(), stateMachine, animator));
-            stateMachine.RegisterState(StateEnum.Damaged, new StateMachine.Enemy.skeleton.DamageState(this,StateEnum.Damaged.ToString(), stateMachine, animator));
-            stateMachine.RegisterState(StateEnum.Die, new StateMachine.Enemy.skeleton.DeathState(this,StateEnum.Die.ToString(), stateMachine, animator));
+            stateMachine.RegisterState(StateEnum.Damaged, new StateMachine.Enemy.skeleton.DamagedState(this,StateEnum.Damaged.ToString(), stateMachine, animator));
+            stateMachine.RegisterState(StateEnum.Die, new StateMachine.Enemy.skeleton.DieState(this,StateEnum.Die.ToString(), stateMachine, animator));
 
 
             // stateMachine.RegisterState(StateEnum.Idle, new StateMachine.Enemy.Hoarder.IdleState(this, StateEnum.Idle.ToString(), stateMachine, animator));
@@ -70,6 +74,16 @@ namespace Game.Entity
         {
             _enemyStateMachine.LogicUpdate();
             _enemySkillComponent.UpdateCooldown();
+        }
+        
+        private void ApplyDamage(float amount)
+        {
+            MyData.HP -= amount;
+            if (MyData.HP <= 0)
+            {
+                MyData.HP = 0;
+                _healthComponent.SetFlag("Die",true);
+            }
         }
     }
 }

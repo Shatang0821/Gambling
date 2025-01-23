@@ -23,6 +23,11 @@ namespace FrameWork.Component
 
         }
 
+        public void SetGravity(float g)
+        {
+            _rigidbody.gravityScale = g;
+        }
+        
         public void SetVelocity(Vector2 newVel)
         {
             _rigidbody.velocity = newVel;

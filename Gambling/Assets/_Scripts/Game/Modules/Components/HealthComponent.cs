@@ -58,7 +58,7 @@ namespace Game.Component
             
             SetFlag("TakenDamage", true);
             
-            Debug.Log("Apply Damage");
+//            Debug.Log("Apply Damage");
             foreach (var action in _damageActions)
             {
                 action.Invoke(amount);

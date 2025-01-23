@@ -15,7 +15,7 @@ namespace Framework.Entity
         [SerializeField] private float groundCheckDistance;     //地面判定チェック距離
         [SerializeField] private float wallCheckDistance;       //壁判定チェック距離
         [SerializeField] private LayerMask whatIsGround;        //レイヤー設定
-        
+        public EntityData MyData = new();                               //データ
         //データ提供クラスの設定
         public void SetDataProvider(IDataProvider provider)
         {

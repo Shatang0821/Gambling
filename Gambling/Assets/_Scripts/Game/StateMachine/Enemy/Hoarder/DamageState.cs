@@ -14,7 +14,7 @@ namespace Game.StateMachine.Enemy.Hoarder
         public override void Enter()
         {
             base.Enter();
-            if (enemyData.HP <= 0)
+            if (owner.MyData.HP <= 0)
             {
                 ChangeState(StateEnum.Die);
             }

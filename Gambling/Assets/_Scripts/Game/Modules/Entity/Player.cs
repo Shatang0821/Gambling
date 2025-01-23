@@ -12,6 +12,7 @@ using Game.SkillSystem;
 using Game.StateMachine;
 using Game.StateMachine.Player;
 using Unity.VisualScripting;
+using UnityEngine.Rendering;
 
 namespace Game.Entity
 {
@@ -33,8 +34,7 @@ namespace Game.Entity
         private PlayerInputComponent _playerInputComponent;
         private HealthComponent _healthComponent;
         private SkillComponent _playerSkillComponent;
-
-        public EntityData MyData;
+        
         //一時的に使う
         private void Awake()
         {
@@ -48,13 +48,18 @@ namespace Game.Entity
             _playerSkillComponent.InitSkill(this,
                 ResManager.Instance.GetAssetCache<SkillList>("SkillData/Player_SkillDataTable"));
 
-            MyData = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/PlayerData").EntityData;
+            MyData.HP = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/PlayerData").EntityData.HP;
             _healthComponent.AddDamageAction(ApplyDamage);
+            _healthComponent.AddDeathAction(Test);
             // ステートマシンは最後に生成
             _playerStateMachine = CreateStateMachine();
             _playerStateMachine.InitState(StateEnum.Idle);
         }
-        
+
+        void Test()
+        {
+            Debug.Log("Death");
+        }
         
         
         //一時的に使う
@@ -96,7 +101,7 @@ namespace Game.Entity
             stateMachine.RegisterState(StateEnum.Fall, new FallState(this,StateEnum.Fall.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Attack, new AttackState(this,StateEnum.Attack.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Skill, new SkillState(this,StateEnum.Skill.ToString(),stateMachine,animator));
-            stateMachine.RegisterState(StateEnum.Damaged, new DamageState(this,StateEnum.Damaged.ToString(),stateMachine,animator));
+            stateMachine.RegisterState(StateEnum.Damaged, new DamagedState(this,StateEnum.Damaged.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Die, new DieState(this,StateEnum.Die.ToString(),stateMachine,animator));
             stateMachine.RegisterState(StateEnum.Defence, new DefenceState(this,StateEnum.Defence.ToString(),stateMachine,animator));
             return stateMachine;
@@ -108,7 +113,7 @@ namespace Game.Entity
             if (MyData.HP <= 0)
             {
                 MyData.HP = 0;
-                _healthComponent.Die();
+                _healthComponent.SetFlag("Die",true);
             }
         }
     

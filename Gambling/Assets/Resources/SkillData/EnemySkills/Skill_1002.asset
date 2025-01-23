@@ -18,8 +18,53 @@ MonoBehaviour:
   ManaCost: 0
   AnimationName: Skill02
   CanBeInterrupted: 0
+  InterruptedTime: 0
   Duration: 2.3
   Actions:
+  - ActionType: 6
+    TimeStamp: 0
+    Duration: 2.2
+    Prefab: {fileID: 0}
+    AudioData:
+      AudioClip: {fileID: 8300000, guid: 550c3b6c1fa49fe42b9616e64a9f865c, type: 3}
+      Volueme: 1
+      IsPlayRandomPitch: 1
+      MinPitch: 1.1
+      MaxPitch: 1.1
+    Value: 0
+    Direction: {x: 0, y: 0, z: 0}
+    IsPersistent: 0
+    TargetSettings:
+      TargetType: 0
+      TargetLayer:
+        serializedVersion: 2
+        m_Bits: 0
+      ColliderType: 0
+      Offset: {x: 0, y: 0, z: 0}
+      Radius: 0
+      Size: {x: 0, y: 0, z: 0}
+      Range: 0
+    FeedBackData:
+      Damage: 0
+      EnableCameraShake: 0
+      ShakeIntensity: 0
+      ShakeDuration: 0
+      EnableTimeFreeze: 0
+      FreezeScale: 0
+      FreezeDuration: 0
+      EnableEffect: 0
+      EffectPrefabs: []
+      EffectOffset: {x: 0, y: 0}
+      EnableAudio: 0
+      AudioData:
+        AudioClip: {fileID: 0}
+        Volueme: 0
+        IsPlayRandomPitch: 0
+        MinPitch: 0
+        MaxPitch: 0
+      EnableKnockback: 0
+      KnockbackForce: 0
+      KnockbackDuration: 0
   - ActionType: 1
     TimeStamp: 1.2
     Duration: 0.6
@@ -44,6 +89,7 @@ MonoBehaviour:
       Size: {x: 0, y: 0, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 0
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0
@@ -87,6 +133,7 @@ MonoBehaviour:
       Size: {x: 0, y: 0, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 0
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0
@@ -130,6 +177,7 @@ MonoBehaviour:
       Size: {x: 0, y: 0, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 0
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0
@@ -166,13 +214,14 @@ MonoBehaviour:
       TargetType: 0
       TargetLayer:
         serializedVersion: 2
-        m_Bits: 0
+        m_Bits: 8
       ColliderType: 0
       Offset: {x: 0, y: 0, z: 0}
       Radius: 0
       Size: {x: 0, y: 0, z: 0}
       Range: 0
     FeedBackData:
+      Damage: 0
       EnableCameraShake: 0
       ShakeIntensity: 0
       ShakeDuration: 0

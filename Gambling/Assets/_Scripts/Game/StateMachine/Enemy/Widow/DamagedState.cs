@@ -4,9 +4,9 @@ using FrameWork.Resource;
 namespace Game.StateMachine.Enemy.skeleton
 {
     using StateEnum = Game.Entity.Enemy.StateEnum;
-    public class DamageState : BaseState
+    public class DamagedState : BaseState
     {
-        public DamageState(EntityObject entityObject, string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(entityObject, animName, stateMachine, animator)
+        public DamagedState(EntityObject entityObject, string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(entityObject, animName, stateMachine, animator)
         {
 
         }
@@ -14,16 +14,16 @@ namespace Game.StateMachine.Enemy.skeleton
         public override void Enter()
         {
             base.Enter();
-            if (enemyData.HP <= 0)
-            {
-                ChangeState(StateEnum.Die);
-            }
+            // if (enemyData.HP <= 0)
+            // {
+            //     ChangeState(StateEnum.Die);
+            // }
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (stateTimer > 0.6f)
+            if (stateTimer > 0.3f)
             {
                 ChangeState(StateEnum.Idle);
             }

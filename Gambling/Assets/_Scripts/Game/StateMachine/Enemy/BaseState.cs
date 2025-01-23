@@ -3,6 +3,7 @@ using Framework.Entity;
 using Framework.FSM;
 using FrameWork.Resource;
 using Game.Component;
+using Game.Components;
 using Game.Entity;
 using Game.Input;
 using UnityEngine;
@@ -14,25 +15,22 @@ namespace Game.StateMachine.Enemy
     {
         protected EntityObject owner;
         protected SkillComponent skillComponent;
+        protected DefendComponent defendComponent;
         protected HealthComponent healthComponent;
         protected static int SkillID;
 
         public GameObject player;
         public EntityObject p_entity;
-        public EntityData enemyData;
+        //public EntityData enemyData;
         public float MaxHp = 100;
-        public static int damagecount = 0;  
         public float attackrange = 4.5f; //攻撃に入る距離
 
         public BaseState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(animName, stateMachine, animator)
         {
             this.owner = owner;
             skillComponent = this.owner.GetEntityComponent<SkillComponent>();
-            enemyData = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/EnemyData").EntityData;
-            enemyData.HP = MaxHp;
             healthComponent = this.owner.GetEntityComponent<HealthComponent>();
-            healthComponent.AddDamageAction(TakenDamage);
-
+            defendComponent = owner.GetEntityComponent<DefendComponent>();
         }
 
         public override void Enter()
@@ -40,6 +38,22 @@ namespace Game.StateMachine.Enemy
             base.Enter();
             player = GameObject.FindGameObjectWithTag("Player");
             p_entity = player.GetComponent<EntityObject>();
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+            if (healthComponent.GetFlag("TakenDamage"))
+            {
+                TakenDamage();
+                healthComponent.SetFlag("TakenDamage",false);
+            }
+
+            if (healthComponent.GetFlag("Die"))
+            {
+                if(stateMachine.CurrentState != stateMachine.GetState(StateEnum.Die.ToString()))
+                    ChangeState(StateEnum.Die);
+            }
         }
 
         /// <summary>
@@ -55,19 +69,9 @@ namespace Game.StateMachine.Enemy
             }
         }
 
-        protected void TakenDamage(float damage)
+        protected void TakenDamage()
         {
-            Debug.Log(damagecount);
-            if (damagecount >= 3)
-            {
-                damagecount = 0;
-                ChangeState(StateEnum.Damaged);
-            }
-            else
-            {
-                damagecount++;
-                AnimatorUtility.Blink(owner.GetComponentInChildren<SpriteRenderer>(),0.3f,0.1f);
-            }
+            AnimatorUtility.Blink(owner.GetComponentInChildren<SpriteRenderer>(),0.3f,0.15f);
             
         }
     }

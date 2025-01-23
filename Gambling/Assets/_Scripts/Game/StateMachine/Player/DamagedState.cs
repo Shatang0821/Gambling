@@ -7,9 +7,9 @@ using UnityEngine;
 namespace Game.StateMachine.Player
 {
     using StateEnum = Game.Entity.Player.StateEnum;
-    public class DamageState : BaseState
+    public class DamagedState : BaseState
     {
-        public DamageState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
+        public DamagedState(EntityObject owner, string animName, MyStateMachine stateMachine, Animator animator) : base(owner, animName, stateMachine, animator)
         {
 
         }
