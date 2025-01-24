@@ -72,7 +72,6 @@ namespace Game.Entity
         private void OnEnable()
         {
             _playerInputComponent.OnEnable();
-            EventCenter.DebugEventTable();
             _playerStateMachine.InitState(StateEnum.Idle);
         }
 

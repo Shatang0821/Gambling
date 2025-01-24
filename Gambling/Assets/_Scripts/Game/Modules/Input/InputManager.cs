@@ -45,6 +45,8 @@ namespace Game.Input
             DisableAllInputs();
             
             InputSystem.onActionChange -= OnActionChange;
+            
+            Debug.Log("Disable");
         }
         
         // <summary>

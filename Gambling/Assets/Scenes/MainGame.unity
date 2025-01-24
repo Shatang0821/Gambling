@@ -436,8 +436,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyPrefab:
-  - {fileID: 5747636794401962619, guid: 10bae7b5fba8d72438f7c83329e11af6, type: 3}
   - {fileID: 4821847293402438871, guid: dfd22763399e0464f85627fb10a7bc01, type: 3}
+  - {fileID: 5747636794401962619, guid: 10bae7b5fba8d72438f7c83329e11af6, type: 3}
   bgm:
     AudioClip: {fileID: 8300000, guid: cfa14835907754640b7fd233602cb7e0, type: 3}
     Volueme: 0.3
@@ -1775,6 +1775,10 @@ PrefabInstance:
     - target: {fileID: 4395340362177821446, guid: 6eaec78a665093e4f9c5d7742501631c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791627008916843673, guid: 6eaec78a665093e4f9c5d7742501631c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5729566040206075764, guid: 6eaec78a665093e4f9c5d7742501631c, type: 3}
       propertyPath: m_Name

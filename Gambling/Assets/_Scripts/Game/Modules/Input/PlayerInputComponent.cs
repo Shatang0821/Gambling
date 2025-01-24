@@ -35,6 +35,7 @@ namespace Game.Input
             EventCenter.AddListener<bool>(InputEvents.OnDefence,SetDefenceTrigger);
             EventCenter.AddListener<bool>(InputEvents.OnDash,SetDashTrigger);
             EventCenter.AddListener<bool>(InputEvents.OnJump,SetJumpTrigger);
+            EventCenter.DebugEventTable();
         }
 
         public void OnDisable()
@@ -45,6 +46,7 @@ namespace Game.Input
             EventCenter.RemoveListener<bool>(InputEvents.OnDefence,SetDefenceTrigger);
             EventCenter.RemoveListener<bool>(InputEvents.OnDash,SetDashTrigger);
             EventCenter.RemoveListener<bool>(InputEvents.OnJump,SetJumpTrigger);
+            EventCenter.DebugEventTable();
         }
 
         /// <summary>

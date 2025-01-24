@@ -28,6 +28,7 @@ public class Tutorial : MonoBehaviour
         }
         EventCenter.AddListener<float>(InputEvents.OnHorizontal, value =>UpdateHorizontalSprite(right,left,value));
         InputManager.Instance.CurrentDevice.Register(new Action<InputDevice>(OnDeviceChanged));
+        EventCenter.DebugEventTable();
     }
 
     private void OnDisable()
@@ -42,7 +43,8 @@ public class Tutorial : MonoBehaviour
         }
         EventCenter.RemoveListener<float>(InputEvents.OnHorizontal, value =>UpdateHorizontalSprite(right,left,value));
         InputManager.Instance.CurrentDevice.UnRegister(new Action<InputDevice>(OnDeviceChanged));
-        
+        EventCenter.ResetEvents();
+        EventCenter.DebugEventTable();
     }
     
     private void BindInputEvent(InputTutorialItem item)

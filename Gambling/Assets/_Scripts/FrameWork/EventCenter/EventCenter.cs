@@ -18,7 +18,8 @@ namespace FrameWork.EventCenter
             Delegate d = m_EventDictionary[eventType];
             if (d != null && d.GetType() != callBack.GetType())
             {
-                throw new Exception($"イベント {eventType} に異なるデリケートを追加しようとする。現在のイベントに対応するデリケートは {d.GetType()}、登録したいデリケートは {callBack.GetType()}。");
+                throw new Exception(
+                    $"イベント {eventType} に異なるデリケートを追加しようとする。現在のイベントに対応するデリケートは {d.GetType()}、登録したいデリケートは {callBack.GetType()}。");
             }
         }
 
@@ -111,7 +112,16 @@ namespace FrameWork.EventCenter
                 m_EventDictionary.Remove(eventType);
             }
         }
-        
+
+        /// <summary>
+        /// 登録されたすべてのイベントをリセットします。
+        /// </summary>
+        public static void ResetEvents()
+        {
+            m_EventDictionary.Clear();
+            Debug.Log("すべてのイベントがリセットされました。");
+        }
+
         public static void DebugEventTable()
         {
             foreach (var entry in m_EventDictionary)
@@ -120,6 +130,4 @@ namespace FrameWork.EventCenter
             }
         }
     }
-    
-    
 }

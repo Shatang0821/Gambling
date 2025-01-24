@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   EntityData:
-    HP: 0
+    HP: 100
