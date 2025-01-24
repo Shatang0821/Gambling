@@ -1,4 +1,6 @@
 ﻿using System;
+using FrameWork.EventCenter;
+using Game.Component;
 using Game.Entity;
 using Unity.Mathematics;
 using UnityEngine;
@@ -23,12 +25,27 @@ namespace Game.Core
                 DestroyPlayer();
             }
             SpawnedPlayer = Instantiate(Player, SpawnPos, quaternion.identity).GetComponent<Player>();
+            var healthComponent = SpawnedPlayer.GetEntityComponent<HealthComponent>();
+            if (healthComponent != null)
+            {
+                healthComponent.AddDeathAction(WhenPlayDeath);
+            }
         }
 
         public void DestroyPlayer()
         {
             if(SpawnedPlayer == null) return;
-            Destroy(SpawnedPlayer);
+            Destroy(SpawnedPlayer.gameObject);
+        }
+
+        /// <summary>
+        /// ゲームオーバー
+        /// </summary>
+        public void WhenPlayDeath()
+        {
+            DestroyPlayer();
+            GameManager.Instance.IsGameWin = false;
+            GameManager.Instance.ChangeState(GameState.Result);
         }
 
         public void UpdatePlayer()

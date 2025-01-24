@@ -9,13 +9,11 @@ namespace Game.StateMachine.Enemy.skeleton
     using StateEnum = Game.Entity.EnemyWidow.StateEnum;
     public class WalkState : BaseState
     {
-        EntityObject owner;
         MovementComponent _movement;
         Rigidbody2D _rigidbody;
         Vector2 direction;
         public WalkState(EntityObject entityObject, string animName, Framework.FSM.MyStateMachine stateMachine, UnityEngine.Animator animator) : base(entityObject,animName, stateMachine, animator)
         {
-            owner = entityObject;
             _movement = owner.GetEntityComponent<MovementComponent>();
             _rigidbody = owner.GetComponent<Rigidbody2D>();
         }
