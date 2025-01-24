@@ -15,4 +15,10 @@
         OnClosePanel,
     }
 
+    public enum GameEvents
+    {
+        OnPlayerHpChange,
+        OnEnemyHpChange
+    }
+
 }

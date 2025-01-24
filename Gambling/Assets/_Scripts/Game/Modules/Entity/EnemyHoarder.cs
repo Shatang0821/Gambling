@@ -3,9 +3,11 @@ using Game.StateMachine;
 using UnityEngine;
 using Game.StateMachine.Enemy.Hoarder;
 using FrameWork.Component;
+using FrameWork.EventCenter;
 using Game.Component;
 using FrameWork.Resource;
 using Game.Components;
+using Game.Event;
 using Game.SkillSystem;
 using Game.StateMachine.Enemy;
 using Unity.VisualScripting;
@@ -28,6 +30,9 @@ namespace Game.Entity
         private SkillComponent _enemySkillComponent;
         private HealthComponent _healthComponent;
         private DefendComponent _defendComponent;
+        
+        private float _maxHp;
+        
         private void Awake()
         {
             var movementComponent = new MovementComponent();
@@ -43,6 +48,8 @@ namespace Game.Entity
             skillComponent.InitSkill(this,
                 ResManager.Instance.GetAssetCache<SkillList>("SkillData/EnemyHoarder_SkillDataTable"));
             MyData.HP = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/EnemyData").EntityData.HP;
+            _maxHp = MyData.HP;
+            
             _healthComponent.AddDamageAction(ApplyDamage);
             _enemyStateMachine = CreateStateMachine();
             _enemyStateMachine.InitState(StateEnum.Idle);
@@ -76,6 +83,8 @@ namespace Game.Entity
                 MyData.HP = 0;
                 _healthComponent.SetFlag("Die",true);
             }
+            
+            EventCenter.TriggerEvent<float, float>(GameEvents.OnEnemyHpChange, MyData.HP, _maxHp);
         }
     }
 }

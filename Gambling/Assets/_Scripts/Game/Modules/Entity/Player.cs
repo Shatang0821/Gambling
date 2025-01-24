@@ -7,6 +7,7 @@ using FrameWork.EventCenter;
 using FrameWork.Resource;
 using Game.Component;
 using Game.Components;
+using Game.Event;
 using Game.Input;
 using Game.SkillSystem;
 using Game.StateMachine;
@@ -34,7 +35,8 @@ namespace Game.Entity
         private PlayerInputComponent _playerInputComponent;
         private HealthComponent _healthComponent;
         private SkillComponent _playerSkillComponent;
-        
+
+        private float _maxHp;
         //一時的に使う
         private void Awake()
         {
@@ -49,6 +51,8 @@ namespace Game.Entity
                 ResManager.Instance.GetAssetCache<SkillList>("SkillData/Player_SkillDataTable"));
 
             MyData.HP = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/PlayerData").EntityData.HP;
+            _maxHp = MyData.HP;
+            
             _healthComponent.AddDamageAction(ApplyDamage);
             //_healthComponent.AddDeathAction(Test);
             // ステートマシンは最後に生成
@@ -108,6 +112,8 @@ namespace Game.Entity
                 MyData.HP = 0;
                 _healthComponent.SetFlag("Die",true);
             }
+
+            EventCenter.TriggerEvent(GameEvents.OnPlayerHpChange, MyData.HP, _maxHp);
         }
     
     }

@@ -104,6 +104,7 @@ using FrameWork.UI;
 	/// </summary>
 	private void OnIdle()
 	{
+		HideGUI();
 		ShowPanel(View["StartPanel"]);
 		_resultPanel.SetActive(false);
 		View["Timer"].SetActive(false);
@@ -127,10 +128,12 @@ using FrameWork.UI;
 		GameManager.Instance.ChangeState(GameState.InGame);
 		View["Timer"].SetActive(true);
 		View["WaveUI"].SetActive(false);
+		ShowGUI();
 	}
 	
 	private void OnResult()
 	{
+		HideGUI();
 		View["Timer"].SetActive(false);
 		ShowPanel(_resultPanel);
 		var text = View["ResultPanel/Timer"].GetComponent<Text>();
@@ -172,5 +175,17 @@ using FrameWork.UI;
 		if(!_currentPanel && !_currentPanel.activeSelf) return;
 		
 		_currentPanel.SetActive(false);
+	}
+
+	private void ShowGUI()
+	{
+		View["GUI/PlayerHpBar"].SetActive(true);
+		View["GUI/EnemyHpBar"].SetActive(true);
+	}
+
+	private void HideGUI()
+	{
+		View["GUI/PlayerHpBar"].SetActive(false);
+		View["GUI/EnemyHpBar"].SetActive(false);
 	}
 }

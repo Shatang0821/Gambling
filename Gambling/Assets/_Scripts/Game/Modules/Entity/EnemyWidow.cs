@@ -3,9 +3,11 @@ using Game.StateMachine;
 using UnityEngine;
 using Game.StateMachine.Enemy.skeleton;
 using FrameWork.Component;
+using FrameWork.EventCenter;
 using Game.Component;
 using FrameWork.Resource;
 using Game.Components;
+using Game.Event;
 using Game.SkillSystem;
 using Game.StateMachine.Enemy;
 
@@ -27,6 +29,8 @@ namespace Game.Entity
         private SkillComponent _enemySkillComponent;
         private HealthComponent _healthComponent;
         
+        private float _maxHp;
+        
         private void Awake()
         {
             var movementComponent = new MovementComponent();
@@ -42,6 +46,8 @@ namespace Game.Entity
             skillComponent.InitSkill(this,
                 ResManager.Instance.GetAssetCache<SkillList>("SkillData/Enemy_SkillDataTable"));
             MyData.HP = ResManager.Instance.GetAssetCache<EntityDataSo>("EntityData/EnemyData").EntityData.HP;
+            _maxHp = MyData.HP;
+            
             _healthComponent.AddDamageAction(ApplyDamage);
             _enemyStateMachine = CreateStateMachine();
             _enemyStateMachine.InitState(StateEnum.Idle);
@@ -75,6 +81,8 @@ namespace Game.Entity
                 MyData.HP = 0;
                 _healthComponent.SetFlag("Die",true);
             }
+            //Debug.Log("ApplyDamage");
+            EventCenter.TriggerEvent(GameEvents.OnEnemyHpChange, MyData.HP, _maxHp);
         }
     }
 }
