@@ -123,33 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &251799503 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 302550977972537588, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-  m_PrefabInstance: {fileID: 3310540563881785997}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &285975553 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7681612500074523538, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
   m_PrefabInstance: {fileID: 3310540563881785997}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &529495145 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7700809477183890018, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-  m_PrefabInstance: {fileID: 3310540563881785997}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &664136745
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207,17 +185,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39ffb8b5e60b115419c51e0a80e6706a, type: 3}
---- !u!114 &674520147 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6987247978719909309, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-  m_PrefabInstance: {fileID: 3310540563881785997}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1017322953
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,17 +234,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 38c7f12d136d0924bb17e7f0a1513a5a, type: 2}
---- !u!114 &1024666067 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7181645287702658359, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-  m_PrefabInstance: {fileID: 3310540563881785997}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1272686653
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,39 +519,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1830417634 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8182113726027383202, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-  m_PrefabInstance: {fileID: 3310540563881785997}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1838868874 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8602913711807756592, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-  m_PrefabInstance: {fileID: 3310540563881785997}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2024845587 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7886483607013633311, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-  m_PrefabInstance: {fileID: 3310540563881785997}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2101614493
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,17 +610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cf13c98466f064984eacd106c53ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2130517290 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9036512663885784824, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-  m_PrefabInstance: {fileID: 3310540563881785997}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &148346661500254846
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,246 +686,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1541884023}
     m_Modifications:
-    - target: {fileID: 3097510133428539145, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3097510133428539145, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3097510133428539145, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3097510133428539145, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 5901705148091142292}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: left.Image
-      value: 
-      objectReference: {fileID: 529495145}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: lStickImage
-      value: 
-      objectReference: {fileID: 1838868874}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: right.Image
-      value: 
-      objectReference: {fileID: 2130517290}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: lStick.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: lStick.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: e30bed28c2ee21946847ba1a4c8262a4, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: lStick.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: b5f9d951f4c83a743b0abb712e91c8da, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: lStick.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 188b0d5f8df7a0b49a4d18380f4288df, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[0].Image
-      value: 
-      objectReference: {fileID: 1024666067}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[1].Image
-      value: 
-      objectReference: {fileID: 2024845587}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[2].Image
-      value: 
-      objectReference: {fileID: 251799503}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[3].Image
-      value: 
-      objectReference: {fileID: 1830417634}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[4].Image
-      value: 
-      objectReference: {fileID: 674520147}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: left.KeyboardSprites.PressedSprite
-      value: 
-      objectReference: {fileID: -676366773, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: left.KeyboardSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: 1953544332, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: right.KeyboardSprites.PressedSprite
-      value: 
-      objectReference: {fileID: 2115656882, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: right.KeyboardSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: -914817639, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[0].EventName
-      value: Jump
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[1].EventName
-      value: Attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[1].InputName
-      value: Attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[2].EventName
-      value: Defence
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[2].InputName
-      value: Defence
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[3].EventName
-      value: Dash
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[3].InputName
-      value: Dash
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[4].EventName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[4].InputName
-      value: Return
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[0].GamepadSprites.PressedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ab3e0a8ccd082a84192f4c43783c7b92, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[1].GamepadSprites.PressedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 15000644518117e44840e6a1da422823, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[2].GamepadSprites.PressedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ab2835a539f891740a016f72ebec8a4b, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[3].GamepadSprites.PressedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: fca80ac56b3686c48921d5c8b779511b, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[4].GamepadSprites.PressedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f1a563c4163157b4ab50fa7220e0d18c, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[0].GamepadSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4ae27921e1d27924badf33fea6f8afa5, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[0].KeyboardSprites.PressedSprite
-      value: 
-      objectReference: {fileID: -914899120, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[1].GamepadSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ecb451adab9e0fe409494f93b3441ed0, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[1].KeyboardSprites.PressedSprite
-      value: 
-      objectReference: {fileID: -1744082311, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[2].GamepadSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 2a24d657221f8104fac05ec8431b7005, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[2].KeyboardSprites.PressedSprite
-      value: 
-      objectReference: {fileID: -1464879439, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[3].GamepadSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 80542abd23eed294a880e58530eccb31, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[3].KeyboardSprites.PressedSprite
-      value: 
-      objectReference: {fileID: -611072151, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[4].GamepadSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f1a563c4163157b4ab50fa7220e0d18c, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[4].KeyboardSprites.PressedSprite
-      value: 
-      objectReference: {fileID: -1781609531, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[0].KeyboardSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: 1602842193, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[1].KeyboardSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: -865051455, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[2].KeyboardSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: -967526195, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[3].KeyboardSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: -1166786492, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4379329627310973998, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: tutorialItems.Array.data[4].KeyboardSprites.ReleasedSprite
-      value: 
-      objectReference: {fileID: -1781609531, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 4402177711278347074, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_Name
-      value: Stick
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402177711278347074, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187131790686532927, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6358959987307375479, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987247978719909309, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1781609531, guid: 418ed53a7a837d5418648254d1ef5572, type: 3}
-    - target: {fileID: 7589066665783259933, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7589066665783259933, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7589066665783259933, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7589066665783259933, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7616365668072814317, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
       propertyPath: m_Name
       value: UITitle
@@ -1106,26 +782,6 @@ PrefabInstance:
       propertyPath: UIInputModule
       value: 
       objectReference: {fileID: 2101614495}
-    - target: {fileID: 8602913711807756592, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8835237959814950532, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8835237959814950532, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8835237959814950532, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8835237959814950532, guid: 00af1d484f16a7243a43763c071e62ab, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
