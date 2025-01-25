@@ -80,6 +80,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Return"",
+                    ""type"": ""Button"",
+                    ""id"": ""8092c5d7-c020-43b9-a061-691db5568e1b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -311,6 +320,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9198b43-d291-4b6c-9233-faf48cb64df7"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1fa5d85-cf40-4653-85d0-925eca72c705"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Return"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -657,6 +688,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_GamePlay_Defence = m_GamePlay.FindAction("Defence", throwIfNotFound: true);
         m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
+        m_GamePlay_Return = m_GamePlay.FindAction("Return", throwIfNotFound: true);
         // Title
         m_Title = asset.FindActionMap("Title", throwIfNotFound: true);
         m_Title_Horizontal = m_Title.FindAction("Horizontal", throwIfNotFound: true);
@@ -735,6 +767,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Defence;
     private readonly InputAction m_GamePlay_Dash;
     private readonly InputAction m_GamePlay_Jump;
+    private readonly InputAction m_GamePlay_Return;
     public struct GamePlayActions
     {
         private @InputActions m_Wrapper;
@@ -745,6 +778,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Defence => m_Wrapper.m_GamePlay_Defence;
         public InputAction @Dash => m_Wrapper.m_GamePlay_Dash;
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
+        public InputAction @Return => m_Wrapper.m_GamePlay_Return;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -772,6 +806,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Return.started += instance.OnReturn;
+            @Return.performed += instance.OnReturn;
+            @Return.canceled += instance.OnReturn;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -794,6 +831,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Return.started -= instance.OnReturn;
+            @Return.performed -= instance.OnReturn;
+            @Return.canceled -= instance.OnReturn;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -951,6 +991,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnDefence(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnReturn(InputAction.CallbackContext context);
     }
     public interface ITitleActions
     {

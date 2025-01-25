@@ -29,21 +29,17 @@ public class Tutorial : MonoBehaviour
         EventCenter.AddListener<float>(InputEvents.OnHorizontal, value =>UpdateHorizontalSprite(right,left,value));
         InputManager.Instance.CurrentDevice.Register(new Action<InputDevice>(OnDeviceChanged));
         EventCenter.DebugEventTable();
+        OnDeviceChanged(InputManager.Instance.CurrentDevice.Value);
     }
 
     private void OnDisable()
     {
-        // イベントバインドを解除
-        foreach (var item in tutorialItems)
-        {
-            EventCenter.RemoveListener<bool>(InputEvents.OnJump, state => UpdateSprite(item, state));
-            EventCenter.RemoveListener<bool>(InputEvents.OnAttack, state => UpdateSprite(item, state));
-            EventCenter.RemoveListener<bool>(InputEvents.OnDefence, state => UpdateSprite(item, state));
-            EventCenter.RemoveListener<bool>(InputEvents.OnDash, state => UpdateSprite(item, state));
-        }
-        EventCenter.RemoveListener<float>(InputEvents.OnHorizontal, value =>UpdateHorizontalSprite(right,left,value));
+        EventCenter.RemoveAllListener(InputEvents.OnJump);
+        EventCenter.RemoveAllListener(InputEvents.OnAttack);
+        EventCenter.RemoveAllListener(InputEvents.OnDefence);
+        EventCenter.RemoveAllListener(InputEvents.OnDash);
+        EventCenter.RemoveAllListener(InputEvents.OnHorizontal);
         InputManager.Instance.CurrentDevice.UnRegister(new Action<InputDevice>(OnDeviceChanged));
-        EventCenter.ResetEvents();
         EventCenter.DebugEventTable();
     }
     

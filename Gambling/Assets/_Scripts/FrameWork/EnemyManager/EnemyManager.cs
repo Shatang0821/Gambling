@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     public AudioData bgm;
 
     private EntityObject spawnedEnemy; // 生成済みの敵リスト
-
+    private int _index = 0;
     private void Start()
     {
         StartCoroutine(AudioManager.Instance.FadeInBGM(bgm));
@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
     private void OnEnable()
     {
         EventCenter.AddListener(GameState.Result, DestroyEnemy);
+        
     }
 
     private void OnDisable()
@@ -41,7 +42,9 @@ public class EnemyManager : MonoBehaviour
         {
             DestroySpecificEnemy(spawnedEnemy.gameObject);
         }
-        spawnedEnemy = Instantiate(enemyPrefabs[0], spawnPosition, quaternion.identity).GetComponent<EntityObject>();
+        // _indexをインクリメントしてリストの範囲内に収める
+        _index = (_index + 1) % enemyPrefabs.Count;
+        spawnedEnemy = Instantiate(enemyPrefabs[_index], spawnPosition, quaternion.identity).GetComponent<EntityObject>();
         var healthComponent = spawnedEnemy.GetEntityComponent<HealthComponent>();
         if (healthComponent != null)
         {
