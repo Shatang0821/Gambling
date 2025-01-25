@@ -129,6 +129,8 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 0
+  MyData:
+    HP: 0
 --- !u!68 &7920294417657216009
 EdgeCollider2D:
   m_ObjectHideFlags: 0

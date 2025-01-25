@@ -19,11 +19,11 @@ MonoBehaviour:
   AnimationName: Skill2001
   CanBeInterrupted: 0
   InterruptedTime: 0
-  Duration: 1
+  Duration: 1.2
   Actions:
   - ActionType: 0
-    TimeStamp: 0.3
-    Duration: 0.7
+    TimeStamp: 0.8
+    Duration: 0.4
     Prefab: {fileID: 0}
     AudioData:
       AudioClip: {fileID: 0}
@@ -110,8 +110,8 @@ MonoBehaviour:
       KnockbackForce: 0
       KnockbackDuration: 0
   - ActionType: 0
-    TimeStamp: 0
-    Duration: 0.7
+    TimeStamp: 0.8
+    Duration: 0.4
     Prefab: {fileID: 0}
     AudioData:
       AudioClip: {fileID: 0}
