@@ -43,6 +43,7 @@ public class UITitleCtrl : UICtrl
 		UIInput.Instance.SelectUI(_startButton);
 		//UIInput.Instance.SelectUI(_tutorialButton);
         StartCoroutine(AudioManager.Instance.FadeInBGM(bgm));
+        Tutorial.SetActive(false);
     }
 
 	private void OnEnable()

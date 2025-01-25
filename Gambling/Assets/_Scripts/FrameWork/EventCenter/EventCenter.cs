@@ -41,6 +41,20 @@ namespace FrameWork.EventCenter
             m_EventDictionary[eventType] = Delegate.Combine(m_EventDictionary[eventType], callBack);
         }
 
+        public static void RemoveAllListener(Enum eventType)
+        {
+            if (m_EventDictionary.ContainsKey(eventType))
+            {
+                m_EventDictionary.Remove(eventType);
+                Debug.Log($"イベント {eventType} のすべてのリスナーが削除されました。");
+            }
+            else
+            {
+                Debug.LogWarning($"イベント {eventType} は登録されていません。");
+            }
+        }
+
+
         public static void RemoveListener(Enum eventType, Action callBack)
         {
             OnListenerRemoving(eventType, callBack);
