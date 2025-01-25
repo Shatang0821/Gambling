@@ -18,29 +18,97 @@ MonoBehaviour:
   ManaCost: 0
   AnimationName: Dash_Attack
   CanBeInterrupted: 0
-  TargetType: 1
-  TargetLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  ColliderType: 1
-  Offset: {x: 0.5, y: 0.15, z: 0}
-  Radius: 0
-  Size: {x: 1.5, y: 1, z: 0}
-  Range: 0
+  InterruptedTime: 0
   Duration: 1
   Actions:
   - ActionType: 1
     TimeStamp: 0
     Duration: 0.4
-    EffectPrefabName: 
+    Prefab: {fileID: 0}
+    AudioData:
+      AudioClip: {fileID: 0}
+      Volueme: 0
+      IsPlayRandomPitch: 0
+      MinPitch: 0
+      MaxPitch: 0
     Value: 3
     Direction: {x: 1, y: 0, z: 0}
     IsPersistent: 0
+    TargetSettings:
+      TargetType: 0
+      TargetLayer:
+        serializedVersion: 2
+        m_Bits: 0
+      ColliderType: 0
+      Offset: {x: 0, y: 0, z: 0}
+      Radius: 0
+      Size: {x: 0, y: 0, z: 0}
+      Range: 0
+    FeedBackData:
+      Damage: 0
+      EnableCameraShake: 0
+      ShakeIntensity: 0
+      ShakeDuration: 0
+      EnableTimeFreeze: 0
+      FreezeScale: 0
+      FreezeDuration: 0
+      EnableEffect: 0
+      EffectPrefabs: []
+      EffectOffset: {x: 0, y: 0}
+      EnableAudio: 0
+      AudioData:
+        AudioClip: {fileID: 0}
+        Volueme: 0
+        IsPlayRandomPitch: 0
+        MinPitch: 0
+        MaxPitch: 0
+      EnableKnockback: 0
+      KnockbackForce: 0
+      KnockbackDuration: 0
   - ActionType: 0
     TimeStamp: 0.6
     Duration: 0
-    EffectPrefabName: 
+    Prefab: {fileID: 0}
+    AudioData:
+      AudioClip: {fileID: 0}
+      Volueme: 0
+      IsPlayRandomPitch: 0
+      MinPitch: 0
+      MaxPitch: 0
     Value: 5
     Direction: {x: 0, y: 0, z: 0}
     IsPersistent: 0
+    TargetSettings:
+      TargetType: 1
+      TargetLayer:
+        serializedVersion: 2
+        m_Bits: 64
+      ColliderType: 1
+      Offset: {x: 1, y: 0.15, z: 0}
+      Radius: 0
+      Size: {x: 2, y: 1, z: 0}
+      Range: 0
+    FeedBackData:
+      Damage: 10
+      EnableCameraShake: 1
+      ShakeIntensity: 0.3
+      ShakeDuration: 0.1
+      EnableTimeFreeze: 0
+      FreezeScale: 0.1
+      FreezeDuration: 0.1
+      EnableEffect: 1
+      EffectPrefabs:
+      - {fileID: 8961676475620066286, guid: 8f646873da8e60643956446b81ff22ba, type: 3}
+      - {fileID: 3236055291426788732, guid: cc676f8ec6d1aaf4ba7db57d2490f390, type: 3}
+      EffectOffset: {x: 1, y: 0}
+      EnableAudio: 1
+      AudioData:
+        AudioClip: {fileID: 8300000, guid: 1a69e0654bc7c4049b56b50904f58443, type: 3}
+        Volueme: 1
+        IsPlayRandomPitch: 0
+        MinPitch: 0
+        MaxPitch: 0
+      EnableKnockback: 0
+      KnockbackForce: 0
+      KnockbackDuration: 0
   ComboDatas: []

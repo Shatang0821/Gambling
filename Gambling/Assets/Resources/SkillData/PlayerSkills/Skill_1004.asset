@@ -75,7 +75,7 @@ MonoBehaviour:
       IsPlayRandomPitch: 0
       MinPitch: 0
       MaxPitch: 0
-    Value: 5
+    Value: 10
     Direction: {x: 0, y: 0, z: 0}
     IsPersistent: 0
     TargetSettings:

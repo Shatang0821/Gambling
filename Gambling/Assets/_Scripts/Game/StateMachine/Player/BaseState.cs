@@ -69,13 +69,13 @@ namespace Game.StateMachine.Player
 
         protected void TakenDamage()
         {
-            if (stateMachine.CurrentState != stateMachine.GetState(StateEnum.Defence.ToString()))
+            if(stateMachine.CurrentState == stateMachine.GetState(StateEnum.Defence.ToString()) || (stateMachine.CurrentState == stateMachine.GetState(StateEnum.Skill.ToString()) && SkillID == 1005))
             {
-                ChangeState(StateEnum.Damaged);
+                AnimatorUtility.Blink(owner.GetComponentInChildren<SpriteRenderer>(),0.3f,0.15f);
             }
             else
             {
-                AnimatorUtility.Blink(owner.GetComponentInChildren<SpriteRenderer>(),0.2f,0.1f);
+                ChangeState(StateEnum.Damaged);
             }
             
         }
