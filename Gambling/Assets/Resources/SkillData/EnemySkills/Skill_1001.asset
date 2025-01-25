@@ -18,6 +18,7 @@ MonoBehaviour:
   ManaCost: 0
   AnimationName: Skill01
   CanBeInterrupted: 0
+  InterruptedTime: 0
   Duration: 1.4
   Actions:
   - ActionType: 0
@@ -41,7 +42,7 @@ MonoBehaviour:
       ColliderType: 1
       Offset: {x: 3, y: -0.5, z: 0}
       Radius: 0
-      Size: {x: 4, y: 0.5, z: 0}
+      Size: {x: 4, y: 0.7, z: 0}
       Range: 0
     FeedBackData:
       Damage: 5
